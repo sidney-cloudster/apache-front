@@ -1,0 +1,5 @@
+<div *ngFor="let h of inputHeader" class="banner-header" style="background-color: #bababa; height:50px;cursor: pointer;">
+    <a (click)="bannerClick(h.idBanner,h.url); this.sMarketingService.verificaLink(h.url)">
+        <img src="{{h.image}}" title="{{h.descricao}}" alt="{{h.descricao}}">
+    </a>
+</div>

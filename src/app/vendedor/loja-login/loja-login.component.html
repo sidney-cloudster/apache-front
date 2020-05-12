@@ -1,0 +1,24 @@
+<body>
+<!-- s -->
+    <div class="box-enter">
+        
+        <picture class="logo">
+            <img src="{{this.config.getLogo()}}" alt="" height="45px" width="auto">
+        </picture>
+        <form (ngSubmit)="onSubmit(listForm.value)" [formGroup]="listForm">
+            <div class="input-wrapper">
+                <input type="text" class="input-custom" id="" formControlName="email" required>
+                <label for="">E-mail</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="input-wrapper">
+                <input type="password" class="input-custom" id="" formControlName="password" required>
+                <label for="">Senha</label>
+                <div class="input-line"></div>
+            </div>
+            <button id="login-button" type="submit" class="btn">Continuar</button>
+        </form>
+        <small>obs.: Informe o código vendedor do sistema Sabium.</small>
+    </div>
+   
+  </body>

@@ -1,0 +1,97 @@
+<ng-progress id="loginBar"></ng-progress>
+<div id="lg-wrapper">
+    <a [routerLink]="['/']">
+    <img class="lg-brand" src="{{this.config.getLogo()}}" height="50px">
+    </a>
+    <div class="lg-box" *ngIf="vendedor">
+        <div class="lg-title">
+            <h1>Faça seu login com o CPF ou CNPJ</h1>
+        </div>
+        <form (ngSubmit)="loginCpf(logincpf.value)" [formGroup]="logincpf">
+            <div class="form-group">
+                <label for="cpf_cnpj">CPF/CNPJ</label>
+                <input type="text" autocomplete="off" class="form-control" formControlName="cpf_cnpj" required>
+             </div>
+            <button id="login-button" type="submit" class="btn-verde">Continuar</button>
+        </form>
+    </div>
+    <div class="lg-box" *ngIf="!vendedor">
+        <div class="lg-title">
+            <h1>Faça seu login</h1>
+        </div>
+        <form (ngSubmit)="onSubmit(listForm.value)" [formGroup]="listForm">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Ex.: joaodasilva@gmail.com" type="email" formControlName="email" required>
+                <mat-error *ngIf="listForm.get('email').invalid">{{getErro('email')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Digite sua senha" formControlName="senhaLogin" required>
+                <mat-error *ngIf="listForm.get('senhaLogin').invalid">{{getErro('senhaLogin')}}</mat-error>
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-raised-button class="w-100 btn-continue" >Continuar</button>
+        </form>
+        <div [innerHTML]="msgRetorno" style="margin-top:10px;"></div>
+        <div class="lg-divisor">
+            <span>ou</span>
+        </div>
+        <button matRipple  (click)="login('facebook')" class="btn facebook btn-block" > Entre com o <b>Facebook</b></button>
+        <button matRipple  (click)="login('google')" class="btn google btn-block" > Entre com o <b>Google</b></button>
+    </div>
+    <div class="lg-cadastro">
+        <span>É novo aqui? <a [routerLink]="['/user','cadastro']">Cadastre-se!</a></span>
+    </div>
+
+    <div class="modal fade" id="esqueci_senha" tabindex="-1" role="dialog" aria-labelledby="esqueci_senha" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="esqueci_emailTitle">Esqueci minha senha</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="esqueci-text">
+                    <span>Digite seu e-mail de cadastro abaixo e clique em enviar.</span><br>
+                    <span>Nós lhe enviaremos um e-mail com link para recadastrar sua senha.</span>
+                </div>
+                <form id="esqueci-senha" class="needs-validation">
+                <div class="form-group">
+                    <label for="email">E-mail cadastrado<span class="required-form">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email_a" placeholder="Digite seu e-mail cadastrado">
+                </div>
+                <button data-ripple type="submit" class="btn-verde">Enviar</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="esqueci_email" tabindex="-1" role="dialog" aria-labelledby="esqueci_email" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="esqueci_emailTitle">Esqueci meu email</h5>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form id="esqueci-senha" class="needs-validation">
+                <div class="form-group">
+                <label for="nome-destinatario">CPF ou CNPJ<span class="required-form">*</span></label>
+                <input required type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ cadastrado">
+                </div>
+                <button data-ripple matRipple type="submit" class="btn-verde">Enviar</button>
+            </form>
+            </div>    
+            </div>
+        </div>
+    </div>
+</div>

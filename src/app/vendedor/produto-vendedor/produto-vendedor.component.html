@@ -1,0 +1,331 @@
+<div class="ph-item produto py-3" *ngIf="!paginaCarregada">
+   <div id="produto-item mb-0 ">
+       <div class="container">
+           <div class="row">
+               <div class="col-12 col-sm-12 col-md-12 col-xl-5 col-lg-5 m-0 p-0 fav-hidden">
+                   <div class="ph-item placeholder-image produto">
+                       <div class="ph-col-12">
+                           <div class="ph-picture"></div>
+                       </div>
+                   </div>
+                   <div class="ph-item placeholder-tumb">
+                       <div class="ph-col-3">
+                           <div class="ph-picture"></div>
+                       </div>
+                       <div class="ph-col-3">
+                           <div class="ph-picture"></div>
+                       </div>
+                       <div class="ph-col-3 d-none d-xl-block">
+                           <div class="ph-picture"></div>
+                       </div>
+                       <div class="ph-col-3 d-none  d-xl-block">
+                           <div class="ph-picture"></div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
+                   <div class="ph-item produto">
+                       <div class="ph-col-12">
+                           <div class="ph-row">
+                               <div class="ph-col-12 big"></div>
+                               <div class="ph-col-4 empty"></div>
+                               <div class="ph-col-4"></div>
+                               <div class="ph-col-12 empty"></div>
+                               <div class="ph-col-6"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<div *ngIf="paginaCarregada">
+    <div id="produto-item produto-item-vendedor">
+       <div class="container">
+          <div class="nav-args">
+             <div class="nvgs-items">
+                <a href="#" alt="Página principal">
+                   <i class="uip-home"></i>
+                </a>
+             </div>
+             <div class="nvgs-items" *ngIf="categoria != ''"><a [routerLink]="getLinkArray('/categorias',link_categoria)">{{categoria}}</a></div>
+             <div class="nvgs-items" *ngIf="subcategoria != ''"><a [routerLink]="getLinkArray('/categorias',link_subcategoria)">{{subcategoria}}</a></div>
+             <div class="nvgs-items" *ngIf="marca != ''"><a>{{marca}}</a></div>
+          </div>
+          <div class="row">
+             <div class="col-12 col-sm-12 col-md-12 col-xl-5 col-lg-5 m-0 p-0 fav-hidden">
+                <div class="pd-imagem">
+                    <owl-carousel-o [options]="customOptions" #owlCar>
+                        <ng-container *ngFor="let image of imagesGradeX; let i = index;">
+                            <ng-template carouselSlide [id]="'imagem-'+i">
+                            <img [src]="image.images">
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                    <owl-carousel-o [options]="thumbOptions">
+                        <ng-container *ngFor="let image of imagesGradeX; let i = index;">
+                           <ng-template carouselSlide>
+                              <img [src]="image.images" style="width:100px;height:100px" (click)="owlCar.to('imagem-'+i)">
+                           </ng-template>
+                        </ng-container>
+                     </owl-carousel-o>
+                </div>
+ 
+             </div>
+ 
+             <div class="col-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
+                <div id="pd-item">
+                   <h1 id="title-product">{{nome}}</h1>
+                   <div class="pd-sub">
+                      <small class="pd-codigo">Cód.: {{id}}</small>
+                      <div class="avaliacoes-produto">
+                         <div class="estrelas-i">
+                            <div [innerHTML]="stars"></div>
+                         </div>
+                         <span class="avalicaoes-total">({{messages_qtd}})</span><a class="link-avaliar"
+                            data-toggle="modal" data-target="#modal-avaliar">Avaliar produto</a>
+                      </div>
+                   </div>
+                </div>
+ 
+                <form id="comprar-form" class="needs-validation is-invalid">
+                  <div *ngIf="gradeX?.length > 0">
+                      <span class="buybox-title">Cor: {{getXGradeSelecionada()}}</span>
+                      <div class="grade-input">
+                          <div class="grade-wrapper" matRipple *ngFor="let cor of gradeX; let y = index;">
+                              <input type="radio" id="grade-{{cor.idGradeX}}" value="{{cor.descricao}}"
+                                  name="cores" (click)="verificaGradeX(cor.idGradeX);"
+                                  class="checkGradeX inputGrade">
+                              <label for="grade-{{cor.idGradeX}}" data-ripple class="grade-label">
+                                  <img src="{{cor.images}}" style="width: 40px;height: 40px;display: block;" />
+                                  {{cor.descricao}}
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div *ngIf="gradeyDisponiveis?.length > 0">
+                      <span class="buybox-title">{{gradeyDisponiveis[0].titulo}}: {{getYGradeSelecionada()}}</span>
+                      <div class="grade-input">
+                          <div class="grade-wrapper sellerGradeY" matRipple
+                              *ngFor="let gradeY of gradeyDisponiveis; let i = index;">
+                              <div *ngIf="gradeY.idGradeY > 0">
+                                  <input type="radio" required id="y{{gradeY.idGradeY}}"
+                                      value="{{gradeY.descricao}}" name="{{gradeY.titulo}}" class="checkGradeY">
+                                  <label for="{{gradeY.idGradeY}}" data-ripple class="grade-label"
+                                      (click)="verificaGradeY(gradeY.idGradeY);">{{gradeY.descricao}}
+                                      {{gradeY.titulo}}
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- SE TIVER SOMENTE 1 SELLER  -->
+                  <div *ngIf="!isBoxSeller">
+                      <div id="pd-box">
+                          <div class="retire-loja-box">
+                              <i class="material-icons">
+                                  store
+                              </i> <span>Compre <b></b></span>
+                          </div>
+                          <form id="comprar-form" class="">
+                              <div id="comprar-item" class="pd-comprar row m-0">
+                                  <div class="pd-precos col-12 col-sm-12 col-md-12 col-xl-8 p-0 col-lg-8 mb-md-3 mb-sm-3 mb-3 mb-xl-0 mb-lg-0">
+                                      <div class="pd-preco w-100 d-block my-3">
+                                          <span>{{produtoSeller.preco | currency:'BRL':true}}</span><i>à vista</i>
+                                      </div>
+                                      <div class="seller-price-box" style="min-height: auto; height: auto;">
+                                          <span class="pd-parcalmento"><i class="material-icons">payment</i>
+                                              até {{produtoSeller.maxParcSJuros.parcela}} de
+                                              <b>{{produtoSeller.maxParcSJuros.valor}}</b></span>
+                                          <span class="pd-boleto"><i class="material-icons">account_balance</i>
+                                              boleto bancário <b>
+                                                  {{produtoSeller.preco | currency:'BRL':true}}</b>
+                                              (0% de desconto)</span>
+                                      </div>
+                                      <div *ngIf="produtoSeller.montagem?.length > 0" class="montagem-servico">
+                                          <label *ngFor="let montagem of produtoSeller.montagem"
+                                              for="montagem-{{montagem.idService}}" class="container-montagem"
+                                              (change)="selecionaMontagem(montagem,$event);">
+                                              <input type="checkbox" value="montagem-{{montagem.idService}}"
+                                                  id="montagem-{{montagem.idService}}">
+                                              <span class="checkbox-montagem"></span>{{montagem.nome}} -
+                                              {{montagem.valor | currency:'BRL':true}}
+                                          </label>
+                                      </div>
+                                  </div>
+                                  <div class="pd-comprar-btn col-12 col-sm-12 pr-xl-0 pl-xl-2 pl-0 col-md-12 col-xl-4 col-lg-6">
+                                       <button mat-button type="button" class="submit-comprar mb-2"(click)="btnComprar(produtoSeller,'','comprar')" data-ripple><span class="material-icons">shopping_cart</span>Comprar</button>
+                                      <span class="pd-parcalmento-ver" data-toggle="modal" data-target="#parcelamentos">Ver parcelas</span>
+                                  </div>
+                              </div>
+                          </form>
+                     
+                      </div>
+                  </div>
+                  <!-- ------------------------------------------------ TIVER MAIS QUE 1 SELLER -------------------------------------------- -->
+
+              </form>
+             </div>
+ 
+          </div>
+       </div>
+    </div>
+
+    <!-- INICIO - CALCULO PARCELAS -->
+    <div class="modal fade" id="parcelamentos" tabindex="-1" role="dialog" aria-labelledby="Parcelamentos" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="pdi-icones-compra-02"></i>Parcelamentos no cartão de crédito</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                    <thead>
+                    <tr>
+                    <th scope="col">x</th>
+                    <th scope="col">Parcela</th>
+                    <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                            <tr *ngFor="let parcela of produtoSeller.parcelamento">
+                                <th scope="row">{{parcela.parcela}}</th>
+                                <td>{{parcela.valor}}</td>
+                                <td>R$ {{parcela.valor_total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-modal" data-ripple data-dismiss="modal">Ok!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM - CALCULO PARCELAS -->  
+        
+
+    <div class="container">
+       <div class="pd-info">
+ 
+          <div class="pd-conteudo">
+             <span id="pd-more"><span>ver mais</span></span>
+             <div class="pd-info-box box-slide">
+                <div class="pd-info-title">
+                   <h2>Informações do produto</h2>
+                   <div class="pd-donwloads">
+                      <a class="btn btn-download" title="Baixar manual do produto" data-ripple style="cursor: pointer;color: #ffffff;" > <i class="fas fa-file-download"></i> Manual do Produto</a>
+                   </div>
+                   <div class="pd-info-conteudo">
+                      <div class="pd-info-imagem">
+                         <img src="../assets/img/img-produto.jpg" alt="" title="Informações">
+                      </div>
+                      <div class="pd-info-texto">
+                         <div *ngIf="productInfo != null || productInfo">
+                            <div class="pd-info-title">
+                               <h2>Característica do protudo</h2>
+                            </div>
+                            <div class="pd-descricao">
+                               {{productInfo}}
+                            </div>
+                         </div>
+                         <div class="pd-produto-info">
+ 
+                            <table class="table table-striped">
+                               <tbody>
+                                  <tr *ngFor="let at of atributos">
+                                     <th class="text-right">{{at.nome}}</th>
+                                     <td align="left">{{at.valor}}</td>
+                                  </tr>
+                               </tbody>
+                            </table>
+ 
+                         </div>
+                         <div *ngIf="dimensoes">
+                            <div class="pd-info-title">
+                               <h2>Dimensões</h2>
+                            </div>
+                            <div class="pd-dimensao">
+                               <ul class="list-dimensoes">
+                                  <li class="list-dimensao" *ngIf="dimensoes.altura">
+                                     <i class="fas fa-arrows-alt-v"></i><span>Altura: {{dimensoes.altura}} cm</span>
+                                  </li>
+                                  <li class="list-dimensao" *ngIf="dimensoes.largura">
+                                     <i class="fas fa-arrows-alt-h"></i><span>Largura: {{dimensoes.largura}} cm</span>
+                                  </li>
+                                  <li class="list-dimensao" *ngIf="dimensoes.profundidade">
+                                     <i class="fas fa-cube"></i><span>Profundidade: {{dimensoes.profundidade}}
+                                        cm</span>
+                                  </li>
+                                  <li class="list-dimensao" *ngIf="dimensoes.cubage">
+                                     <i class="fas fa-cube"></i><span>Cubage: {{dimensoes.cubage}} cm</span>
+                                  </li>
+                                  <li class="list-dimensao" *ngIf="dimensoes.cubage">
+                                     <i class="fas fa-weight-hanging"></i><span>Peso: {{dimensoes.peso}} KG</span>
+                                  </li>
+                               </ul>
+                            </div>
+                         </div>
+                         Garantia do Fornecedor de: 12 Meses
+                         <br>
+                         <br>
+                         <span *ngIf="marca != ''">
+                            Fabricante: {{marca}}<br>
+                         </span>
+                         <br>
+                         <!-- <br>
+                         Código de Barras:<br>
+                         Preto - 6941059620792<br>
+                         Azul - 6941059620808<br> -->
+                      </div>
+                   </div>
+                </div>
+             </div>
+             
+             <!-- <div class="pd-info-box">
+                <div class="pd-info-title">
+                   <h2>Avaliações</h2>
+                </div>
+                <div class="pd-avaliacao-topo row m-0">
+                   <div class="pd-media">
+                      Média Geral
+                      <div class="pd-media-estrelas">
+                         <span class="media-text">{{mediaAvaliacao}}</span>
+                         <div class="estrelas-avalicao">
+                            <div [innerHTML]="starsMedia"></div>
+                         </div>
+                         <span class="total-avaliacoes">({{messages_qtd}})</span>
+                      </div>
+                   </div>
+                </div>
+                <div class="pd-avaliacoes">
+                   <div class="pd-avaliacao" *ngFor="let a of avaliacao; let i = index;">
+                      <div class="avaliacao-title">
+                         <h3>TITULO (FIXO)</h3>
+                      </div>
+                      <div class="avaliacao-estrelas">
+                         <div class="estrelas-i">
+                            <div [innerHTML]="a.estrelasIcon"></div>
+                         </div>
+                         <span class="avaliacao-data">01/01/1900</span>
+                      </div>
+                      <div class="avaliacao-conteudo">
+                         {{a.comentarios}}
+                      </div>
+                      <div class="avaliacao-nome">
+                         <span>{{a.nome}}</span>
+                      </div>
+                   </div>
+                </div>
+             </div> -->
+             <!-- <div class="ct-conteudo-destaque" *ngIf="outPutArrayQtdItens.length > 0">
+                <app-carousel-produtos [inputTitulo]="outPutTitulo" [inputProdutos]="outPutProdutosCarrossel" [inputQuantidadeItens]="outPutArrayQtdItens"></app-carousel-produtos>
+             </div> -->
+          </div>
+       </div>
+    </div>
+ </div>

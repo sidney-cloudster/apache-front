@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg bg-loja">
+    <div class="navbar-brand mr-auto ml-auto">
+      <a [routerLink]="['/casamento']">
+          <img [src]="getLogo()" height="auto" width="120px">
+      </a>
+      <span class="divisor"></span>
+      <span class="nav-title-casamento">Lista de casamento</span>
+    </div>
+</nav>
+<section>
+    <div class="container">
+       <div class="row">
+            <div class="col-12 h-100 col-xl-3 pr-0">
+                <app-menu-lateral></app-menu-lateral>
+            </div>
+            <div class="col-12 col-xl-9 border-left">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</section>

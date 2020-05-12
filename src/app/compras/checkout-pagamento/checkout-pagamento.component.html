@@ -1,0 +1,568 @@
+<ng-progress id="loadingCheckout"></ng-progress>
+
+<nav class="ck-navbar" tabindex="1">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-12 col-lg-2 d-flex align-self-center justify-content-center">
+                <a [routerLink]="['/']">
+                <picture>
+                    <img class="logo-full" src="{{this.config.getLogo()}}" height="37px">
+                </picture>
+                </a>
+            </div>
+            <div class="col-12 col-lg-10 d-flex align-self-center mt-5 pb-3">
+                    <ul class="ck-list-step row">
+                        <li class="ck-step col-3 col-lg-3 ">
+                            <i class="uip-step-check"></i>
+                            <a [routerLink]="['/compras','carrinho-compra']" class="ck-step-first">
+                                Carrinho
+                            </a>
+                        </li>
+                        <!-- <li class="ck-step col-3 col-lg-3">
+                    <i class="uip-step-check"></i>
+                    <a [routerLink]="['/compras/identificacao']" class="ck-step-link after-active before-active">
+                    Identificação
+                    </a>
+                </li> -->
+                        <li class="ck-step col-3 col-lg-3">
+                            <i class="uip-step-check"></i>
+                            <a [routerLink]="['/compras','checkout-pagamento']" class="ck-step-link after-active">
+                                Pagamento
+                            </a>
+                        </li>
+                        <li class="ck-step col-3 col-lg-3 last">
+                            <i class="uip-step-elipse"></i>
+                            <a href="#" class="ck-step-last">
+                                Obrigado!
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="ck-content">
+        <div class="ck-processing" *ngIf="loadingState">
+            <div class="ckp-wrapper">
+                <span class="material-icons">
+                    https
+                </span>
+                <mat-spinner strokeWidth="5"></mat-spinner>
+                <p class="ckp-text">Aguarde um momento estamos processando seu pagamento!</p>
+            </div>
+        </div>
+
+        <div id="errorPayment" style="text-align: center;background-color: #ff1a1a;color:#fff;display:hidden;">Erro ao processar pagamento... por favor, verifique os dados de pagamento e tente novamente.</div>
+
+        <div class="container" *ngIf="!loadingState">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="itens-carrinho checkout-box">
+                        <div class="ck-title">
+                            <span class="ck-h1">Carrinho</span>
+                        </div>
+                        <div class="ck-body pb-2 pt-2">
+                            <div class="loader" id="carrinhoLoading" style="margin-top: 30px;"></div>
+                            <ul class="carrinho-lista" id="listaCarrinho">
+                                <li class="crt-it" data-ripple="" *ngFor="let p of getProdutos();">
+                                    <a [routerLink]="['/produto',p.produtos.id,p.produtos.link]">
+                                        <img class="carrinho-img" src="{{p.produtos.imagem}}" height="40px" width="40px">
+                                        <span class="carrinho-nome">{{p.produtos.descricao}}</span>
+                                        <span class="carrinho-quant">Quantidade: {{p.produtos.quantidade}}</span>
+                                        <span class="carrinho-y" *ngFor="let gradey of p.produtos.gradey;">{{gradey.titulo}}:
+                                            {{gradey.descricao}}</span>
+                                        <span class="carrinho-x" *ngFor="let gradex of p.produtos.gradex;">Cor:
+                                            {{gradex.descricao}}</span>
+                                        <div class="garantia-pagamento">
+                                            <span
+                                                *ngIf="p.produtos.garantia.idServices > 0 && p.produtos.garantia.checked == 'T'">
+                                                {{p.produtos.garantia.nome}}
+                                            </span>
+                                        </div>
+                                        <span class="carrinho-preco">{{p.produtos.total | currency:'BRL':true}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a class="ck-link-bottom" [routerLink]="['/compras','carrinho-compra']">Alterar carrinho</a>
+                        </div>
+                    </div>
+                    <div *ngIf="enderecoEntrega.status != 'pendente'" class="checkout-box">
+                        <div class="ck-title">
+                            <span class="ck-h1">Endereço de entrega</span>
+                        </div>
+                        <div class="ck-body pb-2" *ngIf="enderecoEntrega.status == 'ok'">
+                            <div class="ck-box-ads">
+                                <span class="ads-nome">{{enderecoEntrega.dados.responsavel}}</span>
+                                <span class="ads-endereco">{{enderecoEntrega.dados.endereco}}, {{enderecoEntrega.dados.numero}}, {{enderecoEntrega.dados.complemento}}</span>
+                                <span class="ads-bairro">{{enderecoEntrega.dados.bairro}}</span>
+                                <span class="ads-cidade">{{enderecoEntrega.dados.cidade}} {{enderecoEntrega.dados.estado}}</span>
+                                <span class="ads-cep">CEP {{enderecoEntrega.dados.cep}}</span>
+                            </div>
+                            <a class="ck-link-bottom" href="#" data-toggle="modal" data-target="#endereco-modal">Alterar
+                                endereço</a>
+                        </div>
+                        <div style="padding:10px;" *ngIf="enderecoEntrega.status == 'error'">
+                            <span>Nenhum endereço foi encontrado.</span><br>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#endereco-adicionar" data-ripple>Adicionar novo endereço</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <div class="checkout-box">
+                        <div class="ck-title">
+                            <span class="ck-h1">Deseja pagar com</span>
+                        </div>
+                        <div class="ck-body p-0">
+                            <div class="accordion" id="cartao-credito">
+                                <div class="card">
+                                    <button class="btn btn-pagamento active" type="button" data-toggle="collapse"
+                                        data-target="#cartao_collapse" aria-expanded="true" aria-controls="cartao_collapse">
+                                        <i class="uip-cartao"></i> Cartão de crédito
+                                    </button>
+                                    <div id="cartao_collapse" class="collapse show" aria-labelledby="headingOne"
+                                        data-parent="#cartao-credito">
+                                        <div class="card-body">
+                                            <div class='card-wrapper'></div>
+                                            <form id="form-cartao" class="mt-2 needs-validation" [formGroup]="listFormCC"
+                                                (ngSubmit)="paymentCreditCard(listFormCC.value)">
+                                                <mc-card-flip [cardNumber]="'#cartao'" [cardName]="'#nome'" [Validate]="'#validade'" [cardCvv]="'#cvv'"></mc-card-flip>
+                                                <div class="form-group row">
+                                                    <label for="colFormLabel" class="col-sm-4 col-form-label">Número do
+                                                        cartão</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="cartao" class="form-control" name="cartao" id="cartao"
+                                                            formControlName="numero" required placeholder="0000 0000 0000 0000"
+                                                            #cartao mask="0000 0000 0000 0000">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="nome" class="col-sm-4 col-form-label">Nome impresso no
+                                                        cartão</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control jp-card-valid" id="nome"
+                                                            name="nome" formControlName="nome" required
+                                                            placeholder="Ex.: Marco A S" #nome>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="colFormLabel" class="col-sm-4 col-form-label">Validade</label>
+                                                    <div class="col-8 col-sm-4">
+                                                        <input type="text" class="form-control" id="validade" name="validade"
+                                                            formControlName="validade" required placeholder="Ex.: 05/2020"
+                                                            #validade mask="00/0000">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="colFormLabel" class="col-sm-4 col-form-label">CVV</label>
+                                                    <div class="col-6 col-sm-3">
+                                                        <input type="text" class="form-control " id="cvv" name="cvv"
+                                                            formControlName="cvv" required placeholder="000" #cvv mask="000">
+                                                        <span class="cvv-explicacao"></span>
+                                                    </div>
+                                                    <div class="col-6 col-sm-4 d-flex align-self-center">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="popover"
+                                                            data-placement="top" title="Card Verification Value (CVV)"
+                                                            data-content="As bandeiras de cartões de crédito utilizam essa sigla como referência ao Código de Segurança do Cartão (CSC). Utilizado como garantia de que o comprador tem o cartão utilizado em suas mãos.">(?)</button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="parcelas" class="col-sm-4 col-form-label">Parcelar em</label>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control" name="parcelas" id="parcelas" #parcelas formControlName="parcelas" required>
+                                                            <option value="{{i + 1}}" *ngFor="let p of todasParcelas;let i = index;"
+                                                            [attr.selected]="i == 0" required>
+                                                                {{p.parcela}} {{p.valor}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div
+                                                        class="col-sm-5 d-flex align-self-center justify-content-center mt-2 mt-xl-0">
+                                                        <span class="info-card">(informe ao lado o N° de parcelas)</span>
+                                                    </div>
+                                                </div>
+                                                <button matRipple type="submit" class="btn-pagar btn" data-ripple><i class="uip-cartao"></i>
+                                                    Pagar com cartão de crédito</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <button class="btn btn-pagamento collapsed" type="button" data-toggle="collapse"
+                                        data-target="#boleto_collapse" aria-expanded="false" aria-controls="boleto_collapse">
+                                        <i class="uip-boleto"></i> Boleto Bancário
+                                    </button>
+                                    <div id="boleto_collapse" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#cartao-credito">
+                                        <div class="card-body">
+                                            <div class="ck-boleto">
+                                                <span>Alguns produtos e frete não possuem desconto.</span>
+                                                <span>Prosseguindo a compra no boleto você ganha:</span>
+                                                <div class="ck-table-boleto">
+                                                    <div class="boleto-desconto">
+                                                        <span>Desconto à vista</span>
+                                                        <span>R$ 0,00</span>
+                                                    </div>
+                                                    <div class="boleto-total">
+                                                        <span class="total-boleto">Total no boleto</span>
+                                                        <span
+                                                            class="total-price">{{getTotalCompra() | currency:'BRL':true}}</span>
+                                                    </div>
+                                                </div>
+                                                <span>O pedido será aprovado após a confirmação de pagamento. O boleto pode ser
+                                                    pago em qualquer Agência bancária ou Internet Bank.</span>
+                                                <span>Após o vencimento o pedido é cancelado automaticamente.</span>
+                                                <div class="infos-boleto">
+                                                    <div class="info-bol">
+                                                        <img src="../assets/img/boleto-info-01.svg">
+                                                        <span>5% de desconto no boleto</span>
+                                                    </div>
+                                                    <div class="info-bol">
+                                                        <img src="../assets/img/boleto-info-02.svg">
+                                                        <span>Prazo de 6 dias</span>
+                                                    </div>
+                                                </div>
+                                                <button matRipple type="button" id="pgto-boleto" class="btn-pagar btn" (click)="paymentBoleto(listForm.value);"><i class="uip-boleto"></i> Pagar com boleto bancário</button>
+                                                <!--" class="btn-pagar" data-ripple><i class="uip-boleto"></i></a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="checkout-box">
+                        <div class="ck-title">
+                            <span class="ck-h1">Possui cupom?</span>
+                            <span class="ck-description">(opcional)</span>
+                        </div>
+                        <div class="ck-body">
+                            <div *ngIf="cupomAplicado == ''">
+                                <form class="pb-3 pt-2" [formGroup]="cupomDesconto" (ngSubmit)="ativarCupom(cupomDesconto.value)">
+                                    <div class="form-group">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Digite o codigo do cupom</label>
+                                        <input type="text" class="form-control" required="" formControlName="cupom" id="inputCupom">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary aplicar-cupom" data-ripple="">Aplicar</button>
+                                </form>
+                            </div>
+                            <div *ngIf="cupomAtivo == true && feedbackCupom.msg != ''">                   
+                                <div *ngIf="cupomAplicado != ''" class="alert alert-success" role="alert">
+                                    <i class="fas fa-tags"></i> {{cupomAplicado}}
+                                    <button type="button" class="close" aria-label="Close" (click)="removeCupom()">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert" role="alert">
+                                    <span *ngIf="feedbackCupom.tipo == 'p'"><i class="fas fa-tags"></i> {{feedbackCupom.msg}} {{feedbackCupom.valor}}%</span>
+                                    <span *ngIf="feedbackCupom.tipo == 'v'"><i class="fas fa-tags"></i> {{feedbackCupom.msg}} {{feedbackCupom.valor | currency:'BRL':true}} </span>
+                                    <span *ngIf="feedbackCupom.tipo == 'i'">{{feedbackCupom.msg}}</span>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagamento checkout-box">
+                        <div class="ck-title title-resume">
+                            <span class="ck-h1">Resumo do pedido</span>
+                        </div>
+                        <div class="ck-body pb-3">
+                            <ul class="ck-resumos">
+                                <li class="ck-resumo">
+                                    <span>Subtotal ({{getQtdProdutos()}})</span>
+                                    <span>{{getTotalProdutos() | currency:'BRL':true}}</span>
+                                </li>
+                                <li class="ck-resumo">
+                                    <span>Frete</span>
+                                    <span>{{getTotalFrete() | currency:'BRL':true}}</span>
+                                </li>
+                                <li class="ck-resumo">
+                                    <span>Garantia</span>
+                                    <span>{{getTotalGarantia() | currency:'BRL':true}}</span>
+                                </li>
+                                <li class="ck-resumo">
+                                    <span>Montagem</span>
+                                    <span>{{getTotalMontagem() | currency:'BRL':true}}</span>
+                                </li>
+                                <li class="ck-resumo" *ngIf="getTotalDesconto() > 0">
+                                    <span>Descontos</span>
+                                    <span style="color:red">{{getTotalDesconto() | currency:'BRL':true}}</span>
+                                </li>
+                            </ul>
+                            <div class="ck-total">
+                                <span>Total</span>
+                                <span>{{getTotalCompra() | currency:'BRL':true}}</span>
+                                <span class="ck-resumo-parcelado" *ngIf="!sDados.objetoIsEmpty(parcela)">
+                                    Em até {{parcela.parcela}} de {{parcela.valor}}
+                                </span>
+                                <span class="ck-resumo-parcelado" *ngIf="sDados.objetoIsEmpty(parcela)">
+                                    -
+                                </span>
+                                <!-- <span class="ck-resumo-parcelado ck-resumo-boleto">
+                                    ou R$ 999,00 no boleto à vista
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-seguranca" role="alert">
+                        <i class="fas fa-lock"></i> Não se preocupe, você está em um ambiente seguro.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row botao-voltar1"></div>
+<!-- ESCOLHER -->
+    <div class="modal fade" id="endereco-modal" tabindex="-1" role="dialog" aria-labelledby="endereco-modalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Selecione o endereço de entrega.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="radio-endereco form-check" *ngFor="let data of arrayEndereco;let i = index;">
+                        <input type="radio" name="enderecos" id="endereco-{{i}}" value="endereco-{{i}}" (click)="changeId(data.idCustomersAddress)" [checked]="data.idCustomersAddress == idenderecoPadrao">
+                        <button data-toggle="modal" data-target="#endereco-editar" class="modal-link-editar" (click)="getEditData(data.idCustomersAddress)">Editar</button>
+                        <label for="endereco-{{i}}">
+                            <div class="label-endereco">
+                                <span class="ads-nome">{{data.addResponsible}}</span>
+                                <span class="ads-endereco">{{data.addAddress}}, {{data.addAddressNumber}}, {{data.addComplement}}</span>
+                                <span class="ads-bairro">{{data.addDistrict}}</span>
+                                <span class="ads-cidade">{{data.addCity}} {{data.addUF}}</span>
+                                <span class="ads-cep">CEP {{data.addCep}}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#endereco-adicionar" data-ripple>Adicionar novo endereço</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ADD ENDEREÇO -->
+    <div class="modal fade" id="endereco-adicionar" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Adicionar novo endereço</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="adicionar-endereco" class="needs-validation" [formGroup]="listFormAddress"
+                    (ngSubmit)="onSubmit()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nome-destinatario">Nome do destinatário</label><span
+                                class="required-form">*</span>
+                            <input required type="text" class="form-control" id="nome_destinatario_"
+                                name="nome_destinatario" placeholder="Nome do destinatário"
+                                formControlName="responsavel">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome-destinatario">Telefone</label><span
+                                class="required-form">*</span>
+                            <input required type="text" class="form-control" id="telefone_"
+                                name="telefone" placeholder="(00) 00000-000"
+                                formControlName="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome-destinatario">CEP</label><span class="required-form">*</span>
+                            <input required type="text" class="form-control" id="cep_" name="cep"
+                                placeholder="00000-000" formControlName="cep" mask="00000-000" (change)="autoDataCep('add')">
+                            <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"
+                                class="lg-senha">Não sei meu CEP</a>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-9 form-group">
+                                <label for="nome-destinatario">Endereço</label><span class="required-form">*</span>
+                                <input required type="text" class="form-control" placeholder="Endereço"
+                                    id="endereco_" name="endereco" formControlName="endereco">
+                            </div>
+                            <div class="col-3 form-group">
+                                <label for="nome-destinatario">Nº</label><span class="required-form">*</span>
+                                <input required type="text" class="form-control" placeholder="Nº" id="numero_"
+                                    name="numero" formControlName="numero">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" class="form-control" id="complemento_" name="complemento"
+                                formControlName="complemento">
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Bairro</label><span class="required-form">*</span>
+                            <input required type="text" class="form-control" id="bairro_" name="bairro"
+                                formControlName="bairro">
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Cidade</label><span class="required-form">*</span>
+                            <input required type="text" class="form-control" id="cidade_" name="cidade"
+                                formControlName="cidade">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Estado</label>
+                            <select name="estado" id="estado_" class="form-control" formControlName="uf" required>
+                                <option value="" selected hidden disabled>Estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input enderecoPadrao" id="default_" formControlName="tipo" name="tipo">
+                                &nbsp;
+                            <label class="form-check-label" for="default_">Endereço padrão</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-ripple type="submit" class="btn btn-verde btn-add">Adicionar endereço</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="endereco-editar" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar endereço</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="adicionar-endereco" class="needs-validation" [formGroup]="listEdit"
+                    (ngSubmit)="onUpdate(listEdit.value)">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nome-destinatario">Nome do destinatário</label><span
+                                class="required-form">*</span>
+                            <input required type="text" class="form-control" id="nome_destinatario_"
+                                name="nome_destinatario" placeholder="Nome do destinatário"
+                                formControlName="responsavel">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome-destinatario">Telefone</label><span
+                                class="required-form">*</span>
+                            <input required type="text" class="form-control" id="telefone_"
+                                name="telefone" placeholder="(00) 00000-000"
+                                formControlName="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome-destinatario">CEP</label><span class="required-form">*</span>
+                            <input required type="text" class="form-control" id="cep_" name="cep"
+                                placeholder="00000-000" formControlName="cep" mask="00000-000" (change)="autoDataCep('edit')">
+                            <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"
+                                class="lg-senha">Não sei meu CEP</a>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-9 form-group">
+                                <label for="nome-destinatario">Endereço</label><span class="required-form">*</span>
+                                <input required type="text" class="form-control" placeholder="Endereço"
+                                    id="endereco_" name="endereco" formControlName="endereco">
+                            </div>
+                            <div class="col-3 form-group">
+                                <label for="nome-destinatario">Nº</label><span class="required-form">*</span>
+                                <input required type="text" class="form-control" placeholder="Nº" id="numero_"
+                                    name="numero" formControlName="numero">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" class="form-control" id="complemento_" name="complemento"
+                                formControlName="complemento">
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Bairro</label><span class="required-form">*</span>
+                            <input required type="text" class="form-control" id="bairro_" name="bairro"
+                                formControlName="bairro">
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Cidade</label><span class="required-form">*</span>
+                            <input required type="text" class="form-control" id="cidade_" name="cidade"
+                                formControlName="cidade">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Estado</label>
+                            <select name="estado" id="estado_" class="form-control" formControlName="uf" required>
+                                <option value="" selected hidden disabled>Estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="default_" [checked]="check == 'R'" formControlName="tipo">
+                            <label class="form-check-label" for="default_" >Endereço
+                                padrão</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-ripple type="submit" class="btn btn-verde btn-edit">Editar endereço</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

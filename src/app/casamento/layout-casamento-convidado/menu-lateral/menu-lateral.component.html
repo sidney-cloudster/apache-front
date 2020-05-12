@@ -1,0 +1,118 @@
+<div class="overlay"></div>
+<div class="overlay-body"></div>
+<div class="overlay-mobile"></div>
+<div class="overlay-hover"></div>
+
+<div *ngFor="let data of getInfoMenu()">
+    <div class="profile-infos">
+        <div class="profile-user">
+            <div class="perfil-image" style="display: block;">
+                <picture class="profile-wrapper"><img id="img-perfil" src="../assets/img/user-default.png" alt="">
+                </picture>
+            </div>
+        </div>
+        <div class="profile-name-date">
+            <span class="title-name-profile"><a [routerLink]="['/casamento','lista-convidados',id,data.nomeNoivo+'-'+data.nomeNoiva]">{{data.nomeNoivo}} & {{data.nomeNoiva}}</a></span>
+            <span class="date-time-profile">{{data.data}}</span>
+        </div>
+    </div>
+    <div class="profile-more">
+        <div class="wrapper-profile-more">
+            <h2 class="title-more">Local do evento <span class="divisor-title"></span></h2>
+            <div class="profile-content">
+
+                <div class="profile-endereco">
+                    <i class="fas fa-map-marker-alt"></i><span>{{data.local}}, {{data.cidade}} PR</span>
+                </div>
+
+                <div class="profile-endereco">
+                    <i class="far fa-clock"></i><span>{{data.data}}</span>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="profile-more">
+        <div class="wrapper-profile-more">
+            <h2 class="title-more">Mensagem dos noivos <span class="divisor-title"></span></h2>
+            <div class="profile-content">
+                <div class="texto-noivos">
+                    <p><i class="fas fa-quote-left" style="float: left;"></i></p>
+                    <p>{{data.mensagem}}</p>
+                    <p><i class="fas fa-quote-right" style="float: right;"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div id="nav-sidebar">
+    <div id="cart" (click)="carrinhoCompra();">
+        <ul class="navbar-side">
+            <li class="nav-side-item active"><a class="nav-side-link"><i class="fas fa-shopping-cart"></i> Meu
+                    carrinho</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="box-carrinho">
+    <div class="carrinho-title">
+        <div class="ch-title">
+            <svg id="ch-carrinho" xmlns="http://www.w3.org/2000/svg" width="42.527" height="32.294"
+                viewBox="0 0 42.527 32.294">
+                <g transform="translate(-1149.875 -391.717)">
+                    <path id="Caminho_19" data-name="Caminho 19"
+                        d="M1172.875,534.242h5.432a.953.953,0,0,1,.913.679l6.316,21.009a.779.779,0,0,0,.746.555h21.475a.779.779,0,0,0,.752-.577l4.894-18.253"
+                        transform="translate(-22 -141.525)" fill="none" stroke-linecap="round" stroke-miterlimit="10"
+                        stroke-width="2"></path>
+                    <circle id="Elipse_2" data-name="Elipse 2" cx="2.684" cy="2.684" r="2.684"
+                        transform="translate(1166.613 418.644)"></circle>
+                    <path id="Caminho_20" data-name="Caminho 20"
+                        d="M2.684,0A2.684,2.684,0,1,1,0,2.684,2.684,2.684,0,0,1,2.684,0Z"
+                        transform="translate(1179.03 418.644)"></path>
+                </g>
+            </svg>
+            <h5>Meu carrinho</h5>
+        </div>
+        <div class="box-carrinho-fechar" (click)="closeCarrinho()">
+            <button class="btn carrinho-fechar" aria-label="Carrinho fechar" aria-label="Menu" type="button"
+                aria-label="Menu" aria-controls="navigation" aria-expanded="true/false">
+                x
+            </button>
+        </div>
+    </div>
+
+    <div class="carrinho-vazio" *ngIf="getProdutos().length <= 0">
+        <img src="../../../../assets/img/carrinho-vazio.gif" width="auto" height="auto" title="Carrinho vazio!">
+        <h3>Seu carrinho está vázio</h3>
+        <span class="cr-vazio">Bora dar uma olhadinha?</span>
+    </div>
+
+    <ul class="carrinho-lista carrinho-item-lista">
+        <li *ngFor="let produtos of getProdutos(); let i = index;" class="crt-it" data-ripple="">
+            <div class="carrinho-lateral">
+                <div class="loader" id="carrinhoLoading-{{i}}"></div>
+                <a routerLink="/produto/{{produtos.id}}/{{produtos.link}}" id="listaCarrinho-{{i}}"
+                    style="display: none;">
+                    <img class="carrinho-img" src="{{produtos.imagem}}" height="40px" width="40px">
+                    <span class="carrinho-nome">{{produtos.descricao}}</span>
+                    <span class="carrinho-quant">Quantidade: {{produtos.quantidade}}</span>
+                    <span class="carrinho-preco"
+                        *ngIf="produtos.total > 0">{{produtos.total | currency:'BRL':true}}</span>
+                    <span class="carrinho-preco" *ngIf="produtos.total <= 0">Falha ao buscar Preço.</span>
+                </a>
+            </div>
+        </li>
+    </ul>
+    <div class="carrinho-bottom">
+        <span class="carrinho-total">Total (valor sem frete):
+            <strong>{{totalCompra | currency:'BRL':true}}</strong></span>
+        <div class="carrinho-f">
+            <a class="carrinho-ver" routerLink="/compras/carrinho-compra">Ver meu carrinho</a>
+            <a class="btn-carrinho" routerLink="/compras/carrinho-compra">Fechar pedido</a>
+        </div>
+    </div>
+</div>

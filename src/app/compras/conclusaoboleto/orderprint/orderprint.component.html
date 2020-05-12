@@ -1,0 +1,335 @@
+<!-- s -->
+<table width="1000px" cellpadding="0" cellspacing="0" style="color: #666;" border="0" bgcolor="#ffffff" align="center"
+   class="content-wrap">
+   <tbody>
+      <tr>
+         <td align="center" style="padding-top: 15px; padding-bottom: 15px; background-color: #f3f3f3;">
+            <a href="" title="Macbuystore">
+               <img src="{{logo}}" height="40px;">
+            </a>
+         </td>
+      </tr>
+
+      <tr>
+         <td align="center">
+            <img src="http://192.168.25.133/loja/img/check-gif.gif" height="100px" style="padding: 25px 0;">
+         </td>
+      </tr>
+
+      <tr>
+         <td>
+            <p style="font-size: 16px; padding-bottom: 5px;">
+               Olá, {{cliente}}!
+            </p>
+            <p style="font-size: 16px; padding-bottom: 5px;">
+               Nós acabamos de receber o seu pedido #<b style="color: #333">{{idPedido}}</b>!
+            </p>
+            <p style="font-size: 16px; padding-bottom: 5px;">
+               Agora é só esperar a aprovação do pagamento, tá?
+            </p>
+         </td>
+      </tr>
+
+      <tr>
+         <td align="center" style="padding-top: 15px; padding-bottom: 15px;">
+            <a href="#"
+               style="border-radius: 3px;background-color:#1bb600;padding: 15px 20px;color:#ffffff;width: 100%;text-decoration: none;">Acompanhar
+               meu pedido</a>
+         </td>
+      </tr>
+
+      <tr>
+         <td align="center" style="padding-top: 15px; padding-bottom: 15px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+               style="font-size:14px;border:1px solid #dddddd;color:#434242;margin-top:10px">
+               <tbody>
+                  <tr height="50">
+                     <td width="145" align="center" style="border-right:1px solid #dddddd;font-size:18px">
+                        Entrega 01
+                     </td>
+                     <td width="130" align="right">
+                        <img src="{{logo}}" style="border:0;max-height:40px;max-width:100px">
+                     </td>
+                     <td width="305" style="padding-left:20px">
+                        Vendido e entregue por <strong><span class="il">Gazin</span></strong> </td>
+                  </tr>
+               </tbody>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+               style="font-size:12px;border-left:1px solid #dddddd;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;color:#434242">
+               <tbody *ngFor="let array of arrayProdutos; let i = index">
+                  <tr height="80">
+                     <td width="90" align="center">
+                        <img src="{{array.itens[0].imagem}}" style="border:0;display:block;width:60px" class="CToWUd">
+                     </td>
+
+                     <td width="500" style="padding-right:10px">
+                        {{array.itens[0].descricao}}
+                     </td>
+
+                     <td width="120" align="center" style="background:#eeeeee;border-right:1px solid #dddddd">
+                        <div style="font-size:12fx">
+                           Qtd
+                        </div>
+
+                        <div style="padding:20px">
+                           {{array.itens[0].quantidade}}
+                        </div>
+                     </td>
+
+                     <td width="120" align="center" style="background:#eeeeee;border-right:1px solid #dddddd">
+                        <div style="font-size:12fx">
+                           Valor Unitário
+                        </div>
+
+                        <div style="padding:20px">
+                           {{array.itens[0].valor_unitario | currency:'BRL':true}}
+                        </div>
+                     </td>
+                     
+                     <td width="120" align="center" style="background:#eeeeee;border-right:1px solid #dddddd">
+                        <div style="font-size:12fx">
+                           Subtotal
+                        </div>
+
+                        <div style="padding:20px">
+                           {{array.itens[0].quantidade * array.itens[0].valor_unitario | currency:'BRL':true}}
+                        </div>
+                     </td>
+
+                     <td width="120" align="center" style="background:#eeeeee">
+                        <div style="font-size:12px">
+                           Entrega
+                        </div>
+
+                        <div style="padding:20px 10px;color:#333">
+                           <strong>{{dataEntrega | date: 'dd/MM/yyyy'}}</strong>
+                        </div>
+                     </td>
+               </tbody>
+            </table>
+
+         </td>
+      <tr>
+         <td>
+            <p style="font-size:12px; padding: 0 0 15px; margin: 0;"><b style="color: #333;">Prazo:</b> <b
+                  style="color: #1bb600;"> {{diasFrete}} dias úteis</b> após a confirmação do pagamento.</p>
+         </td>
+      </tr>
+
+      <tr>
+         <td style="padding-bottom: 15px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f7f7f7"
+               style="padding: 10px 0; display: block;">
+               <tbody>
+                  <tr height="20">
+                     <td width="445" align="right">
+                        <font size="12" color="#434242" face="Gothan Rounded, Arial, sans-serif"
+                           style="font-size:12px;color:#434242">
+                           Valor da(s) mercadorias(s):
+                        </font>
+                     </td>
+
+                     <td width="100" align="right">
+                        <font size="12" color="#434242" face="Gothan Rounded, Arial, sans-serif"
+                           style="font-size:12px;color:#434242">
+                           {{valorProdutos | currency:'BRL':true}}
+                        </font>
+                     </td>
+
+                     <td width="15"></td>
+                  </tr>
+
+                  <tr height="20">
+                     <td align="right">
+                        <font size="12" color="#434242" face="Gothan Rounded, Arial, sans-serif"
+                           style="font-size:12px;color:#434242">
+                           Valor do frete:
+                        </font>
+                     </td>
+
+                     <td align="right">
+                        <font size="12" color="#434242" face="Gothan Rounded, Arial, sans-serif"
+                           style="font-size:12px;color:#434242">
+                           {{totalFrete | currency:'BRL':true}}
+                        </font>
+                     </td>
+
+                     <td></td>
+                  </tr>
+
+                  <tr height="20">
+                     <td align="right">
+                        <font size="12" color="#434242" face="Gothan Rounded, Arial, sans-serif"
+                           style="font-size:12px;color:#434242">
+                           <strong>
+                              Valor total a pagar:
+                           </strong>
+                        </font>
+                     </td>
+
+                     <td align="right">
+                        <font size="12" color="#434242" face="Gothan Rounded, Arial, sans-serif"
+                           style="font-size:12px;color:#434242">
+                           <strong>
+                              {{valorTotal | currency:'BRL':true}}
+                           </strong>
+                        </font>
+                     </td>
+
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td style="padding-bottom: 15px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+               <tbody>
+                  <tr>
+                     <td style="font-size:14px;padding:15px 15px 10px 15px;background:#f7f7f7;color:#434242">
+
+                        <strong style="color:#333;font-size:16px">Forma de pagamento</strong>
+
+                     </td>
+                  </tr>
+                  <tr>
+                     <td
+                        style="background-color: white; border: 2px solid #f7f7f7; padding: 10px 15px; font-size: 13px;">
+                        <table>
+                           <tr>
+                              <td style="border-radius: 3px;background-color:#1bb600;padding: 0px 25px;color:#ffffff;">
+                                 <a href="{{boletoLink}}" target="_blank" style="text-decoration: none; color: white; font-size: 1em;">Imprimir
+                                    boleto</a>
+                              </td>
+                              <td style="padding-left: 10px;">
+                                 <p style="padding: 0; margin: 5px 0; font-weight: 700; color:#333;">Boleto bancário</p>
+                                 <p style="padding: 0; margin: 5px 0;">Total: {{valorTotal | currency:'BRL':true}}</p>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td style="padding-bottom: 15px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+               <tbody>
+                  <tr>
+                     <td style="font-size:14px;padding:15px 15px 10px 15px;background:#f7f7f7;color:#434242">
+
+                        <strong style="color:#333;font-size:16px">Endereço de entrega</strong>
+
+                     </td>
+                  </tr>
+                  <tr>
+                     <td
+                        style="background-color: white; border: 2px solid #f7f7f7; padding: 10px 15px; font-size: 13px;">
+                        <p style="padding: 0; margin: 5px 0;">{{cliente}}</p>
+                        <p style="padding: 0; margin: 5px 0;">{{arrayEndereco}}, {{arrayNumero}}, {{arrayComplemento}}</p>
+                        <p style="padding: 0; margin: 5px 0;">{{arrayBairro}}</p>
+                        <p style="padding: 0; margin: 5px 0;">{{arrayCidade}} {{arrayUF}}</p>
+                        <p style="padding: 0; margin: 5px 0;">CEP {{arrayCep}}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td style="padding-bottom: 15px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+               <tbody>
+                  <tr>
+                     <td style="font-size:14px;padding:15px 15px 10px 15px;background:#f7f7f7;color:#434242">
+
+                        <strong style="color:#333;font-size:16px">Favor conferir no ato da entrega de sua
+                           compra</strong>
+
+                     </td>
+                  </tr>
+                  <tr>
+                     <td
+                        style="background-color: white; border: 2px solid #f7f7f7; padding: 10px 15px; font-size: 13px;">
+                        <table>
+                           <tr>
+                              <td>
+                                 <p style="padding: 0; margin: 5px 0; font-weight: 700;"><b style="color:#333;">1 -</b>
+                                    Descrição tais como modelo, cor e voltagem com o pedido efetuado.</p>
+                                 <p style="padding: 0; margin: 5px 0;"><b style="color:#333;">2 -</b> Produto avariado
+                                    amassado e/ou riscados pelo transporte.</p>
+                                 <p style="padding: 0; margin: 5px 0;"><b style="color:#333;">3 -</b> Caso apresente
+                                    algumas dessas desconformidades recuse o recebimento do produto e entre em contato
+                                    em nossa central de atendimento. (00) 0000-000</p>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td style="font-size:14px;padding:15px 15px 10px 15px;background:#f7f7f7;color:#434242">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+               <tbody>
+                  <tr>
+                     <td>
+                        <div style="color:#333;font-size:16px">
+                           <strong>O que eu faço agora?</strong>
+                        </div>
+
+                        <div style="font-size:12px;margin-top:5px;line-height:20px">
+                           Para mais detalhes importantes sobre esta etapa de seu pedido, utilize a opção "Saiba mais",
+                           você também pode acompanhar seu pedido.
+                        </div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+      <tr>
+         <td style="font-size:14px;padding:15px 15px 25px 15px;background:#f7f7f7;color:#434242">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+               style="font-size:12px;padding:0 15px 15px 15px;background:#f7f7f7;color:#434242">
+               <tbody>
+                  <tr>
+                     <td width="50%" align="center">
+                        <a href="#"
+                           style="border-radius: 3px;background-color:#1bb600;padding: 15px 20px;color:#ffffff;width: 100%;text-decoration: none;">
+                           <strong>Acompanhar pedidos</strong>
+                        </a>
+                     </td>
+
+                     <td width="50%" align="center">
+                        <a href="#"
+                           style="border-radius: 3px;background-color:#1bb600;padding: 15px 20px;color:#ffffff;width: 100%;text-decoration: none;">
+                           <strong>Preciso de ajuda</strong>
+                        </a>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td align="center" style="padding: 10px 0;">
+            <p style="font-size: 11px;">Preços e condições de pagamento exclusivos para compras via Internet.Vendas sujeitas à analise e confirmação de dados.
+               Fica garantida a empresa a eventual retificação das ofertas e erros de digitação que possam ter sido veiculados, podendo ser estornado a compra.
+               77.941.490/0225-58 ROD PR 082 , SN- Centro - CEP: 87485000 - Douradina - PR</p>
+         </td>
+      </tr>
+
+   </tbody>
+</table>

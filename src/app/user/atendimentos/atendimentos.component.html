@@ -1,0 +1,53 @@
+<div class="conteudo">
+<div class="container">
+    <div class="row">
+        <app-menu-user [paginaAtual]="'atendimentos'" class="col-xl-3 col-lg-3"></app-menu-user>
+        <div class="col-12 col-xl-8 pr-1 pl-1 col-lg-8 pl-lg-3 pr-xl-4 pl-xl-4 mb-5">
+            <div class="mc-wrapper px-2">
+                <div class="mc-box-wrapper">
+                <div class="mc-title">
+                    <h3>Atendimento</h3>
+                </div>
+                <div class="mc-body">
+                    <div class="mc-box-form">
+                        <form id="atendimento-form" novalidate="novalidate" [formGroup]="formAtendimento" (ngSubmit)="saveAtendimento()">
+                            <div id="dados-padrao" class="d-flex flex-column">
+                                <mat-form-field>
+                                    <mat-label>Tipo de mensagem</mat-label>
+                                    <select matNativeControl required formControlName="tipo">
+                                        <option *ngFor="let tipo of tipoMsg;" value="{{tipo.value}}">{{tipo.txt}}</option>
+                                    </select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>E-mail</mat-label>
+                                    <input matInput type="email" autocomplete="email" placeholder="Ex.: joaodasilva@gmail.com" formControlName="email" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Celular</mat-label>
+                                  <input matInput type="tel" placeholder="(00) 0000-000" formControlName="celular" required mask="(00) 00000-0000">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Telefone</mat-label>
+                                    <input matInput type="tel" placeholder="(00) 0000-000" formControlName="telefone" required mask="(00) 0000000000">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Assunto</mat-label>
+                                    <input matInput type="text" placeholder="Deixe o assunto aqui." formControlName="assunto" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Sua Menssagem</mat-label>
+                                    <textarea matInput placeholder="Deixe sua mensagem" formControlName="mensagem" required></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group text-right m-0">
+                                <button type="submit" class="btn btn-secondary ecommerce-color" data-ripple="">Enviar mensagem</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

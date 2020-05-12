@@ -1,0 +1,92 @@
+<div class="container">
+
+   <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 pr-0">
+
+         <div class="top-body-padding">
+
+            <div class="dropdown-categorias">
+               <div class="dpc-wrapper">
+
+                  <div class="dropdown-wrapper">
+                     <i class="treetabs"></i>
+                     <span>Todas as categorias</span>
+                     <ul class="dpc-list">
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                        <li class="dpc-item"><a href="#" class="dpc-link">Categoria</a></li>
+                     </ul>
+                  </div>
+                  <div class="dpc-select mt-3 mt-xl-0">
+                     <select name="" id="" class="form-control">
+                        <option value="" disabled hidden selected>Faixa por preço</option>
+                        <option value="">R$ 0,00 - R$ 100,00</option>
+                        <option value="">R$ 101,00 - R$ 300,00</option>
+                        <option value="">R$ 301,00 - R$ 500,00</option>
+                        <option value="">R$ 501,00 - R$ 1.000,00</option>
+                        <option value="">Mais de R$ 1,001.00</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+
+            <div class="search-box form-config">
+               <input type="text" class="form-control " placeholder="Procure produtos por nome, marca ou categoria..." [(ngModel)]="searchText">
+               <button type="submit" class="btn search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <div *ngIf="collection.data?.length > 0 && notfound == ''">
+               <div class="row-produtos">
+                  <div class="box-product" *ngFor="let item of collection.data | paginate: config | filter: searchText"
+                     style="height: 430px;width: 275px;margin-bottom: 30px;">
+                     <div class="image-product">
+                        <img src="{{item.images[0].images}}" alt="">
+                     </div>
+                     <div class="product-price">
+                        <div class="product-box-text" style="text-overflow: ellipsis;height: 125px;">
+                           <h2 class="box-product-title">{{item.nome}}
+                           </h2>
+                           <span class="box-product-price"><i>por</i>{{item.preco | currency:'BRL':true}}</span>
+                        </div>
+                        <div style="height: 125px; margin-top: 0;">
+                           <button class="btn btn-presentear"  type="submit" [routerLink]="getLinkArray('/casamento/'+id+'/produto',item.link)">Presentear</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div style="text-align: center;">
+                  <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+                     [responsive]="responsive" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel" (pageChange)="pageChanged($event)">
+                  </pagination-controls>
+               </div>
+            </div>
+         </div>
+         <div *ngIf="notfound != '' && collection.data?.length <= 0">
+            {{notfound}}
+         </div>
+
+      </div>
+
+   </div>
+
+</div>

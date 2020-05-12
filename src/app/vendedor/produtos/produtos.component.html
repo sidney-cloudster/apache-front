@@ -1,0 +1,386 @@
+<div *ngIf="!paginaCarregada && !naoEncontrado">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 d-none d-xl-block">
+            <div class="ph-item">
+               <div class="ph-col-12 d-none d-xl-block">
+                  <div class="ph-row">
+                     <div class="ph-col-10 big"></div>
+                     <div class="ph-col-2 empty big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-6"></div>
+                     <div class="ph-col-6 empty"></div>
+                     <div class="ph-col-12"></div>
+                     <div class="ph-col-10 big"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+            <div class="placeholder">
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+      <div class="container" *ngIf="paginaCarregada">
+         <div id="ct-wrapper">  
+              <div class="ct-produtos-wrapper row">
+                 <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 ">
+                    <div class="ct-head-mobile">
+                       <span class="ct-quantidade">Produtos: 12545</span>
+                       <a class="collapse-side btn btn-primary" data-ripple href="#!"><span data-slide="filtrar" >Filtrar</span></a>
+                    </div>
+                    <div class="ct-sidebar">
+                       <div class="card-collapse-head mobile">
+                          <button class="collapse-exit"><i class="fas fa-chevron-left"></i></button>
+                          <h3>Filtrar</h3>
+                       </div>
+                       <div class="ct-side-wrapper">
+                        <div id="ordenacao" class="card-collapse">
+                           <div class="card-collapse-head">
+                              <h3>Ordenar</h3>
+                           </div>
+                           <div class="card-collapse-conteudo">
+                              <ul class="filter-list">   
+                                 <div *ngIf="verificaCheck('o')">
+                                    <div *ngFor="let ordenar of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="ordenar.tipo == 'ordenar' && ordenar.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(ordenar.ref,ordenar.descricao)">{{ordenar.descricao}}</a>
+                                       </li>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('o')">
+                                    <div *ngFor="let ordenar of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="ordenar.tipo == 'ordenar'">
+                                          <a class="filter-list-link filter-show-result" (click)="filtrar(ordenar.ref,ordenar.descricao)">{{ordenar.descricao}}</a>
+                                       </li>
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                           <div id="categorias" class="card-collapse">
+                              <div class="card-collapse-head">
+                                 <h3>Categorias</h3>
+                              </div>
+                              <div *ngFor="let categoria of categoriaView; let i = index;">
+                                 <div id="ct-categorias" class="card-collapse-conteudo">
+                                    <button class="btn ct-collapse" type="button" data-toggle="collapse" [attr.data-target]="'#categoria-'+categoria.idCategoria" aria-expanded="false" aria-controls="collapseExample">
+                                          {{categoria.categoria}}
+                                    </button>
+                                    <div class="collapse" [class.show]="abreDropDownFiltro(categoria)" id="categoria-{{categoria.idCategoria}}">
+                                          <div class="ct-body">
+                                             <ul class="filter-list">
+                                                <div *ngFor="let sub of filtrosView" class="filter-div">
+                                                   <li *ngIf="categoria.idCategoria == sub.id && sub.tipo == 'subcategoria'" class="filter-list-item">
+                                                      <a class="filter-list-link filter-show-result" [class.active]="sub.checked" (click)="filtrar(sub.ref,sub.descricao)">{{sub.descricao}}</a>
+                                                   </li>
+                                                </div>
+                                             </ul>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                          <div id="preco" class="card-collapse">
+                           <div class="card-collapse-head">
+                              <h3>Preço</h3>
+                           </div>
+                           <div class="card-collapse-conteudo">
+                              <ul class="filter-list">
+                                 <div *ngIf="verificaCheck('p')">
+                                    <div *ngFor="let preco of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="preco.tipo == 'preco' && preco.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(preco.ref,preco.valor)">{{preco.descricao}}</a>
+                                       </li>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('p')">
+                                    <div *ngFor="let preco of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="preco.tipo == 'preco'">
+                                          <a class="filter-list-link filter-show-result" (click)="filtrar(preco.ref,preco.valor)">{{preco.descricao}}</a>
+                                       </li>
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                        <div id="desconto" class="card-collapse">
+                           <div class="card-collapse-head">
+                              <h3>Desconto</h3>
+                           </div>
+                           <div class="card-collapse-conteudo">
+                              <ul class="filter-list">
+                                 <div *ngIf="verificaCheck('d')">
+                                    <div *ngFor="let desconto of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="desconto.tipo == 'desconto' && desconto.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(desconto.ref,desconto.valor)">{{desconto.descricao}}</a>
+                                       </li>                              
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('d')">
+                                    <div *ngFor="let desconto of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="desconto.tipo == 'desconto'" >
+                                          <a class="filter-list-link filter-show-result"(click)="filtrar(desconto.ref,desconto.valor)">{{desconto.descricao}}</a>
+                                       </li>                              
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                        <div id="avaliacao" class="card-collapse">
+                           <div class="card-collapse-head">
+                              <h3>Avaliação</h3>
+                           </div>
+                           <div class="card-collapse-conteudo">
+                              <ul class="filter-list">
+                                 <div *ngIf="verificaCheck('e')">
+                                    <div *ngFor="let estrela of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="estrela.tipo == 'estrela' && estrela.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(estrela.ref,estrela.descricao)">
+                                             <span class="filter-estrela">
+                                                <i [innerHTML]="getEstrelaAvaliacao(estrela.descricao[0])"></i>
+                                             </span>
+                                          </a>
+                                       </li>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('e')">
+                                    <div *ngFor="let estrela of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="estrela.tipo == 'estrela'">
+                                          <a class="filter-list-link filter-show-result" (click)="filtrar(estrela.ref,estrela.descricao)">
+                                             <span class="filter-estrela">
+                                                <i [innerHTML]="getEstrelaAvaliacao(estrela.descricao[0])"></i>
+                                             </span>
+                                          </a>
+                                       </li>
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+                  <div class="toolbar" *ngIf="filtrosAplicadosView?.length > 0">
+
+                     <span class="btn btn-toolbar filter-div" *ngFor="let filtro of filtrosAplicadosView" (click)="filtrar(filtro.referencia,filtro.valor)">
+                        <span class="title-tool">{{filtro.categoria}}</span>
+                        <span class="filter-tool">{{filtro.valorMascara}}</span>
+                     </span>
+                     <div class="toolbar-div">
+                        <span (click)="removerTodos()">(Remover todos)</span>
+                     </div>
+                  </div>
+                    <div class="ct-conteudo-destaque">
+                       <div class="ct-conteudo-header">
+                          <h3>Destaque</h3>
+                       </div>
+                       <div class="cat-wrapper"  *ngIf="produtoView">
+
+
+            
+                              <!-- <div *ngFor="let produto of produtoView | paginate: { itemsPerPage: itemsPerPage, currentPage: p };" class="item-box box-ct" data-ripple="rgba(128, 128, 128, 0.726)">
+                                 <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                                 <a [routerLink]="getLinkArray('/vendedor/produto',produto.url)">
+                                    <div class="produto-img">
+                                       <img src="{{produto.imagem}}" max-width="180px">
+                                    </div>
+                                    <div class="descricao-produto">
+                                       <span class="titulo-produto">{{produto.descricao}}</span>
+                                       <div class="avaliacao-produto">
+                                          <span class="produto-estrela">
+                                           <div [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                                          </span>
+                                       </div>
+
+                                       <span class="preco-de" *ngIf="produto.preco_promocional < produto.preco">de <i
+                                              class="outline-de">{{produto.preco | currency:'BRL':true}}</i>
+                                           por</span>
+                                        <div class="produto-desconto-preco">
+                                           <span class="preco-produto">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                           <span class="desconto-produto" *ngIf="produto.percentual > 0">{{produto.percentual}}%
+                                              OFF</span>
+                                        </div>
+                                       <span class="parcelamento">{{produto.parcelas}}</span>
+                                    </div>
+                                 </a>
+                              </div> -->
+
+
+
+                        <div class="card-subproduct" *ngFor="let produto of produtoView | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                           <button matRipple type="button"  aria-label="Favoritar produto" data-ripple class="btn-fav" [ngClass]="verificaFavorito(produto.id) ? 'active' : '' " (click)="adicionarFavoritos(produto.id)"><span></span></button>
+                           <a [routerLink]="getLinkArray('/vendedor/produto',produto.url)" class="csb-wrapper">
+                              <picture class="csb-image">
+                                 <img *ngIf="produto.selo != ''" class="csb-selo" src="{{produto.selo}}">
+                                 <img [src]="produto.imagem" class="csb-tumb">
+                                 <div class="csb-starswrapper" *ngIf="produto.estrelas > 0">
+                                    <div class="csb-starts" [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                                 </div>
+                              </picture>
+                              <div class="csb-info-wrapper">
+                                 <div class="csb-infos">
+                                    <span class="csb-promotional" *ngIf="produto.preco_promocional > 0">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                    <div class="csb-price-wrapper">
+                                       <span class="csb-price">{{produto.preco | currency:'BRL':true}}</span>
+                                       <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}% off</span>
+                                    </div>
+                                    <span class="csb-parcelament">
+                                       {{produto.parcelas.parcela}} {{produto.parcelas.valor}}
+                                    </span>
+                                 </div>
+                                 
+                                 <div class="csb-footer">
+                                    <p class="csb-title">{{produto.descricao}}</p>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                          <div class="page-nav">
+                              <div class="pagination pagination-md">
+                                  <pagination-controls 
+                                     (pageChange)="p = $event" 
+                                     previousLabel=""
+                                     nextLabel="">
+                                  </pagination-controls>
+                               </div> 
+                            </div>
+                        </div>
+                     <div *ngIf="!produtoView && paginaCarregada">
+                        <h3>Nenhum produto encontrado.</h3>
+                     </div>
+                 </div>
+              </div>
+           <!-- </div> -->
+        </div>

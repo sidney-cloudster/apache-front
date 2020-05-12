@@ -1,0 +1,404 @@
+
+<nav class="ck-navbar" tabindex="1">
+    <div class="container">
+       <div class="row w-100 m-0">
+          <div class="col-12 col-lg-2 d-flex align-self-center justify-content-center">
+             <a href="/">
+                <picture>
+                   <img class="logo-full" src="../assets/img/logo.png" height="37px">
+                </picture>
+             </a>
+          </div>
+          <div class="col-12 col-lg-10 d-flex align-self-center mt-5 pb-3">
+             <ul class="ck-list-step row">
+                <li class="ck-step col-3 col-lg-3 ">
+                   <i class="uip-step-check"></i>
+                   <a href="#" class="ck-step-first">
+                   Carrinho
+                   </a>
+                </li>
+                <li class="ck-step col-3 col-lg-3">
+                   <i class="uip-step-elipse"></i>
+                   <a href="#" class="ck-step-link after-active before-active">
+                   Identificação
+                   </a>
+                </li>
+                <li class="ck-step col-3 col-lg-3">
+                   <i class="uip-step-elipse"></i>
+                   <a href="#" class="ck-step-link after-active">
+                   Pagamento
+                   </a>
+                </li>
+                <li class="ck-step col-3 col-lg-3 last">
+                   <i class="uip-step-check"></i>
+                   <a href="#" class="ck-step-last">
+                   Obrigado!
+                   </a>
+                </li>
+             </ul>
+          </div>
+       </div>
+    </div>
+ </nav>
+ 
+ <div class="container">
+    <div class="row">
+       <div class="col-md-3">
+          <div id="checkout-box">
+             <div class="ck-title">
+                <span class="ck-h1">Carrinho</span>
+             </div>
+             <div class="ck-body pb-2 pt-2">
+                <div>
+                   <ul class="carrinho-lista">
+                      <li class="crt-it" data-ripple="">
+                         <a href="#">
+                         <img class="carrinho-img" src="../assets/img/295.jpg" height="40px" width="40px">
+                         <span class="carrinho-nome">Smartphone Xiaomi Redmi Note 7</span>
+                         <span class="carrinho-quant">Quantidade: 1</span>
+                         <span class="carrinho-preco">R$ 999,00</span>
+                         </a>
+                      </li>
+                   </ul>
+                   <a class="ck-link-bottom" href="./casamento/carrinho">Alterar carrinho</a>
+                </div>
+             </div>
+          </div>
+          <div id="checkout-box">
+             <div class="ck-title">
+                <span class="ck-h1">Endereço de entrega</span>
+             </div>
+             <div class="ck-body pb-2">
+                <div class="ck-box-ads">
+                   <span class="ads-nome">Marco Antonio</span>
+                   <span class="ads-endereco">Avenida Pedro Taques, 294, 18 Andar</span>
+                   <span class="ads-bairro">Zona 07</span>
+                   <span class="ads-cidade">Maringa PR</span>
+                   <span class="ads-cep">CEP 87030-000</span>
+                </div>
+                <a class="ck-link-bottom" href="#" data-toggle="modal" data-target="#endereco-modal">Alterar endereço</a>
+             </div>
+          </div>
+       </div>
+       <div class="col-12 col-xl-6">
+          <div id="checkout-box">
+             <div class="ck-title">
+                <span class="ck-h1">Deseja pagar com</span>
+             </div>
+             <div class="ck-body p-0">
+                <div class="accordion" id="cartao-credito">
+                   <div class="card">
+                      <button class="btn btn-pagamento active" type="button" data-toggle="collapse" data-target="#cartao_collapse" aria-expanded="true" aria-controls="cartao_collapse">
+                      <i class="uip-cartao"></i> Cartão de crédito
+                      </button>
+                      <div id="cartao_collapse" class="collapse show" aria-labelledby="headingOne" data-parent="#cartao-credito">
+                         <div class="card-body">
+                            <div class='card-wrapper'></div>
+                            <form id="form-cartao" class="mt-2 needs-validation">
+                               <div class="form-group row">
+                                  <label for="colFormLabel" class="col-sm-4 col-form-label">Número do cartão</label>
+                                  <div class="col-sm-8">
+                                     <input type="cartao" class="form-control" name="cartao" id="cartao" required placeholder="0000 0000 0000 0000">
+                                  </div>
+                               </div>
+                               <div class="form-group row">
+                                  <label for="nome" class="col-sm-4 col-form-label">Nome impresso no cartão</label>
+                                  <div class="col-sm-8">
+                                     <input type="text" class="form-control jp-card-valid" id="nome" name="nome" required placeholder="Ex.: Marco A S">
+                                  </div>
+                               </div>
+                               <div class="form-group row">
+                                  <label for="colFormLabel" class="col-sm-4 col-form-label">Validade</label>
+                                  <div class="col-8 col-sm-4">
+                                     <input type="text" class="form-control" id="validade" name="validade" required placeholder="Ex.: 05/2020">
+                                  </div>
+                               </div>
+                               <div class="form-group row">
+                                  <label for="colFormLabel" class="col-sm-4 col-form-label">CVV</label>
+                                  <div class="col-6 col-sm-3">
+                                     <input type="text" class="form-control " id="cvv"  name="cvv" required placeholder="000">
+                                     <span class="cvv-explicacao"></span>
+                                  </div>
+                                  <div class="col-6 col-sm-4 d-flex align-self-center">
+                                     <button type="button" class="btn btn-secondary" data-toggle="popover" data-placement="top" title="Card Verification Value (CVV)" data-content="As bandeiras de cartões de crédito utilizam essa sigla como referência ao Código de Segurança do Cartão (CSC). Utilizado como garantia de que o comprador tem o cartão utilizado em suas mãos.">(?)</button>
+                                  </div>
+                               </div>
+                               <div class="form-group row">
+                                  <label for="parcelas" class="col-sm-4 col-form-label">Parcelar em</label>
+                                  <div class="col-sm-3">
+                                     <select class="form-control" name="parcelas" id="parcelas">
+                                        <option>1x s/juros</option>
+                                        <option>2x s/juros</option>
+                                        <option>3x s/juros</option>
+                                        <option>4x s/juros</option>
+                                        <option>5x s/juros</option>
+                                        <option>6x s/juros</option>
+                                        <option>7x s/juros</option>
+                                        <option>8x s/juros</option>
+                                        <option>9x s/juros</option>
+                                        <option>10x s/juros</option>
+                                        <option>11x c/juros</option>
+                                        <option>12x c/juros</option>
+                                     </select>
+                                  </div>
+                                  <div class="col-sm-5 d-flex align-self-center justify-content-center mt-2 mt-xl-0">
+                                     <span class="info-card">(informe ao lado o N° de parcelas)</span>
+                                  </div>
+                               </div>
+                               <button type="submit" class="btn-pagar" data-ripple><i class="uip-cartao"></i> Pagar com cartão de crédito</button>
+                            </form>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="card">
+                      <button class="btn btn-pagamento collapsed" type="button" data-toggle="collapse" data-target="#boleto_collapse" aria-expanded="false" aria-controls="boleto_collapse">
+                      <i class="uip-boleto"></i> Boleto Bancário
+                      </button>
+                      <div id="boleto_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#cartao-credito">
+                         <div class="card-body">
+                            <div class="ck-boleto">
+                               <span>Alguns produtos e frete não possuem desconto.</span>
+                               <span>Prosseguindo a compra no boleto você ganha:</span>
+                               <div class="ck-table-boleto">
+                                  <div class="boleto-desconto">
+                                     <span>Desconto à vista</span>
+                                     <span>-R$ 70,00</span>
+                                  </div>
+                                  <div class="boleto-total">
+                                     <span class="total-boleto">Total no boleto</span>
+                                     <span class="total-price">R$ 99.999,00</span>
+                                  </div>
+                               </div>
+                               <span>O pedido será aprovado após a confirmação de pagamento. O boleto pode ser pago em qualquer Agência bancária ou Internet Bank.</span>
+                               <span>Após o vencimento o pedido é cancelado automaticamente.</span>
+                               <div class="infos-boleto">
+                                  <div class="info-bol">
+                                     <img src="../assets/img/boleto-info-01.svg">
+                                     <span>5% de desconto no boleto</span>
+                                  </div>
+                                  <div class="info-bol">
+                                     <img src="../assets/img/boleto-info-02.svg">
+                                     <span>Prazo de 6 dias</span>
+                                  </div>
+                               </div>
+                               <a href="../gazin/compras/conclusaoboleto">
+                               <button type="submit" class="btn-pagar" data-ripple><i class="uip-cartao"></i>  Pagar com boleto bancário</button>
+                               </a>
+                               <!--" class="btn-pagar" data-ripple><i class="uip-boleto"></i></a>-->
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="col-md-3">
+          <div id="checkout-box">
+             <div class="ck-title">
+                <span class="ck-h1">Possui cupom?</span>
+                <span class="ck-description">(opcional)</span>
+             </div>
+             <div class="ck-body">
+                <div>
+                   <form class="pb-3 pt-2">
+                      <div class="form-group">
+                         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Digite o codigo do cupom</label>
+                         <input type="text" class="form-control" required="">
+                      </div>
+                      <button type="submit" class="btn btn-primary" data-ripple="">Aplicar</button>
+                   </form>
+                </div>
+             </div>
+          </div>
+          <div id="checkout-box" class="pagamento">
+             <div class="ck-title title-resume">
+                <span class="ck-h1">Resumo do pedido</span>
+             </div>
+             <div class="ck-body pb-3">
+                <ul class="ck-resumos">
+                   <li class="ck-resumo">
+                      <span>Subtotal (1 produto)</span>
+                      <span>R$ 999,00</span>
+                   </li>
+                   <li class="ck-resumo">
+                      <span>Frete</span>
+                      <span>R$ 26,00</span>
+                   </li>
+                </ul>
+                <div class="ck-total">
+                   <span>Total</span>
+                   <span>R$ 999,00</span>
+                   <span class="ck-resumo-parcelado">
+                   Em até 10x de R$ 99,00 s/ juros
+                   </span>
+                   <span class="ck-resumo-parcelado ck-resumo-boleto">
+                   ou R$ 999,00 no boleto à vista
+                   </span>
+                </div>
+             </div>
+          </div>
+          <div class="alert alert-seguranca" role="alert">
+             <i class="fas fa-lock"></i> Não se preocupe, você está em um ambiente seguro.
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="row botao-voltar1"></div>
+
+ <!-- Modals -->
+ <div class="modal fade" id="endereco-modal" tabindex="-1" role="dialog" aria-labelledby="endereco-modalTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Alterar endereço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <div class="radio-endereco form-check">
+             <input type="radio" name="enderecos" id="endereco-1" value="endereco-1">
+             <a href="#" data-toggle="modal" data-target="#endereco-editar" class="modal-link-editar">Editar</a>
+             <label for="endereco-1">
+                <div class="label-endereco">
+                   <span class="ads-nome">Marco Antonio</span>
+                   <span class="ads-endereco">Avenida Pedro Taques, 294, 18 Andar</span>
+                   <span class="ads-bairro">Zona 07</span>
+                   <span class="ads-cidade">Maringa PR</span>
+                   <span class="ads-cep">CEP 87030-000</span>
+                </div>
+             </label>
+          </div>
+          <div class="radio-endereco form-check">
+             <input type="radio" name="enderecos" id="endereco-2" value="endereco-2">
+             <a href="#" href="#" data-toggle="modal" data-target="#endereco-editar" class="modal-link-editar">Editar</a>
+             <label for="endereco-2">
+                <div class="label-endereco">
+                   <span class="ads-nome">Marco Antonio</span>
+                   <span class="ads-endereco">Avenida Pedro Taques, 294, 18 Andar</span>
+                   <span class="ads-bairro">Zona 07</span>
+                   <span class="ads-cidade">Maringa PR</span>
+                   <span class="ads-cep">CEP 87030-000</span>
+                </div>
+             </label>
+          </div>
+       </div>
+       <div class="modal-footer">
+          <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#endereco-adicionar" data-ripple>Adicionar novo endereço</a>
+          <button type="button" class="btn btn-modal-editar" data-ripple>Salvar endereço</button>
+       </div>
+    </div>
+ </div>
+ </div>
+ <div class="modal fade" id="endereco-adicionar" role="dialog" aria-labelledby="endereco-editar" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Adicionar novo endereço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form id="adicionar-endereco" class="needs-validation">
+             <div class="form-group">
+                <label for="nome-destinatario">Nome do destinatário</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="nome_destinatario" name="nome_destinatario" placeholder="Nome do destinatário">
+             </div>
+             <div class="form-group">
+                <label for="nome-destinatario">CEP</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="cep" name="cep" placeholder="00000-000">
+                <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" class="lg-senha" >Não sei meu CEP</a>
+             </div>
+             <div class="form-row">
+                <div class="col-9 form-group">
+                   <label for="nome-destinatario">Endereço</label><span class="required-form">*</span>
+                   <input required type="text" class="form-control" placeholder="Endereço" id="endereco" name="endereco">
+                </div>
+                <div class="col-3 form-group">
+                   <label for="nome-destinatario">Nº</label><span class="required-form">*</span>
+                   <input required type="text" class="form-control" placeholder="Nº" id="numero" name="numero">
+                </div>
+             </div>
+             <div class="form-group">
+                <label for="complemento">Complemento</label>
+                <input type="text" class="form-control" id="complemento" name="complemento">
+             </div>
+             <div class="form-group">
+                <label for="complemento">Bairro</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="bairro" name="bairro">
+             </div>
+             <div class="form-group">
+                <label for="complemento">Cidade</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="cidade" name="cidade">
+             </div>
+             <div class="form-group">
+                <label for="complemento">Estado</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="estado" name="estado">
+             </div>
+             <div class="modal-footer">
+                <button data-ripple type="submit" class="btn-verde">Adicionar endereço</button>
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>
+ </div>
+ <div class="modal fade" id="endereco-editar" tabindex="-1" role="dialog" aria-labelledby="endereco-editar" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Editar endereço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <form id="editar-endereco" class="needs-validation">
+       <div class="modal-body">
+         
+             <div class="form-group">
+                <label for="nome-destinatario">Nome do destinatário</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="nome_destinatario" name="nome_destinatario" placeholder="Nome do destinatário" value="Marco Antonio">
+             </div>
+             <div class="form-group">
+                <label for="nome-destinatario">CEP</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="cep" name="cep" placeholder="00000-000" value="87030-000">
+                <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" class="lg-senha" >Não sei meu CEP</a>
+             </div>
+             <div class="form-row">
+                <div class="col-9 form-group">
+                   <label for="nome-destinatario">Endereço</label><span class="required-form">*</span>
+                   <input required type="text" class="form-control" placeholder="Endereço" id="endereco" name="endereco" value="Avenida Pedro Taques">
+                </div>
+                <div class="col-3 form-group">
+                   <label for="nome-destinatario">Nº</label><span class="required-form">*</span>
+                   <input required type="text" class="form-control" placeholder="Nº" id="numero" name="numero" value="294">
+                </div>
+             </div>
+             <div class="form-group">
+                <label for="complemento">Complemento</label>
+                <input type="text" class="form-control" id="complemento" name="complemento" value="18 Andar">
+             </div>
+             <div class="form-group">
+                <label for="complemento">Bairro</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="bairro" name="bairro" value="Zona 10">
+             </div>
+             <div class="form-group">
+                <label for="complemento">Cidade</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="cidade" name="cidade" value="Maringá">
+             </div>
+             <div class="form-group">
+                <label for="complemento">Estado</label><span class="required-form">*</span>
+                <input required type="text" class="form-control" id="estado" name="estado" value="Paraná">
+             </div>
+       </div>
+       <div class="modal-footer">
+        <button type="submit" class="btn btn-modal-editar" data-ripple>Editar endereço</button>
+       </div>
+        </form>
+    </div>
+    
+    
+ </div>
+ </div>

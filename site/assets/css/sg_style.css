@@ -1,0 +1,74 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+.zf-green {
+    color: #68b604;
+}
+
+.navbar-inverse{
+    background: #000 !important;
+    border-bottom: none;
+}
+.container {
+    width:1600px;
+}
+
+.topo {
+    height: 50px;
+    background: #FFF;    
+    background-color: #3399ff;
+}
+
+.top-menu-interno{
+    padding-top: 15px;
+    color:#fff;
+    font-weight: bold;
+}
+.top-menu-interno1{
+    padding-top: 15px;
+    color:#fff;
+    font-weight: normal;
+}
+
+.topo-menu {
+    height: 100px;
+    background: #FFF; 
+    background-color: #3399ff;
+}
+
+.topo-entrega{
+    background-color: #2d87e0;
+    height: 50px;
+}
+
+.topo-mail{
+    background-color: #2d87e0;
+    height: 50px;
+}
+
+.btn-success {
+    background-color: #57a900;
+    background-image: -moz-linear-gradient(top, #70d900, #57a900);
+    background-image: -ms-linear-gradient(top, #70d900, #57a900);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
+    background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+    background-image: -o-linear-gradient(top, #70d900, #57a900);
+    background-image: linear-gradient(top, #70d900, #57a900);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+    background-color: #57a900;
+}
+
+div.container a.navbar-brand > img {
+    display: inline;
+    margin-right: 4px;
+    margin-top: -2px;
+}

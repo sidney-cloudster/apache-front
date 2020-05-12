@@ -1,0 +1,15 @@
+<div *ngFor="let faixa2 of inputFaixa02">
+    <h1 class="linha-titulo">
+        <span class="linha-amarelo"></span> Navegue por Categoria!
+    </h1>
+    <owl-carousel [options]="carrosselCategoria" [items]="faixa2.products" [carouselClasses]="['owl-theme', 'sliding','web-central','owl-carousel','banners-produto-row']" >
+        <div class="item" *ngFor="let categoria of faixa2.products;let i= index">
+            <a [routerLink]="getLinkArray('/categorias',categoria.url)">
+                <div class="produto-img">
+                    <img class="slide-image" src="{{categoria.arquivo}}" style="max-width:180px" (click)="bannerClick(categoria.idBanner,categoria.url)">
+                </div>
+                <span>{{categoria.descricao}}</span>
+            </a>
+        </div>
+    </owl-carousel>
+</div>

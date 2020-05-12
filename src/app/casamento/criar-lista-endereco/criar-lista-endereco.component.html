@@ -1,0 +1,144 @@
+<div class="conteudo">
+    <div class="container">
+       <div class="row">
+          <div class="col-12 col-xl-8">
+             <h1 class="title-conteudo">
+                Criar minha lista
+             </h1>
+             <div class="box-cadastro finalizado">
+                <div class="box-cadastro-title">
+                   1. Dados sobre o evento
+                </div>
+             </div>
+             <div class="box-cadastro">
+                <div class="box-cadastro-title">
+                   2. Endereço para entrega dos produtos
+                </div>
+                <div class="box-cadastro-body">
+                   <form action="" id="lista_endereco" [formGroup]="listForm" (ngSubmit)="onSubmit(listForm.value)">
+                      <span><b>Utilizar o mesmo endereço de entrega do cadastro?</b></span>
+                      <div class=" mt-2">
+                         <label class="label-radio">
+                           <input name="radio_endereco" type="radio" id="radio-sim" value="T" [checked]="mesmoEndereco == true" formControlName="radio_endereco" (click)="tipoEndereco('T')">
+                           <span>Sim</span>
+                           <i class="radio-check"></i>
+                         </label>
+                         <label class="label-radio">
+                           <input name="radio_endereco" type="radio" id="radio-nao" value="F" [checked]="mesmoEndereco == false" formControlName="radio_endereco" (click)="tipoEndereco('F')">
+                           <span>Não</span>
+                           <i class="radio-check"></i>
+                         </label>
+                      </div>
+                      <fieldset class="p-0">
+                         <div class="form-group">
+                            <label for="">Nome do destinatário</label>
+                            <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control" name="nome" id="nome" formControlName="responsavel">
+                         </div>
+                         <div class="form-group">
+                            <label for="">CEP</label>
+                            <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control cep" name="cep" id="cep" formControlName="cep" (change)="autoDataCep()" mask="00000-000">
+                         </div>
+                         <div class="form-group">
+                            <label for="">Endereço</label>
+                            <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control" name="endereco" id="endereco" formControlName="endereco">
+                         </div>
+                         <div class="form-group">
+                            <div class="form-row">
+                               <div class="col-4">
+                                  <label for="">Número</label>
+                                  <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control" name="numero" id="numero" formControlName="numero" mask="00000000">
+                               </div>
+                               <div class="col-8">
+                                  <label for="">Complemento</label>
+                                  <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control" name="complemento" id="complemento" formControlName="complemento">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <div class="form-row">
+                               <div class="col-6">
+                                  <label for="">Bairro</label>
+                                  <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control" name="bairro" id="bairro" formControlName="bairro">
+                               </div>
+                               <div class="col-6">
+                                  <label for="">Cidade</label>
+                                  <input [attr.disabled]="enderecoSelecionado?'true':null" type="text" class="form-control" name="cidade" id="cidade" formControlName="cidade">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <label for="">Estado</label>
+                            <select [attr.disabled]="enderecoSelecionado?'true':null" name="estado" id="estado" class="form-control" formControlName="uf">
+                               <option value="" selected hidden disabled>Estado</option>
+                               <option value="AC">Acre</option>
+                               <option value="AL">Alagoas</option>
+                               <option value="AP">Amapá</option>
+                               <option value="AM">Amazonas</option>
+                               <option value="BA">Bahia</option>
+                               <option value="CE">Ceará</option>
+                               <option value="DF">Distrito Federal</option>
+                               <option value="ES">Espírito Santo</option>
+                               <option value="GO">Goiás</option>
+                               <option value="MA">Maranhão</option>
+                               <option value="MT">Mato Grosso</option>
+                               <option value="MS">Mato Grosso do Sul</option>
+                               <option value="MG">Minas Gerais</option>
+                               <option value="PA">Pará</option>
+                               <option value="PB">Paraíba</option>
+                               <option value="PR">Paraná</option>
+                               <option value="PE">Pernambuco</option>
+                               <option value="PI">Piauí</option>
+                               <option value="RJ">Rio de Janeiro</option>
+                               <option value="RN">Rio Grande do Norte</option>
+                               <option value="RS">Rio Grande do Sul</option>
+                               <option value="RO">Rondônia</option>
+                               <option value="RR">Roraima</option>
+                               <option value="SC">Santa Catarina</option>
+                               <option value="SP">São Paulo</option>
+                               <option value="SE">Sergipe</option>
+                               <option value="TO">Tocantins</option>
+                            </select>
+                         </div>
+                      </fieldset>
+                      <button type="submit"  class="btn btn-cadastro">Concluir cadastro</button>
+                   </form>
+                </div>
+             </div>
+          </div>
+          <div class="col-12 col-xl-4">
+             <div class="vantangens-cadastro">
+               <h1 class="title-casamento cor-fixa">
+                  <i class="fas fa-heart"></i>As vantangens :)<i class="fas fa-heart"></i>
+               </h1>
+                <div class="list-vantagens"></div>
+                <ul class="vantagens">
+                   <li>
+                      <div class="icon-vantanges">
+                         <img src="../assets/img/vantangens-01.svg" alt="">
+                      </div>
+                      <p>Entrega em todo Brasil!</p>
+                   </li>
+                   <li>
+                      <div class="icon-vantanges">
+                         <img src="../assets/img/vantangens-02.svg" alt="">
+                      </div>
+                      <p>Facilidade de pagamento para seus convidados</p>
+                   </li>
+                   <li>
+                      <div class="icon-vantanges">
+                         <img src="../assets/img/vantangens-03.svg" alt="">
+                      </div>
+                      <p>Crie sua lista em até um ano antes do casamento</p>
+                   </li>
+                   <li>
+                      <div class="icon-vantanges">
+                         <img src="../assets/img/vantangens-04.svg" alt="">
+                      </div>
+                      <p>Milhares de itens para sua casa</p>
+                   </li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

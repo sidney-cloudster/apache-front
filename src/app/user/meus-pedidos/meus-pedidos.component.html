@@ -1,0 +1,199 @@
+<div class="conteudo">
+    <div class="container">
+    <div class="row">
+        <app-menu-user [paginaAtual]="'meus-pedidos'" class="col-xl-3 col-lg-3"></app-menu-user>
+        <div class="col-12 col-xl-8 col-lg-8 pr-1 pl-1 pr-xl-4 pl-lg-3 pl-xl-4">
+            <div class="mc-wrapper px-2">
+                <div class="mc-box-wrapper">
+                <div class="mc-title">
+                    <h3>Meus pedidos</h3>
+                </div>
+
+                <!-- <ng-container  *ngIf="progressRef.state | async as state">
+                    <mat-progress-bar *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+                 </ng-container> -->
+
+               
+
+
+                <div class="mc-body" *ngIf="!paginaCarregada">
+                    <div class="mc-box-pedido">
+                        <div class="ph-item m-0 p-2">
+                            <div class="ph-col-2">
+                                <div class="ph-picture"></div>
+                              </div>
+                              <div class="ph-col-10">
+                                <div class="ph-row">
+                                    <div class="ph-col-12 big"></div>
+                                    <div class="ph-col-6 empty"></div>
+                                    <div class="ph-col-8"></div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="mc-box-pedido">
+                        <div class="ph-item m-0 p-2">
+                            <div class="ph-col-2">
+                                <div class="ph-picture"></div>
+                              </div>
+                              <div class="ph-col-10">
+                                <div class="ph-row">
+                                    <div class="ph-col-12 big"></div>
+                                    <div class="ph-col-6 empty"></div>
+                                    <div class="ph-col-8"></div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="mc-box-pedido">
+                        <div class="ph-item m-0 p-2">
+                            <div class="ph-col-2">
+                                <div class="ph-picture"></div>
+                              </div>
+                              <div class="ph-col-10">
+                                <div class="ph-row">
+                                    <div class="ph-col-12 big"></div>
+                                    <div class="ph-col-6 empty"></div>
+                                    <div class="ph-col-8"></div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="mc-box-pedido">
+                        <div class="ph-item m-0 p-2">
+                            <div class="ph-col-2">
+                                <div class="ph-picture"></div>
+                              </div>
+                              <div class="ph-col-10">
+                                <div class="ph-row">
+                                    <div class="ph-col-12 big"></div>
+                                    <div class="ph-col-6 empty"></div>
+                                    <div class="ph-col-8"></div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="mc-body pedidos-vazio" *ngIf="contaPedidos == 0 && paginaCarregada">
+                    <img src="../assets/img/cacto-perdidaco.gif" width="auto" height="auto" title="Carrinho vazio!">
+                    <h3>Você ainda não tem pedidos :(</h3>
+                    <span class="cr-vazio">Efetue uma compra!</span>
+                </div>
+
+                <div class="mc-body">    
+                    <ul class="mc-list-pedido">
+    
+                        <li *ngFor="let listaItem of ListaPedidos | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index;" id="lista-{{i}}" class="mc-box-pedido" >
+                            <div class="mc-info-wrapper" >
+                                <div class="mc-info-product" *ngFor="let produto of listaItem.produtos" >
+                                    <div class="info-short-wrapper" *ngFor="let item of produto.itens" (click)="abrirPedido($event.currentTarget)">
+                                        <div class="img-pedido-box img-fluid" ><img src="{{item.imagem}}"></div>
+                                        <div class="mc-list-produto">
+                                            <div class="mc-title-pedido">
+                                                <span class="title-mc"> {{item.descricao}} </span>
+                                                <span class="mc-prazo">Prazo: <b>{{produto.prazo_entrega}}</b></span>
+                                            </div>
+                                            <div class="mc-vendido-por">
+                                                <span class="mc-p">Vendido e entregue por: {{produto.nome_seller}}</span>
+                                            </div>
+                                            <div class="row m-0">
+                                                <div class="col-auto p-0 pr-xl-2">
+                                                    <span>Pedido: <b>{{listaItem.idPedido}}</b></span>
+                                                </div>
+                                                <div class="col-auto p-0 pl-xl-2 pr-xl-2">
+                                                    <span>Unidade: {{item.quantidade}}</span>
+                                                </div>
+                                                <div class="col-auto p-0">
+                                                    Valor total: <b>{{item.valor_total | currency: 'R$'}} </b>
+                                                </div>
+                                            </div>
+                                            <br> 
+                                        </div>
+                                    </div>
+                                    <div class="bar-progress-wrapper p-0">
+                                        <div class="progress pedido-progress"> 
+                                            <div class="progress-bar" role="progressbar" [style.width]="status(listaItem.processos).barraStatus + '%'" aria-valuenow="30 " aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="mc-status-pedido" [style.width]="status(listaItem.processos).barraStatus + '%'">
+                                            <div *ngFor="let barra of status(listaItem.processos).status">
+                                                <div class="mc-pedido-status" style="float: right;" >
+                                                <div class="mc-status">
+                                                    <span class="mc-status-title">{{barra.descricao}}</span>
+                                                    <span class="mc-status-time">{{barra.data_criacao}}</span>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mc-list-button text-center mt-4">
+                                            <button mat-raised-button class="mx-2" color="primary" *ngIf="listaItem.pagamentos.metodo == 'BOLETO' " (click)="abrirPagamento(listaItem.pagamentos.metodo, listaItem.pagamentos.link_pagamento)" >Imprimir boleto</button>
+                                            <button mat-raised-button [routerLink]="['/user/meus-pedidos/orderprint/', listaItem.token]" target="_blank">Imprimir pedido</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mc-pedido-wrapper">
+                                <div class="row mt-3 ml-3 mr-3 mb-3 safari-margin">
+                                    <div class="row mt-4 m-0 w-100">
+                                        <div class="col-12 col-xl-4 mc-forma-pagamento d-flex flex-column p-0">
+                                            <span class="mc-title-pagamento">Pagamento</span>
+                                            <span class="mc-type-pagamento" *ngIf="listaItem.pagamentos.metodo == 'CREDIT_CARD' ">{{listaItem.pagamentos.bandeira}} em {{listaItem.pagamentos.parcelas}}x</span>
+                                            <span class="mc-type-pagamento" *ngIf="listaItem.pagamentos.metodo == 'BOLETO' ">Boleto</span>
+                                            <span class="mc-type-pago"><i class="uip-boleto"></i> {{valorTotalPedido(listaItem.valorTotal, listaItem.total_desconto, listaItem.total_frete) | currency:'R$'}}</span>
+                                        </div>
+                                        <div class="col-12 col-xl-4 d-flex flex-column mc-total-pago pl-3 pr-3">
+                                            <span class="mc-title-pagamento">Total pago</span>
+                                            <ul class="mc-list-total-price">
+                                            <li>
+                                                <span>Subtotal</span>
+                                                <span> {{listaItem.valorTotal | currency:'R$'}}</span>
+                                            </li>
+                                            <li>
+                                                <span>Desconto</span>
+                                                <span> {{listaItem.total_desconto | currency:'R$'}}</span>
+                                            </li>
+                                            <li>
+                                                <span>Frete</span>
+                                                <span> {{listaItem.total_frete | currency:'R$'}}</span>
+                                            </li>
+                                            </ul>
+                                            <div class="mc-list-total">
+                                            <span>Total</span>
+                                            <span><b> {{valorTotalPedido(listaItem.valorTotal,listaItem.total_desconto,listaItem.total_frete) | currency:'R$'}} </b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-4 pl-xl-3 p-0">  
+                                            <span class="mc-title-pagamento">Endereço </span>
+                                            <div class="mc-info-endereco">
+                                                <span class="mc-endereco-nome">{{listaItem.endereco_entrega.Responsavel}}</span>
+                                                <span>{{listaItem.endereco_entrega.Endereco}}, {{listaItem.endereco_entrega.Numero}}, {{listaItem.endereco_entrega.Complemento}}</span>
+                                                <span>Bairro: {{listaItem.endereco_entrega.Bairro}}</span>
+                                                <span>{{listaItem.endereco_entrega.Cidade}} - {{listaItem.endereco_entrega.UF}}</span>
+                                                <span>CEP: {{listaItem.endereco_entrega.Cep}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <div class="page-nav" >
+                        <div class="pagination pagination-md">
+                            <pagination-controls 
+                                (pageChange)="p = $event" 
+                                previousLabel=""
+                                nextLabel=""
+                                (click)="loadingHeight()">
+                            </pagination-controls>
+                            </div> 
+                        </div> 
+                    </ul>
+                    
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>

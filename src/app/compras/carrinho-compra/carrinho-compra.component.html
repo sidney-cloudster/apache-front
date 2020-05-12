@@ -1,0 +1,414 @@
+<nav class="ck-navbar" tabindex="1">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-12 col-lg-2 d-flex align-self-center justify-content-center">
+                <a [routerLink]="paginaInicial">
+                    <picture>
+                        <img class="logo-full" src="{{this.config.getLogo()}}" height="37px">
+                    </picture>
+                </a>
+            </div>
+            <div class="col-12 col-lg-10 d-flex align-self-center mt-5 pb-3">
+                <ul class="ck-list-step row">
+                    <li class="ck-step col-3 col-lg-3 ">
+                        <i class="uip-step-check"></i>
+                        <a [routerLink]="['/compras','carrinho-compra']" class="ck-step-first after-active">
+                            Carrinho
+                        </a>
+                    </li>
+                    <!-- <li class="ck-step col-3 col-lg-3">
+                        <i class="uip-step-elipse"></i>
+                        <a [routerLink]="['/compras/identificacao']" class="ck-step-link ">
+                        Identificação
+                        </a>
+                    </li> -->
+                    <li class="ck-step col-3 col-lg-3">
+                        <i class="uip-step-elipse"></i>
+                        <a [routerLink]="['/compras','checkout-pagamento']" class="ck-step-link ">
+                            Pagamento
+                        </a>
+                    </li>
+                    <li class="ck-step col-3 col-lg-3 last">
+                        <i class="uip-step-elipse"></i>
+                        <a href="#" class="ck-step-last">
+                            Obrigado!
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="ck-content">
+    <div class="container">
+
+        <form id="carrinho-form" *ngIf="qtdProduto >= 1">
+            <div class="row">
+                <div class="col-xl-9 col-12">
+
+                    <div class="checkout-box">
+                        <div class="ck-title">
+                            <span class="ck-h1">Meu carrinho</span>
+                        </div>
+                        <div class="ck-body pt-3 pb-3">
+
+                            <div class="carrinho-placeholder" *ngIf="productLoding">
+                                <div class="ph-item">
+                                    <div class="ph-col-2">
+                                        <div class="ph-picture"></div>
+                                    </div>
+                                    <div class="ph-col-10">
+                                        <div class="ph-row">
+                                            <div class="ph-col-6"></div>
+                                            <div class="ph-col-6 empty"></div>
+                                            <div class="ph-col-2"></div>
+                                            <div class="ph-col-4"></div>
+                                            <div class="ph-col-8"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ph-item">
+                                    <div class="ph-col-2">
+                                        <div class="ph-picture"></div>
+                                    </div>
+                                    <div class="ph-col-10">
+                                        <div class="ph-row">
+                                            <div class="ph-col-6"></div>
+                                            <div class="ph-col-6 empty"></div>
+                                            <div class="ph-col-2"></div>
+                                            <div class="ph-col-4"></div>
+                                            <div class="ph-col-8"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="sessaoVendedor">
+                                Vendedor:<strong>{{sessaoVendedor.idVendedor}} - {{sessaoVendedor.nome}}</strong><br>
+                                Cliente: <span *ngIf="sessaoUsuario"><strong>{{sessaoUsuario.cusFantasyName}}
+                                        ({{sessaoUsuario.cpfCnpj}})</strong>&nbsp;&nbsp;<span (click)="logout()"
+                                        style="font-size: 12px;color:red;cursor: pointer;">Sair</span></span>
+                                <span *ngIf="!sessaoUsuario">
+                                    <a [routerLink]="['/user','login']">Entrar</a>
+                                </span>
+                            </div>
+
+                            <div *ngIf="!productLoding">
+                                <div class="ck-carrinho">
+                                    <div class="carrinho-columns">
+                                        <h3 class="carrinho-column --bigger">Produto</h3>
+                                        <h3 class="carrinho-column --quantity">Qtd.</h3>
+                                        <h3 class="carrinho-column">Entrega</h3>
+                                        <h3 class="carrinho-column --centerText">Preço</h3>
+                                    </div>
+                                </div>
+                                
+                                <ul class="carrinho-list">
+                                    <!-- div-loading -->
+                                    <li *ngFor="let p of listaProduto;let i = index;" class="carrinho-items "
+                                        id="item-{{i}}">
+    
+                                        <div class="row w-100 list-produtocarrinho" [attr.disabled]="p.estoque < 0">
+                                            <div class="col-2 col-xl-1 p-0 d-flex align-self-center jusify-content-center">
+                                                <figure class="carrinho-tumbnail"><img src="{{p.imagem}}"></figure>
+                                            </div>
+    
+                                            <div class="col-10 col-xl-11 p-0 ">
+                                                <div class="carrinho-produtoInfo">
+                                                    <div class="carrinho-title">
+                                                        <a *ngIf="sessaoVendedor"
+                                                            [routerLink]="['/vendedor','produto',p.id,p.link]"
+                                                            class="carrinho-plink">{{p.descricao}}</a>
+                                                        <a *ngIf="!sessaoVendedor" [routerLink]="['/produto',p.id,p.link]"
+                                                            class="carrinho-plink">{{p.descricao}}</a>
+                                                        <span *ngIf="p.gradey != 0"
+                                                            style="font-size:12px;">{{p.gradey.titulo}} :
+                                                            {{p.gradey.descricao}}</span>
+                                                        <span *ngIf="p.gradex != 0" style="font-size:12px;">Cor :
+                                                            {{p.gradex.descricao}}</span>
+                                                        <span class="vendido-por">Vendido e entregue por:
+                                                            {{p.sellerName}}</span>
+                                                        <div *ngIf="p.garantias != ''">
+                                                            <fieldset class="fieldset-garantia" id="{{i}}">
+                                                                <ul>
+                                                                    <li *ngFor="let garantia of p.garantias">
+                                                                        <div *ngIf="garantia.idServices != 0">
+                                                                            <label
+                                                                                for="{{p.id}}|{{p.skuSeller}}|{{garantia.idServices}}"
+                                                                                class="container-garantia">
+                                                                                <input type="checkbox"
+                                                                                    value="{{p.id}}|{{p.skuSeller}}|{{garantia.idServices}}"
+                                                                                    id="{{p.id}}|{{p.skuSeller}}|{{garantia.idServices}}"
+                                                                                    [checked]="garantia.checked == 'T'"
+                                                                                    (change)="selecionaGarantia(p,garantia.idServices,$event,i);">
+                                                                                <span class="checkbox-garantia"
+                                                                                    *ngIf="garantia.idServices != 0"></span>Garantia
+                                                                                estendida de {{garantia.nome}}
+                                                                            </label>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div *ngIf="p.montagem != ''">
+                                                            <fieldset class="fieldset-montagem" id="{{i}}">
+                                                                <ul>
+                                                                    <li *ngFor="let montagem of p.montagem">
+                                                                        <div *ngIf="montagem.idServices != 0">
+                                                                            <label for="montagem-{{montagem.idServices}}-{{i}}"
+                                                                                class="container-garantia">
+                                                                                <input type="checkbox"
+                                                                                    value="montagem-{{montagem.idServices}}"
+                                                                                    id="montagem-{{montagem.idServices}}-{{i}}"
+                                                                                    [checked]="montagem.checked == 'T'"
+                                                                                    (change)="selecionaMontagem(p,montagem.idServices,$event,i);">
+                                                                                <span
+                                                                                    class="checkbox-garantia"></span>{{montagem.nome}}
+                                                                                ({{montagem.valor | currency:'BRL':true}})
+                                                                            </label>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="p.estoque < 0" class="produto-sem-estoque">
+                                                        Desculpe, estamos sem estoque desse produto.
+                                                        <a class="carrinho-remover"
+                                                            (click)="alterarQuantidade(p,false,i,0)">Remover Produto</a>
+                                                    </div>
+                                                    <div class="carrinho-infos-wrapper" *ngIf="p.estoque > 0">
+                                                        <div class="carrinho-Quantidade align-self-center">
+                                                            <select class="control-carrinho disabled"
+                                                                (change)="alterarQuantidade(p,$event,i)">
+                                                                <option value="0" #quantidade>0</option>
+                                                                <option value="{{max}}" #quantidade
+                                                                    *ngFor="let max of p.arrayMaxCompra;"
+                                                                    [selected]="max == p.quantidade">{{max}}</option>
+                                                            </select>
+    
+                                                            <a class="carrinho-remover"
+                                                                (click)="alterarQuantidade(p,false,i,0)">Remover</a>
+                                                        </div>
+                                                        <div class="carrinho-entrega align-self-center">
+                                                            <div class="loader" id="calcFrete-{{i}}"></div>
+                                                            <div id="valFrete-{{i}}">
+                                                                <span *ngIf="p.frete == '' && p.retiraloja != ''">
+                                                                    <span class="retiraloja-cor">
+                                                                        <i _ngcontent-site-c13=""
+                                                                            class="fas fa-store-alt"></i> Retira Loja
+                                                                        (Gratis)</span>
+                                                                    <span style="font-size: 9px;display:block">
+                                                                        {{p.retiraloja.Cidade}} - {{p.retiraloja.UF}}
+                                                                        <br>
+                                                                        {{p.retiraloja.Endereco}},{{p.retiraloja.Numero}}
+                                                                    </span>
+                                                                </span>
+                                                                <span *ngIf="p.frete != '' && p.retiraloja == ''">
+                                                                    {{p.frete.shippingCost | currency:'BRL':true}} em até
+                                                                    {{p.frete.deliveryTime}} - dias úteis
+                                                                </span>
+                                                                <span *ngIf="p.frete == '' && p.retiraloja == ''">
+                                                                    -
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="carrinho-preco align-self-center">
+                                                            <div class="loader" id="calcValor-{{i}}"></div>
+                                                            <div id="valorCompra-{{i}}">
+                                                                {{p.total | currency:'BRL':true}}
+                                                                <div *ngIf="p.garantias != ''">
+                                                                    <div *ngFor="let garantia of p.garantias">
+                                                                        <span
+                                                                            *ngIf="garantia.checked == 'T' && garantia.idServices != 0"
+                                                                            style="font-size: 13px;">
+                                                                            +
+                                                                            {{garantia.valor * p.quantidade | currency:'BRL':true}}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div *ngIf="p.montagem != ''">
+                                                                    <div *ngFor="let montagem of p.montagem">
+                                                                        <span
+                                                                            *ngIf="montagem.checked == 'T' && montagem.idServices != 0"
+                                                                            style="font-size: 13px;">
+                                                                            +
+                                                                            {{montagem.valor * p.quantidade | currency:'BRL':true}}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-box">
+                        <div class="ck-title">
+                            <span class="ck-h1">Frete e prazo</span>
+                            <span class="ck-description">Prazo após a confirmação de crédito e liberação dos dados
+                                cadastrais.</span>
+                        </div>
+                        <div class="ck-body">
+                            <div>
+                                <div id="carrinho-frete">
+                                    <div class="frete-input mb-4">
+                                        <div class="form-group mr-3 form-inline">
+                                            <label for="cep">Calcule frete e prazo</label>
+                                            <input type="text" #cep class="form-control ml-0 ml-xl-2" id="cep"
+                                                name="cep" placeholder="0000-000" [mask]="cepFormat"
+                                                value="{{cepFrete}}">
+                                        </div>
+                                        <div class="form-group mt-4 mt-md-0 mt-sm-0 mt-xl-0">
+                                            <!-- <button type="submit" data-ripple="" class="btn btn-primary btn-calculafrete disabled" (click)="calcularFrete(cep.value)">Calcular</button> -->
+                                            <button mat-raised-button color="primary" type="submit" class="btn-frete"
+                                                disabled (click)="calcularFrete(cep.value)">Calcular</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div [innerHTML]="alertaFrete"></div>
+                                <div class="frete-wrapper" *ngIf="!sessaoVendedor">
+                                    <div class="loader" id="localFrete"></div>
+                                    <div id="infoCep">
+
+                                        <div *ngIf="infoCep.length > 0">
+                                            <div class="cidadeFrete resultadoFrete" *ngFor="let f of infoCep;">
+                                                <span><strong>{{f.cepNameCity}} - {{f.cepUF}}</strong> - <b style="color: var(--verde-ecommmerce);">{{totalFrete | currency:'BRL':true}}</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="frete-wrapper" *ngIf="sessaoVendedor">
+                                    <div *ngIf="listaEnderecoCliente?.length > 0">
+                                        <div class="loader" id="localFrete"></div>
+                                        <strong>Endereços do Cliente</strong>
+                                        <div *ngFor="let end of listaEnderecoCliente;" class="tab">
+                                            <div class="bb-select">
+                                                <div class="bb-wrapper">
+                                                    <input type="radio" id="retira-{{end.position}}" class="lojaSelect"
+                                                        name="retira_box" #retiraLojaInput>
+                                                    <label for="retira-{{end.position}}" class="bb-radio"
+                                                        (click)="selecionaEndereco(end)">
+                                                        <div class="bb-seller">
+                                                            <span class="seller-title">{{end.cidade}} -
+                                                                {{end.uf}}</span>
+                                                            <div class="price-box">
+                                                                <span>
+                                                                    {{end.nome}}
+                                                                    <br>
+                                                                    {{end.endereco}}, {{end.numero}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div *ngIf="listaFreteVendedor?.length > 0">
+                                        <strong>Endereços de Retirada</strong>
+                                        <div *ngFor="let end of listaFreteVendedor; " class="tab">
+                                            <div class="bb-select">
+                                                <div class="bb-wrapper">
+                                                    <input type="radio" id="retira-{{end.position}}" class="lojaSelect"
+                                                        st name="retira_box" #retiraLojaInput>
+                                                    <label for="retira-{{end.position}}" class="bb-radio"
+                                                        (click)="selecionaEndereco(end)">
+                                                        <div class="bb-seller">
+                                                            <span class="seller-title">{{end.cidade}} -
+                                                                {{end.uf}}</span>
+                                                            <div class="price-box">
+                                                                <span>
+                                                                    {{end.nome}}
+                                                                    <br>
+                                                                    {{end.endereco}}, {{end.numero}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-12 p-xl-0 ">
+                    <div class="checkout-box">
+                        <div class="ck-title title-resume">
+                            <span class="ck-h1">Resumo do pedido</span>
+                        </div>
+                        <div class="resumopedido">
+                            <div class="load-div">
+                                <div class="loader" id="resumoPedido"></div>
+                            </div>
+                            <div class="ck-body pb-3 resumo-body">
+                                <ul class="ck-resumos">
+                                    <li class="ck-resumo">
+                                        <span>Subtotal ({{qtdProduto}} produto)</span>
+                                        <span>{{totalProdutos | currency:'BRL':true}}</span>
+                                    </li>
+                                    <li class="ck-resumo">
+                                        <span>Frete</span>
+                                        <span>{{totalFrete | currency:'BRL':true}}</span>
+                                    </li>
+                                    <li class="ck-resumo">
+                                        <span>Serviços</span>
+                                        <span>{{totalServicos | currency:'BRL':true}}</span>
+                                    </li>
+                                </ul>
+                                <div class="ck-total">
+                                    <span>Total</span>
+                                    <span>{{totalCompraView | currency:'BRL':true}}</span>
+                                    <span class="ck-resumo-parcelado" *ngIf="!sDados.objetoIsEmpty(parcela)">
+                                        Em até {{parcela.parcela}} de {{parcela.valor}}
+                                    </span>
+                                    <span class="ck-resumo-parcelado" *ngIf="sDados.objetoIsEmpty(parcela)">
+                                        -
+                                    </span>
+                                    <span class="ck-resumo-parcelado ck-resumo-boleto">
+                                        ou {{boleto | currency:'BRL':true}} no boleto à vista
+                                    </span>
+                                </div>
+                                <button class="btn btn-verde btn-comprar" disabled data-ripple=""
+                                    (click)="continuarCompra();">Continuar</button>
+                                <div class="resumo-cupom">
+                                    Possui cupom? Você poderá usa-los na etapa de pagamento.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-seguranca" role="alert">
+                        <i class="fas fa-lock"></i> Não se preocupe, ambiente é seguro.
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row" *ngIf="qtdProduto <= 0">
+            <div class="col-xl-12 col-12">
+                <div class="carrinho-vazio">
+                    <span class="titulo-carrinho">
+                        Seu carrinho está vazio
+                    </span>
+                    <span class="descricao-carrinho">
+                        <a [routerLink]="['/']">Voltar para página inicial ou escolha outros produtos.</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

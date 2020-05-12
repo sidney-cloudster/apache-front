@@ -1,0 +1,63 @@
+<div class="conteudo bg-white">
+    <div class="container">
+        <div class="row my-3 ml-0 mr-0">
+            <h1 class="text-primary">
+                Dúvidas frequentes
+            </h1>
+
+            <div class="col-12">
+                <div class="accordion faq" id="duvidas">
+                    <div *ngFor="let info of getFaq();let i = index;" class="faq-wrapper">
+                        <a [routerLink]="['/duvidas',getTituloHTML(info.titulo)]" (click)="verInformacao(info.id)" class="btn btn-link faq-header" type="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                            {{info.titulo}}
+                        </a>
+
+                        <div [ngStyle]="{'display':rota == getTituloHTML(info.titulo)?'block':none}" class="collapse" id="duvida-{{info.id}}" aria-labelledby="headingOne" data-parent="#duvidas">
+                            <div class="faq-body">
+                                <div [innerHTML]="info.descricao"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="faq-wrapper">
+                        <button class="faq-header" class="btn btn-link" type="button" data-toggle="collapse" data-target="#duvida02" aria-expanded="true" aria-controls="collapseOne">
+                            Como comprar por telefone?
+                        </button>
+
+                        <div id="duvida02" class="collapse" aria-labelledby="headingOne" data-parent="#duvidas">
+                            <div class="faq-body">
+                                Para Comprar por telefone entre em contato conosco pela central de atendimento. Tenha em mãos, CPF, RG, endereço cadastral e endereço de entrega. Caso a compra seja feita pelo cartão tenha o mesmo em mãos.Fale com nossos atendentes e diga pra eles qual é o produto que deseja. Lembre-se de confirmar com o atendente a cor e voltagem caso tenha.A compra por telefone é segura e você pode acompanhar seu pedido pelo site.Caso tenha cupom desconto ou vale-presente não se esqueça de fornecer o numero ao atendente para obter desconto na compra. </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-wrapper">
+                        <button class="faq-header" class="btn btn-link" type="button" data-toggle="collapse" data-target="#duvida03" aria-expanded="true" aria-controls="collapseOne">
+                            Quero comprar, mais o produto está indisponível.
+                        </button>
+
+                        <div id="duvida03" class="collapse" aria-labelledby="headingOne" data-parent="#duvidas">
+                            <div class="faq-body">
+                                Quando um produto não tem em estoque você tem a opção de ser avisado quando ele chegar em estoque, para isso clique no produto e depois clique em "avisar quando chegar", digite seu nome e e-mail. Assim que o produto chegar em estoque você será avisado automaticamente por e-mail que o produto encontra-se disponível novamente em estoque. Lembrando que o e-mail não garante reserva do produto, o produto pode esgotar novamente. </div>
+                        </div>
+
+                    </div>
+
+                    <div class="faq-wrapper">
+                        <button class="faq-header" class="btn btn-link" type="button" data-toggle="collapse" data-target="#duvida04" aria-expanded="true" aria-controls="collapseOne">
+                            Como receber e parar de receber e-mails promocionais?
+                        </button>
+
+                        <div id="duvida04" class="collapse" aria-labelledby="headingOne" data-parent="#duvidas">
+                            <div class="faq-body">
+                                <p>Respeitando nossos clientes só enviamos e-mails de promoções caso aceite receber. Caso não queira mais receber e-mail de promoções basta clicar no link do final do e-mail promocional recebido ou ainda clicar em "Meu Cadastro" no topo do site, efetuar o login e acessar "Receba Ofertas" e escolher se quer ou não receber ofertas.Para receber ofertas ou voltar a receber basta acessar a pagina inicial do site no canto direito digitar o nome e e-mail.</p>
+                                <p>Lembrando que alguns provedores e programas de e-mail podem colocar o e-mail recebido da MacBuyStore no Lixo eletrônico, para isso você poderá colocar como confiável ou adicionar a lista segura, conforme o sistema utilizado para receber e-mails.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div> -->
+
+            </div>
+        </div>
+    </div>

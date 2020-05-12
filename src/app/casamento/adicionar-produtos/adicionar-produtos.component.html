@@ -1,0 +1,207 @@
+<section>
+   
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-xl-12">
+            <div class="conteudo">
+               <h1 class="title-conteudo">
+                  Adicionar produtos
+               </h1>
+               <p>Todos os produtos comprados pelos seus convidados iram para você.</p>
+               <hr>
+               <div class="dropdown-categorias">
+                  <div class="dpc-wrapper">
+                     <div class="dropdown-wrapper dropdown" style="cursor: pointer;">
+                        <i class="treetabs"></i>
+                        <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           id="dropdownMenuButton">Todas as categorias</span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                           <a class="dropdown-item" *ngFor="let item of arrayCat; let i = index;"
+                              (click)="viewCat(item.nome)">{{item.nome}}</a>
+                        </div>
+                     </div>
+                     <div class="dropdown-wrapper dropdown" style="cursor: pointer;">
+                        <i class="treetabs"></i>
+                        <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           id="dropdownMenuButton" id="rangePreco">Faixa por preço</span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                           <a class="dropdown-item" *ngFor="let item of arrayPrecos; let i = index;"
+                           (click)="rangePrice(item.inicial, item.final)">{{item.inicial | currency:'BRL':true}} - {{item.final | currency:'BRL':true}}</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="search-box form-config">
+                  <input type="text" class="form-control "
+                     placeholder="Procure produtos por nome, marca ou categoria..." [(ngModel)]="searchText">
+               </div>
+
+
+               <div *ngIf="!paginaCarregada && naoEncontrado == ''">
+                  <div class="container">
+                     <div class="row">
+                        <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-12 col-lg-12 pr-0">
+                           <div class="placeholder">
+               
+                              <div class="placeholder-product">
+                                 <div class="ph-item">
+                                    <div class="ph-col-12">
+                                       <div class="ph-picture"></div>
+                                    </div>
+                                 </div>
+                                 <div class="p-2">
+                                    <div class="ph-item">
+                                       <div class="ph-col-12">
+                                          <div class="ph-row">
+                                             <div class="ph-col-6 big"></div>
+                                             <div class="ph-col-4 empty big"></div>
+                                             <div class="ph-col-2 big"></div>
+                                             <div class="ph-col-8"></div>
+                                             <div class="ph-col-6"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+                              <div class="placeholder-product">
+                                 <div class="ph-item">
+                                    <div class="ph-col-12">
+                                       <div class="ph-picture"></div>
+                                    </div>
+                                 </div>
+                                 <div class="p-2">
+                                    <div class="ph-item">
+                                       <div class="ph-col-12">
+                                          <div class="ph-row">
+                                             <div class="ph-col-6 big"></div>
+                                             <div class="ph-col-4 empty big"></div>
+                                             <div class="ph-col-2 big"></div>
+                                             <div class="ph-col-8"></div>
+                                             <div class="ph-col-6"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+                              <div class="placeholder-product">
+                                 <div class="ph-item">
+                                    <div class="ph-col-12">
+                                       <div class="ph-picture"></div>
+                                    </div>
+                                 </div>
+                                 <div class="p-2">
+                                    <div class="ph-item">
+                                       <div class="ph-col-12">
+                                          <div class="ph-row">
+                                             <div class="ph-col-6 big"></div>
+                                             <div class="ph-col-4 empty big"></div>
+                                             <div class="ph-col-2 big"></div>
+                                             <div class="ph-col-8"></div>
+                                             <div class="ph-col-6"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+                              <div class="placeholder-product">
+                                 <div class="ph-item">
+                                    <div class="ph-col-12">
+                                       <div class="ph-picture"></div>
+                                    </div>
+                                 </div>
+                                 <div class="p-2">
+                                    <div class="ph-item">
+                                       <div class="ph-col-12">
+                                          <div class="ph-row">
+                                             <div class="ph-col-6 big"></div>
+                                             <div class="ph-col-4 empty big"></div>
+                                             <div class="ph-col-2 big"></div>
+                                             <div class="ph-col-8"></div>
+                                             <div class="ph-col-6"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+                              <div class="placeholder-product">
+                                 <div class="ph-item">
+                                    <div class="ph-col-12">
+                                       <div class="ph-picture"></div>
+                                    </div>
+                                 </div>
+                                 <div class="p-2">
+                                    <div class="ph-item">
+                                       <div class="ph-col-12">
+                                          <div class="ph-row">
+                                             <div class="ph-col-6 big"></div>
+                                             <div class="ph-col-4 empty big"></div>
+                                             <div class="ph-col-2 big"></div>
+                                             <div class="ph-col-8"></div>
+                                             <div class="ph-col-6"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+                              <div class="placeholder-product">
+                                 <div class="ph-item">
+                                    <div class="ph-col-12">
+                                       <div class="ph-picture"></div>
+                                    </div>
+                                 </div>
+                                 <div class="p-2">
+                                    <div class="ph-item">
+                                       <div class="ph-col-12">
+                                          <div class="ph-row">
+                                             <div class="ph-col-6 big"></div>
+                                             <div class="ph-col-4 empty big"></div>
+                                             <div class="ph-col-2 big"></div>
+                                             <div class="ph-col-8"></div>
+                                             <div class="ph-col-6"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div *ngIf="paginaCarregada" class="row-produtos">
+                  <div class="box-product" *ngFor="let item of collection.data | paginate: config | filter: searchText"
+                     style="height: 430px;width: 275px;margin-bottom: 30px;">
+                     <div class="image-product">
+                        <img src="{{item.images[0].images}}" alt="">
+                     </div>
+                     <div class="product-price">
+                        <div class="product-box-text" style="text-overflow: ellipsis;height: 125px;">
+                           <h2 class="box-product-title">{{item.nome}}
+                           </h2>
+                           <span class="box-product-price"><i>por</i>{{item.preco | currency:'BRL':true}}</span>
+                        </div>
+                        <div style="height: 125px; margin-top: 0;">
+                           <button class="btn btn-adicionar" (click)="saveProduct(item.id)">Adicionar a lista</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div style="text-align: center;">
+                  <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+                     [responsive]="responsive" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel" (pageChange)="pageChanged($event)">
+                  </pagination-controls>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

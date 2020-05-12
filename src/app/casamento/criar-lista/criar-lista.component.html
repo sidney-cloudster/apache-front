@@ -1,0 +1,173 @@
+<div class="conteudo">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 col-xs-8 col-lg-8">
+            <h1 class="title-conteudo">
+               Criar minha lista
+            </h1>
+            <div class="box-cadastro">
+               <div class="box-cadastro-title">
+                  1. Dados sobre o evento
+               </div>
+               <div class="box-cadastro-body">
+                  <form [formGroup]="listForm" (ngSubmit)="onSubmit(listForm.value)">
+                     <div class="form-row">
+                        <div class="col-6">
+                           <div class="form-group">
+                              <label for="date_evento">Data do evento <span class="required">*</span></label>
+                              <input class="form-control data" name="date_evento" id="data" type="text" formControlName="dataEvento" mask="00/00/0000">
+                           </div>
+                        </div>
+                        <div class="col-6">
+                           <div class="form-group">
+                              <label for="">Horário <span class="required">*</span></label>
+                              <input class="form-control time" type="text" name="hora_evento" id="horario" formControlName="horarioEvento" mask="00:00">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="nome-noivos">
+                        <div class="form-row w-100">
+                           <div class="col-12 col-xl-5">
+                              <div class="form-group">
+                                 <label for="">Você</label>
+                                 <input type="text" class="form-control" name="nome_noivo" id="nome_noivo" formControlName="nomeNoivo">
+                              </div>
+                           </div>
+                           <div class="col-2 d-none d-xl-block">
+                              <img src="../assets/img/heart.svg" class="d-block" style="margin: 0 auto;" height="auto"
+                                 width="80px">
+                           </div>
+                           <div class="col-12 col-xl-5">
+                              <div class="form-group">
+                                 <label for="">Seu parceiro(a)</label>
+                                 <input type="text" class="form-control" name="nome_noivo_dois" id="nome_noivo_dois" formControlName="nomeNoiva">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="">CPF <span class="required">*</span></label>
+                        <input class="form-control" type="text" name="cpf" id="cpf" formControlName="cpf" required mask="000.000.000-00">
+                     </div>
+                     <div class="form-group">
+                        <label for="">Local do evento <span class="required">*</span></label>
+                        <input class="form-control" type="text" name="local_evento" id="local_evento"
+                           formControlName="localEvento" required>
+                     </div>
+                     <div class="form-row">
+                        <div class="col-4">
+                           <div class="form-group">
+                              <label for="">Estado <span class="required">*</span></label>
+                              <select name="estado" id="estado" class="form-control" formControlName="estadoEvento"
+                                 required>
+                                 <option value="" selected hidden disabled>Estado</option>
+                                 <option value="AC">Acre</option>
+                                 <option value="AL">Alagoas</option>
+                                 <option value="AP">Amapá</option>
+                                 <option value="AM">Amazonas</option>
+                                 <option value="BA">Bahia</option>
+                                 <option value="CE">Ceará</option>
+                                 <option value="DF">Distrito Federal</option>
+                                 <option value="ES">Espírito Santo</option>
+                                 <option value="GO">Goiás</option>
+                                 <option value="MA">Maranhão</option>
+                                 <option value="MT">Mato Grosso</option>
+                                 <option value="MS">Mato Grosso do Sul</option>
+                                 <option value="MG">Minas Gerais</option>
+                                 <option value="PA">Pará</option>
+                                 <option value="PB">Paraíba</option>
+                                 <option value="PR">Paraná</option>
+                                 <option value="PE">Pernambuco</option>
+                                 <option value="PI">Piauí</option>
+                                 <option value="RJ">Rio de Janeiro</option>
+                                 <option value="RN">Rio Grande do Norte</option>
+                                 <option value="RS">Rio Grande do Sul</option>
+                                 <option value="RO">Rondônia</option>
+                                 <option value="RR">Roraima</option>
+                                 <option value="SC">Santa Catarina</option>
+                                 <option value="SP">São Paulo</option>
+                                 <option value="SE">Sergipe</option>
+                                 <option value="TO">Tocantins</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-8">
+                           <div class="form-group">
+                              <label for="">Cidade <span class="required">*</span></label>
+                              <input class="form-control" type="text" name="cidade" id="cidade"
+                                 formControlName="cidadeEvento" required>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="">Foto do noivos</label>
+                        <div class="form-fotos">
+                           <label for="enviar_foto" class="btn btn-link file_input"><i
+                                 class="fas fa-file-upload mr-2"></i> Enviar uma foto</label>
+                           <input type="file" id="enviar_foto" name="enviar_foto" style="display: none;"
+                              onchange="readURL(event)" accept="image/x-png,image/gif,image/jpeg"
+                              formControlName="imagemNoivos">
+                           <div class="perfil-image-cadastro">
+                              <picture class="profile-wrapper"><img id="img-perfil" src="" alt=""></picture>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="">Mensagem dos noivos</label>
+                        <textarea class="form-control h-auto" name="mensagem_noivos" id="mensagem_noivos" cols="20"
+                           rows="5" [(ngModel)]="mensagem" ng-trim="false" maxlength="200"
+                           formControlName="mensagemNoivos"></textarea>
+                        <div class="info-textarea">
+                           <div class="contador">
+                              <span class="c-contador">{{0 + mensagem.length}}</span><span>caracteres</span>
+                           </div>
+                           <span class="text">Máximo 200 caracteres</span>
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-cadastro">Continuar cadastro</button>
+                  </form>
+               </div>
+            </div>
+            <div class="box-cadastro disable">
+               <div class="box-cadastro-title">
+                  2. Endereço para entrega dos produtos
+               </div>
+            </div>
+         </div>
+         <div class="col-md-12 col-xs-4 col-lg-4">
+            <div class="vantangens-cadastro">
+               <h1 class="title-casamento cor-fixa">
+                  <i class="fas fa-heart"></i>As vantangens :)<i class="fas fa-heart"></i>
+               </h1>
+               <div class="list-vantagens"></div>
+               <ul class="vantagens">
+                  <li>
+                     <div class="icon-vantanges">
+                        <img src="../assets/img/vantangens-01.svg" alt="">
+                     </div>
+                     <p>Entrega em todo Brasil!</p>
+                  </li>
+                  <li>
+                     <div class="icon-vantanges">
+                        <img src="../assets/img/vantangens-02.svg" alt="">
+                     </div>
+                     <p>Facilidade de pagamento para seus convidados</p>
+                  </li>
+                  <li>
+                     <div class="icon-vantanges">
+                        <img src="../assets/img/vantangens-03.svg" alt="">
+                     </div>
+                     <p>Crie sua lista em até um ano antes do casamento</p>
+                  </li>
+                  <li>
+                     <div class="icon-vantanges">
+                        <img src="../assets/img/vantangens-04.svg" alt="">
+                     </div>
+                     <p>Milhares de itens para sua casa</p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

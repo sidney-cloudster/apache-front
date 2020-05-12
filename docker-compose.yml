@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  site:
+    image: site
+    build: .    
+    ports:
+      - 8081:80

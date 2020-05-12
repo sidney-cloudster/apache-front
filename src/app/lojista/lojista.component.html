@@ -1,0 +1,569 @@
+
+<div class="overlay-body" (click)="clickOverlay()"></div>
+
+<div *ngIf="!paginaCarregada">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 d-none d-xl-block">
+            <div class="ph-item">
+               <div class="ph-col-12 d-none d-xl-block">
+                  <div class="ph-row">
+                     <div class="ph-col-10 big"></div>
+                     <div class="ph-col-2 empty big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-6"></div>
+                     <div class="ph-col-6 empty"></div>
+                     <div class="ph-col-12"></div>
+                     <div class="ph-col-10 big"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+            <div class="placeholder py-2">
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+  <!-- <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value"></mat-progress-spinner> -->
+   <div class="container" *ngIf="paginaCarregada">
+      <!-- <div class="conteudo">          -->
+         <div id="ct-wrapper">  
+              <nav class="nav-args">
+                 <div class="nvgs-items">
+                    <a  alt="Página principal">
+                       <i class="uip-home"></i>
+                    </a>
+                 </div>
+                 <div class="nvgs-items"><a href="#">{{getNomeLoja()}}</a></div>
+              </nav>
+              <div class="lojista-wrapper">
+                 <div class="lojista-box row m-0">
+                    <div class="lojista-logo col-12 col-xl-3">
+                       <img  [src]="getLogoLoja()" height="50px">
+                    </div>
+                    <div class="lojista-avaliacao col-12 col-xl-5">
+                       <div class="lojista-media">
+                          Média Geral 
+                          <div class="pd-media-estrelas">
+                             <span class="media-text">4.4</span> 
+                             <div class="estrelas-avalicao">
+                                <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i>
+                             </div>
+                             <span class="total-avaliacoes">(2)</span>
+                          </div>
+                       </div>
+                       <div class="lojista-avaliacoes">
+                          <ul class="lj-list-avaliacoes">
+                             <li class="lj-item">
+                                <div class="estrelas-i">
+                                   <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i>
+                                </div>
+                                <div class="progress">
+                                   <div id="lojista_progress" class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="total-avaliacoes">(2)</span>
+                             </li>
+                             <li class="lj-item">
+                                <div class="estrelas-i">
+                                   <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i>
+                                </div>
+                                <div class="progress">
+                                   <div id="lojista_progress" class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="total-avaliacoes">(2)</span>
+                             </li>
+                             <li class="lj-item">
+                                <div class="estrelas-i">
+                                   <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i>
+                                </div>
+                                <div class="progress">
+                                   <div id="lojista_progress" class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="total-avaliacoes">(2)</span>
+                             </li>
+                             <li class="lj-item">
+                                <div class="estrelas-i">
+                                   <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i>
+                                </div>
+                                <div class="progress">
+                                   <div id="lojista_progress" class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="total-avaliacoes">(2)</span>
+                             </li>
+                             <li class="lj-item">
+                                <div class="estrelas-i">
+                                   <i class="uip-estrela-1"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i>
+                                </div>
+                                <div class="progress">
+                                   <div id="lojista_progress" class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="total-avaliacoes">(2)</span>
+                             </li>
+                          </ul>
+                       </div>
+                    </div>
+                    <div class="lojista-info col-12 col-xl-4">
+                       <span class="lojista-title">
+                       sobre
+                       </span>
+                       <div class="lojista-text">
+                          <p>{{getDescricao()}}</p>
+                       </div>
+                       <a href="#" class="link-under" data-toggle="modal" data-target="#info_lojista">mais informações</a>
+                    </div>
+                 </div>
+              </div>
+              <div class="ct-produtos-wrapper row">
+                 <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 ">
+                    
+                     
+                     <div class="ct-head-mobile" *ngIf="produtoView?.length > 0">
+                        <span class="ct-quantidade">Produtos: {{produtoView?.length}}</span>
+                        <span class="collapse-side btn btn-primary" data-ripple><span data-slide="filtrar" (click)="openFilterMob()" (click)="filterMob()" >Filtrar</span></span>
+                     </div>
+
+                     <ul class="tagfilter-list" *ngIf="filtrosAplicadosView.length > 0">
+                        <div class="ct-title d-block mb-3 w-100">
+                           <h4 class="m-0">
+                              <span class="material-icons mr-2">
+                                 filter_list
+                              </span> Filtros</h4>
+                        </div>
+                        <li class="tagfilter-item"  *ngFor="let filtro of filtrosAplicadosView" (click)="filtrar(filtro.referencia,filtro.valor)">
+                           <span class="tagfilter">{{filtro.valorMascara}}</span>
+                           <button class="remove-filter">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="9.812" height="9.812" viewBox="0 0 9.812 9.812">
+                                 <g id="Grupo_134" data-name="Grupo 134" transform="translate(0.707 0.707)" opacity="0.41">
+                                   <path id="Caminho_131" data-name="Caminho 131" d="M6292.992,6058.129l8.4-8.4" transform="translate(-6292.992 -6049.732)" fill="none" stroke="#707070" stroke-width="2"/>
+                                   <path id="Caminho_132" data-name="Caminho 132" d="M0,8.4,8.4,0" transform="translate(0 8.397) rotate(-90)" fill="none" stroke="#707070" stroke-width="2"/>
+                                 </g>
+                               </svg>                      
+                           </button>
+                        </li>
+         
+                     </ul>
+
+                     <div class="ct-title">
+                        <h4>Organizar anúncios</h4>
+                      </div>
+                       <div class="row m-0">
+         
+                          <div class="col-9 pl-0 my-3">
+         
+                             <div class="select-filter">
+                                <button class="scf-button" (click)="selectFilter($event)">
+                                   <span class="sfc-placeholder" *ngIf="!verificaCheck('o')">Ordenar por</span>
+                                   
+                                   <div class="sfc-placeholder" *ngIf="verificaCheck('o')" class="d-flex flex-row aligns-items-center">
+                                      <span class="mr-2">Ordenar por:</span>
+                                      <span *ngFor="let ordenar of filtrosView">
+                                         <span *ngIf="ordenar.tipo == 'ordenar' && ordenar.checked">
+                                          {{ordenar.descricao}}
+                                         </span>
+                                       </span>
+                                    </div>
+         
+                                 </button>
+                                <div class="scf-overflow">
+                                    <div class="scf-wrapper">
+                                       <ul class="scf-list">
+                                          
+                                          <div *ngIf="verificaCheck('o')">
+                                             <div *ngFor="let ordenar of filtrosView">
+                                                <li class="scf-item" *ngIf="ordenar.tipo == 'ordenar' && ordenar.checked" (click)="filtrar(ordenar.ref,ordenar.descricao)">
+                                                   <span class="material-icons mr-2">
+                                                      check_box
+                                                   </span>
+                                                   <span>
+                                                      {{ordenar.descricao}}
+                                                   </span>
+                                                </li>
+                                             </div>
+                                          </div>
+         
+                                          <div *ngIf="!verificaCheck('o')">
+                                             <div *ngFor="let ordenar of filtrosView">
+                                                <li class="scf-item" *ngIf="ordenar.tipo == 'ordenar'" (click)="filtrar(ordenar.ref,ordenar.descricao)">
+                                                   <span class="material-icons mr-2">
+                                                      check_box_outline_blank
+                                                   </span>
+                                                   <span>
+                                                      {{ordenar.descricao}}
+                                                   </span>
+                                                </li>
+                                             </div>
+                                          </div>
+         
+                                       </ul>
+                                    </div>
+                                </div>
+                             </div>
+         
+                          </div>
+         
+         
+                        <div class="col-3 p-0 d-flex flex-row align-items-center justify-content-center" >
+                           <label for="square" class="layout-opt" (click)="changeLayout($event.currentTarget)">
+                              <input type="radio" name="layout" id="square" value="square" >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="21.567" height="21.567" viewBox="0 0 21.567 21.567">
+                                 <path  data-name="Caminho 128" d="M512.571,67H495a2,2,0,0,0-2,2V86.571a2,2,0,0,0,2,2h17.576a2,2,0,0,0,2-2V69A2,2,0,0,0,512.571,67Zm.035,2V76.8h-7.842V68.961h7.807A.035.035,0,0,1,512.606,69Zm-17.646,0a.035.035,0,0,1,.035-.035H502.8V76.8h-7.842Zm0,17.576V78.764H502.8v7.842H495A.035.035,0,0,1,494.961,86.571Zm17.646,0a.035.035,0,0,1-.035.035h-7.807V78.764h7.842Z" transform="translate(-493 -67)"/>
+                               </svg> 
+                           </label>
+         
+                           <label for="column" class="layout-opt" (click)="changeLayout($event.currentTarget)">
+                              <input type="radio" name="layout" id="column" value="column" >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="21.337" height="21.541" viewBox="0 0 21.337 21.541">
+                                 <path data-name="Caminho 129"
+                                    d="M593.594,67H576.243a2,2,0,0,0-1.993,1.993V86.548a2,2,0,0,0,1.993,1.993h17.351a2,2,0,0,0,1.993-1.993V68.993A2,2,0,0,0,593.594,67Zm-17.386,8.486h17.42v4.569h-17.42Zm0-6.493a.035.035,0,0,1,.035-.035h17.351a.035.035,0,0,1,.035.035v4.535h-17.42Zm17.42,17.555a.035.035,0,0,1-.035.035H576.243a.035.035,0,0,1-.035-.035V82.013h17.42Z"
+                                    transform="translate(-574.25 -67)" />
+                              </svg>
+                           </label>
+                        </div>
+         
+                       </div>
+
+                    <div class="ct-sidebar">
+
+                       <div class="card-collapse-head mobile">
+                        <button class="collapse-exit" (click)="closeFilterMob()"><i class="fas fa-chevron-right"></i></button>
+                        <h3>Filtrar</h3>
+                       </div>
+
+         
+
+                       <div class="ct-side-wrapper">
+
+                           <div class="card-collapse">
+                              <div class="card-collapse-head" data-toggle="collapse" href="#categorias" role="button" aria-expanded="false">
+                                 <h3 class="collapse-title">Categorias</h3>
+                              </div>
+                              <div class="card-collapse-conteudo collapse show " id="categorias" *ngFor="let categoria of categoriaView; let i = index;">
+                                 <div id="ct-categorias" >
+                                    <button class="btn ct-collapse" type="button" data-toggle="collapse" [attr.data-target]="'#categoria-'+categoria.idCategoria" aria-expanded="false" aria-controls="collapseExample">
+                                          {{categoria.categoria}}
+                                    </button>
+                                    <div class="collapse" [class.show]="abreDropDownFiltro(categoria)" id="categoria-{{categoria.idCategoria}}">
+                                          <div class="ct-body">
+                                             <ul class="filter-list">
+                                                <div *ngFor="let sub of filtrosView" class="filter-div">
+                                                   <li *ngIf="categoria.idCategoria == sub.id && sub.tipo == 'subcategoria'" class="filter-list-item">
+                                                      <a class="filter-list-link filter-show-result" [class.active]="sub.checked" (click)="filtrar(sub.ref,sub.descricao)">{{sub.descricao}}</a>
+                                                   </li>
+                                                </div>
+                                             </ul>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+                          <div  class="card-collapse"  data-toggle="collapse" href="#preco" role="button" aria-expanded="false">
+                           <div class="card-collapse-head">
+                              <h3 class="collapse-title">Preço</h3>
+                           </div>
+                           <div class="card-collapse-conteudo collapse show" id="preco">
+                              <ul class="filter-list">
+                                 <div *ngIf="verificaCheck('p')">
+                                    <div *ngFor="let preco of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="preco.tipo == 'preco' && preco.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(preco.ref,preco.valor)">{{preco.descricao}}</a>
+                                       </li>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('p')">
+                                    <div *ngFor="let preco of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="preco.tipo == 'preco'">
+                                          <a class="filter-list-link filter-show-result" (click)="filtrar(preco.ref,preco.valor)">{{preco.descricao}}</a>
+                                       </li>
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                        <div  class="card-collapse">
+                           <div class="card-collapse-head" data-toggle="collapse" href="#desconto" role="button" aria-expanded="false">
+                              <h3 class="collapse-title">Desconto</h3>
+                           </div>
+                           <div class="card-collapse-conteudo collapse show" id="desconto">
+                              <ul class="filter-list">
+                                 <div *ngIf="verificaCheck('d')">
+                                    <div *ngFor="let desconto of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="desconto.tipo == 'desconto' && desconto.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(desconto.ref,desconto.valor)">{{desconto.descricao}}</a>
+                                       </li>                              
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('d')">
+                                    <div *ngFor="let desconto of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="desconto.tipo == 'desconto'" >
+                                          <a class="filter-list-link filter-show-result"(click)="filtrar(desconto.ref,desconto.valor)">{{desconto.descricao}}</a>
+                                       </li>                              
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                        <div  class="card-collapse">
+                           <div class="card-collapse-head" data-toggle="collapse" href="#desconto" role="button" aria-expanded="false">
+                              <h3 class="collapse-title">Avaliação</h3>
+                           </div>
+                           <div class="card-collapse-conteudo collapse show" id="avaliacao">
+                              <ul class="filter-list">
+                                 <div *ngIf="verificaCheck('e')">
+                                    <div *ngFor="let estrela of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="estrela.tipo == 'estrela' && estrela.checked">
+                                          <a class="filter-list-link filter-show-result active" (click)="filtrar(estrela.ref,estrela.descricao)">
+                                             <span class="filter-estrela">
+                                                <i [innerHTML]="getEstrelaAvaliacao(estrela.descricao[0])"></i>
+                                             </span>
+                                          </a>
+                                       </li>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="!verificaCheck('e')">
+                                    <div *ngFor="let estrela of filtrosView" class="filter-div">
+                                       <li class="filter-list-item" *ngIf="estrela.tipo == 'estrela'">
+                                          <a class="filter-list-link filter-show-result" (click)="filtrar(estrela.ref,estrela.descricao)">
+                                             <span class="filter-estrela">
+                                                <i [innerHTML]="getEstrelaAvaliacao(estrela.descricao[0])"></i>
+                                             </span>
+                                          </a>
+                                       </li>
+                                    </div>
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+
+                    <div class="ct-conteudo-destaque">
+
+                     <div class="list-subproducts" id="layout" *ngIf="produtoView">
+                        
+                        <div class="card-subproduct" *ngFor="let produto of produtoView | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+
+                           <button matRipple type="button"  aria-label="Favoritar produto" data-ripple class="btn-fav" [ngClass]="verificaFavorito(produto.id) ? 'active' : '' " (click)="adicionarFavoritos(produto.id)"><span></span></button>
+                           <a [routerLink]="getLinkArray('/produto',produto.url)" class="csb-wrapper">
+                              <picture class="csb-image">
+                                 <img *ngIf="produto.selo != ''" class="csb-selo" src="{{produto.selo}}">
+                                 <img src="{{produto.imagem}}" alt="{{produto.descricao}}" class="csb-tumb">
+                                 <div class="csb-starswrapper" *ngIf="produto.estrelas > 0">
+                                    <div class="csb-starts" [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                                 </div>
+                              </picture>
+                              <div class="csb-info-wrapper">
+                                 <div class="csb-infos"*ngIf="produto.preco > produto.preco_promocional && produto.preco_promocional > 0">
+                                    <span class="csb-promotional">{{produto.preco | currency:'BRL':true}}</span>
+                                    <div class="csb-price-wrapper">
+                                       <span class="csb-price">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                       <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}%
+                                          off</span>
+                                    </div>
+                                    <span class="csb-parcelament">
+                                       {{produto.parcelas.parcela}} {{produto.parcelas.valor}}
+                                    </span>
+                                 </div>
+                                 <div class="csb-infos" *ngIf="produto.preco <= produto.preco_promocional || produto.preco_promocional <= 0">
+                                    <div class="csb-price-wrapper">
+                                       <span class="csb-price">{{produto.preco | currency:'BRL':true}}</span>
+                                       <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}%
+                                          off</span>
+                                    </div>
+                                    <span class="csb-parcelament">
+                                       {{produto.parcelas.parcela}} {{produto.parcelas.valor}}
+                                    </span>
+                                 </div>
+
+                                 <div class="csb-footer">
+                                    <p class="csb-title">{{produto.descricao}}</p>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+      
+                     </div>
+
+                     <div class="page-nav">
+                        <div class="pagination pagination-md">
+                            <pagination-controls 
+                               (pageChange)="p = $event" 
+                               previousLabel=""
+                               nextLabel="">
+                            </pagination-controls>
+                         </div> 
+                      </div>
+ 
+                       <!--<div class="cat-wrapper"  *ngIf="produtoView">
+
+                        <div class="card-subproduct" *ngFor="let produto of produtoView | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                           <button type="button" aria-label="Favoritar produto" data-ripple class="btn-fav" (click)="setFavorito(produto);"></button>
+                           <a [routerLink]="getLinkArray('/produto',produto.url)" class="csb-wrapper">
+                              <picture class="csb-image">
+                                 <img *ngIf="produto.selo != ''" class="csb-selo" src="{{produto.selo}}">
+                                 <img src="{{produto.imagem}}" alt="{{produto.descricao}}" class="csb-tumb">
+                                 <div class="csb-starswrapper" *ngIf="produto.estrelas > 0">
+                                    <div class="csb-starts" [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                                 </div>
+                              </picture>
+                              <div class="csb-info-wrapper">
+                                 <div class="csb-infos">
+                                    <span class="csb-promotional" *ngIf="produto.preco_promocional > 0">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                    <div class="csb-price-wrapper">
+                                       <span class="csb-price">{{produto.preco | currency:'BRL':true}}</span>
+                                       <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}% off</span>
+                                    </div>
+                                    <span class="csb-parcelament">
+                                       {{produto.parcelas.parcela}} {{produto.parcelas.valor}}
+                                    </span>
+                                 </div>
+                                 <div class="csb-footer">
+                                    <p class="csb-title">{{produto.descricao}}</p>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+
+ 
+               
+                        </div> -->
+                     <div *ngIf="!produtoView">
+                        <h3>Nenhum produto encontrado.</h3>
+                     </div>
+                 </div>
+              </div>
+           <!-- </div> -->
+        </div>
+      </div>

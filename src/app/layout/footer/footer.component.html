@@ -1,0 +1,182 @@
+<footer>
+    <div class="footer-middle">
+        <div class="container">
+            <div class="a-footer">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" [routerLink]="['/user','atendimentos']" >
+                    Atendimento {{telefone}}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  [routerLink]="['/institucional','mais-vendidos']">
+                    Mais vendidos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  [routerLink]="['/institucional','seguranca']">
+                    Segurança
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  [routerLink]="['/institucional','empresa']">
+                    A empresa
+                    </a>
+                </li>
+                <li class="nav-item all-footer" (click)="openFooterMobile()">
+                    <span class="nav-link footer-exible">Mais informações</span>
+                </li>
+            </ul>
+            </div>
+            <div class="links-footer">
+            <ul class="categoria-footer">
+                <li class="footer-informacoes">
+                    <span>Informações</span>
+                    <ul class="footer-link">
+                        <li class="click-voltar" (click)="footerInformacoes()">Voltar</li>
+                        <li><a [routerLink]="['/informacoes','formas-de-pagamento']" (click)="closeFooterMobileAll()">Formas de Pagamento</a></li>
+                        <li><a [routerLink]="['/informacoes','troca-e-devolucao']">Troca e devolução</a></li>
+                        <li><a [routerLink]="['/informacoes','prazo-de-entrega']">Prazo de entrega</a></li>
+                        <li><a [routerLink]="['/informacoes','#']">Entrega</a></li>
+                        <li><a [routerLink]="['/informacoes','politica-de-privacidade']">Politica de Privacidade</a></li>
+                        <li><a [routerLink]="['/informacoes','#']">Dúvidas frequentes</a></li>
+                        <li><a [routerLink]="['/casamento']">Lista de Casamentos</a></li>
+                    </ul>
+                </li>
+                <li class="footer-duvidas">
+                    <span>Dúvida</span>
+                    <ul class="footer-link">
+                        <li class="click-voltar"  (click)="footerDuvidas()">Voltar</li>
+                        <li><a [routerLink]="['/duvidas','como-comprar']">Como comprar</a></li>
+                        <li><a [routerLink]="['/duvidas','esqueci-minha-senha']">Esqueci minha senha</a></li>
+                        <li><a [routerLink]="['/duvidas','como-acompanhar-meu-pedido']">Como acompanhar meu pedido?</a></li>
+                        <li><a [routerLink]="['/duvidas','reimpressao-de-boleto']">Reimpressão de boleto</a></li>
+                        <li><a [routerLink]="['/duvidas','vale-presente-e-cupons']">Vale presente e cupons</a></li>
+                    </ul>
+                </li>
+                <li class="footer-institucional">
+                    <span>Institucional</span>
+                    <ul class="footer-link">
+                        <li class="click-voltar" (click)="footerInstitucional()">Voltar</li>
+                        <li><a [routerLink]="['/institucional','empresa']">A empresa</a></li>
+                        <li><a [routerLink]="['/institucional','mapa-site']">Mapa do site</a></li>
+                        <li><a [routerLink]="['/institucional','glossario']">Glossário</a></li>
+                        <li><a [routerLink]="['/institucional','mais-vendidos']">Mais vendidos</a></li>
+
+                    </ul>
+                </li>
+                <li class="mobile-footer-side">
+                    <span>Mais informações</span>
+                    <ul class="footer-link">
+                        <li class="click-voltar" (click)="closeFooterMobile()">Voltar</li>
+                        <li class="click-informacoes" (click)="footerInformacoes()">Informações</li>
+                        <li class="click-duvidas" (click)="footerDuvidas()">Dúvidas</li>
+                        <li class="click-institucional" (click)="footerInstitucional()">Institucional</li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span class="expand-footer" expandend="mais informações" (click)="openFooter($event.currentTarget)"></span>
+        <div class="container">
+            <div class="row">
+
+            <div class="infos-selo">
+
+                <div class="inf-row">
+                    <span class="mb-3">Formas de pagamento</span>
+                    <ul class="forma-pagamento d-flex mb-4 mb-xl-none mb-lg-none justify-content-sm-center justify-content-center justify-content-md-center justify-content-xl-start justify-content-lg-start">
+                        <li>
+                            <picture><img src="../assets/img/novo_boleto.png" title="Boleto à vista" alt="Boleto à vista"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/mastercard-ps.png" title="Mastercard" alt="Compre com Mastercard"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/visa-ps.png" title="Visa" alt="Compre com Visa"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/elo-ps.png" title="Elo" alt="Compre com Elo"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/cabal-ps.png" title="Cabal" alt="Compre com Cabal"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/hipercard-ps.png" title="Hipercard" alt="Compre com Hipercard"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/novo_america.png" title="American Express" alt="Compre com American Express"></picture>
+                        </li>
+                        <li>
+                            <picture><img src="../assets/img/dinersclub-ps.png" title="Diners Club" alt="Compre com Diners Club"></picture>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="inf-row">
+                    <span class="mb-3">Selos de segurança</span>
+                    <ul class="selos" >
+                        <li>
+                            <a href="http://www.ebit.com.br/{{merchant_id}}" target="_blank" data-noop="redir(this.href);" title="Avaliado pelos consumidores" style="display: block; overflow: hidden; position: relative;"> 
+                                <img src="https://newimgebit-a.akamaihd.net/ebitBR/selo/img_96156.png" style="border: 5px;"> 
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="inf-row">
+                    <span class="mb-3">Rede sociais</span>
+                    <ul class="social-footer justify-content-sm-center justify-content-center justify-content-md-center justify-content-xl-end justify-content-lg-end">
+                        <li><a href="https://{{facebook}}" target="_blank" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://{{instagram}}" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://{{twitter}}" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://{{youtube}}" target="_blank" title="youtube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+            
+<!--         
+            
+            <div class="col-12 col-md-12 col-lg-4 col-xl-4 d-flex flex-column mb-4 mb-xl-none mb-lg-none">
+                <p>Selos de segurança </p>
+                <ul class="selos" >
+                    <li>
+                        <a href="http://www.ebit.com.br/{{merchant_id}}" target="_blank" data-noop="redir(this.href);" title="Avaliado pelos consumidores" style="display: block; overflow: hidden; position: relative;"> 
+                            <img src="https://newimgebit-a.akamaihd.net/ebitBR/selo/img_96156.png" style="border: 5px;"> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-12 col-md-12 col-lg-4 col-xl-4">
+                <p>Rede sociais </p>
+                <ul class="social-footer justify-content-sm-center justify-content-center justify-content-md-center justify-content-xl-end justify-content-lg-end">
+                    <li><a href="https://{{facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://{{instagram}}"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://{{twitter}}"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://{{youtube}}"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div> -->
+
+            </div>
+            <div class="loja-info w-100">
+            <div class="row">
+                <div class="col-12 col-xl-9 col-lg-9 col-sm-12 col-md-12">
+                    <small style="font-size: 11.5px;">Preços e condições de pagamento exclusivos para compras via Internet.Vendas sujeitas à analise e confirmação de dados.</small>
+                    <br><small style="font-size: 11.5px;">Fica garantida a empresa a eventual retificação das ofertas e erros de digitação que possam ter sido veiculados, podendo ser estornado a compra.</small>
+                    <br>
+                    <small style="font-size: 11.5px;">{{cnpj}} {{endereco}}, {{numero}} - CEP: {{cep}} - {{cidade}} - {{estado}}</small>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3 col-xl-3 col-lg-3 text-center " style="text-align:center;padding:10px;">
+                    <small style="font-size: 11.5px;">Powered by:</small>
+                    <a target="_blank" href="https://www.precode.com.br"><img src="../../../assets/img/logo-01.svg" height="28px" title="Precode Soluções em e-commerce" alt="Nosso negócio é fazer e-commerce!"></a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://apis.google.com/js/platform.js" async defer></script>

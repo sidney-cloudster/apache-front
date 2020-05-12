@@ -1,0 +1,172 @@
+<nav class="ck-navbar" tabindex="1">
+   <div class="container">
+      <div class="row m-0">
+         <div class="col-12 col-lg-2 d-flex align-self-center justify-content-center">
+            <a [routerLink]="['/']">
+               <picture>
+                  <img class="logo-full" src="{{this.config.getLogo()}}" height="37px">
+               </picture>
+            </a>
+         </div>
+         <div class="col-12 col-lg-10 d-flex align-self-center mt-5 pb-3">
+            <ul class="ck-list-step row">
+               <li class="ck-step col-3 col-lg-3 ">
+                  <i class="uip-step-check"></i>
+                  <a [routerLink]="['/compras','carrinho-compra']" class="ck-step-first">
+                     Carrinho
+                  </a>
+               </li>
+               <!-- <li class="ck-step col-3 col-lg-3">
+                   <i class="uip-step-check"></i>
+                   <a [routerLink]="['/compras/identificacao']" class="ck-step-link after-active before-active">
+                   Identificação
+                   </a>
+               </li> -->
+               <li class="ck-step col-3 col-lg-3">
+                  <i class="uip-step-check"></i>
+                  <a [routerLink]="['/compras','checkout-pagamento']" class="ck-step-link after-active before-active">
+                     Pagamento
+                  </a>
+               </li>
+               <li class="ck-step col-3 col-lg-3 last">
+                  <i class="uip-step-check"></i>
+                  <a href="#" class="ck-step-last ck-step-link after-active before-active">
+                     Obrigado!
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</nav>
+<div class="ck-content">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-xl-9">
+            <div>
+               <param *ngFor="let array of arrayProdutos; let i = index" id="ebitParam" value="storeId={{merchant_id}}&platform=platform&email={{email}}&parcels={{array.quantidade}}&deliveryTax=deliveryTax&deliveryTime={{freteDias}}&totalSpent={{valorTotal}}&value={{array.valor_unitario}}&quantity={{array.quantidade}}&productName={{array.descricao}}&transactionId={{idPedido}}" />
+               <a id="bannerEbit"></a>
+               <script type="text/javascript" id="getSelo" src="https://imgs.ebit.com.br/ebitBR/selo-ebit/js/getSelo.js?\'${ merchant_id }\'&lightbox=true"></script>
+            </div>
+            <div id="checkout-box" class="n-border checkout-box">
+               <div class="ck-confirmado">
+                  <div class="title-confirmado">
+                     <h1>Pedido confirmado!</h1>
+                     <span class="d-block mt-3">Confirmação do pedido enviado para <b>{{email}}</b></span>
+                  </div>
+                  <div class="ck-pedido">
+                     <span class="pedido-title">Número do pedido</span>
+                     <span class="span-pedido">#{{idPedido}}</span>
+                  </div>
+               </div>
+               <div class="ck-confirmado-sub">
+                  <span>Deseja acompanhar seu pedido?</span>
+                  <a mat-flat-button class="btn-pedido" [routerLink]="['/user/meus-pedidos']">Acompanhar pedido</a>
+               </div>
+               <div class="ck-body">
+                  <div class="ck-list row pl-3 pr-3 pt-3 pb-3">
+                     <div class="col-12 col-xl-8 p-0 d-flex align-self-center">
+                        <ol>
+                           <li>Você ainda precisa pagar o boleto, caso o boleto não seja pago até o vencimento, o pedido
+                              será cancelado.</li>
+                           <li>O prazo de entrega é válido somente após a confirmação pela instituição financeira, que leva
+                              em média 5 dias.</li>
+                        </ol>
+                     </div>
+                     <div class="col-12 col-xl-4 pr-0 d-flex flex-column text-center justify-content-center">
+                        <a mat-flat-button color="primary" class="btn-ck" href="{{boletoLink}}" target="_blank" ><i
+                              class="fas fa-print"></i> Imprimir boleto</a>
+                        <small class="mt-2 mb-2">*Verifique a valídade do boleto.</small>
+                        <a mat-stroked-button color="primary" class="btn-ck" [routerLink]="['/compras/imprimir_pedido', token]" target="_blank"><i
+                              class="fas fa-print"></i> Imprimir pedido</a>
+                     </div>
+                  </div>
+                  <div class="boleto-avisos">
+                     <span class="importante-boleto"><i class="importante">Importante:</i> Confira os dados antes de
+                        pagá-lo.</span>
+                     <p class="mt-3">
+                        Após imprimir o boleto, compare as informações que constam nele com as do modelo abaixo: confira os
+                        números que identificam o documento e os nomes do beneficiário. Caso exista alguma divergência, NÃO
+                        PAGUE e entre em contato conosco por meio do número (44) 3045.2303.
+                     </p>
+                     <img class="img-fluid pb-3" src="../assets/img/boleto-aviso.jpg">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-12 col-xl-3">
+            <div id="checkout-box" class="pagamento checkout-box">
+               <div class="ck-title title-resume">
+                  <span class="ck-h1">Resumo do pedido</span>
+               </div>
+               <div class="ck-body pb-3">
+                  <ul class="carrinho-lista mt-2" *ngFor="let array of arrayProdutos; let i = index">
+                     <li class="crt-it" data-ripple="">
+                        <a href="#">
+                           <img class="carrinho-img" src="{{array.itens[0].imagem}}" height="40px" width="40px">
+                           <span class="carrinho-nome">{{array.itens[0].descricao}}</span>
+                           <span class="carrinho-quant">Quantidade: {{array.itens[0].quantidade}}</span>
+                           <span class="carrinho-quant">{{array.itens[0].quantidade}} x
+                              {{array.itens[0].valor_unitario | currency:'BRL':true}}</span>
+                           <span class="carrinho-preco">{{array.valor_total | currency:'BRL':true}}</span>
+                        </a>
+                     </li>
+                  </ul>
+                  <ul class="ck-resumos mb-0 pt-1">
+                     <li class="ck-resumo">
+                        <span class="resumo-a">Qtd. de produtos</span>
+                        <span>{{qtdProdutos}}</span>
+                     </li>
+                     <li class="ck-resumo">
+                        <span class="resumo-a">Prazo de entrega</span>
+                        <span>{{freteDias}} dias úteis após a confirmação</span>
+                     </li>
+                     <a class="ck-link-bottom" href="#" data-toggle="modal" data-target="#exampleModalCenter">Entenda o
+                        prazo</a>
+                  </ul>
+                  <ul class="ck-resumos">
+                     <li class="ck-resumo">
+                        <span>Subtotal ({{qtdProdutos}} produto)</span>
+                        <span>{{valorProdutos | currency:'BRL':true}}</span>
+                     </li>
+                     <li class="ck-resumo">
+                        <span>Frete</span>
+                        <span>{{totalFrete | currency:'BRL':true}}</span>
+                     </li>
+                     <li class="ck-resumo">
+                        <span>Desconto</span>
+                        <span>R$ 0,00</span>
+                     </li>
+                     <li class="ck-resumo">
+                        <span>Cupom</span>
+                        <span>R$ 0,00</span>
+                     </li>
+                  </ul>
+                  <div class="ck-forma">
+                     <span class="forma-title">Forma de pagamento</span>
+                     <span class="forma-item">Boleto bancário</span>
+                  </div>
+                  <div class="ck-total">
+                     <span>Valor total</span>
+                     <span>{{valorTotal | currency:'BRL':true}}</span>
+                  </div>
+               </div>
+            </div>
+            <div class="checkout-box">
+               <div class="ck-title">
+                  <span class="ck-h1">Endereço de entrega</span>
+               </div>
+               <div class="ck-body pb-2">
+                  <div class="ck-box-ads">
+                     <span class="ads-nome">{{cliente}}</span>
+                     <span class="ads-endereco">{{arrayEndereco}}, {{arrayNumero}}, {{arrayComplemento}}</span>
+                     <span class="ads-bairro">{{arrayBairro}}</span>
+                     <span class="ads-cidade">{{arrayCidade}} {{arrayUF}}</span>
+                     <span class="ads-cep">CEP {{arrayCep}}</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

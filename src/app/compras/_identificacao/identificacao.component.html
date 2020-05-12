@@ -1,0 +1,134 @@
+<nav class="ck-navbar" tabindex="1">
+        <div class="container">
+           <div class="row m-0">
+              <div class="col-12 col-lg-2 d-flex align-self-center justify-content-center">
+                 <a href="/">
+                    <picture>
+                       <img class="logo-full" src="../assets/img/logo.png" height="37px">
+                    </picture>
+                 </a>
+              </div>
+              <div class="col-12 col-lg-10 d-flex align-self-center mt-5 pb-3">
+                 <ul class="ck-list-step row">
+                    <li class="ck-step col-3 col-lg-3 ">
+                       <i class="uip-step-check"></i>
+                       <a routerLink="/compras/carrinho-compra" class="ck-step-first">
+                       Carrinho
+                       </a>
+                    </li>
+                    <li class="ck-step col-3 col-lg-3">
+                       <i class="uip-step-elipse"></i>
+                       <a routerLink="/compras/identificacao" class="ck-step-link after-active">
+                       Identificação
+                       </a>
+                    </li>
+                    <li class="ck-step col-3 col-lg-3">
+                       <i class="uip-step-elipse"></i>
+                       <a routerLink="/compras/checkout-pagamento" class="ck-step-link">
+                       Pagamento
+                       </a>
+                    </li>
+                    <li class="ck-step col-3 col-lg-3 last">
+                       <i class="uip-step-elipse"></i>
+                       <a href="/compras/" class="ck-step-last">
+                       Obrigado!
+                       </a>
+                    </li>
+                 </ul>
+              </div>
+           </div>
+        </div>
+     </nav>
+     <div class="container">
+
+      
+            <div id="lg-wrapper">
+               <a href="/">
+               <img class="lg-brand" src="../assets/img/logo.png" height="50px">
+               </a>
+            </div>
+
+            <div class="lg-box">
+               <div class="lg-title">
+                  <h1>Faça seu login</h1>
+               </div>
+               <form class=" needs-validation">
+                  <div class="form-group">
+                     <label for="Email">Email</label>
+                     <input ngModel type="email" autocomplete="email" class="form-control" value="" id="email" name="email" placeholder="Ex.: joaodasilva@gmail.com">
+                     <a  class="lg-senha" data-toggle="modal" data-target="#esqueci_email" >Esqueci meu e-mail</a>
+                  </div>
+                  <div class="form-group">
+                     <label for="senhaLogin">Senha</label>
+                     <div class="input-password">
+                        <input ngModel type="password" autocomplete="off" class="form-control" id="senhaLogin" name="senhaLogin">
+                        <span class="show-pass"></span>
+                     </div>
+                  </div>
+                  <button id="login-button" type="submit" class="btn-verde" data-ripple>Continuar</button>
+               </form>
+               
+               <div [innerHTML]="msgRetorno" style="margin-top:10px;"></div>
+               <div class="lg-divisor">
+                  <span>ou</span>
+               </div>
+               <button class="facebook-login" (click)="login('facebook')">
+                  <i class="fab fa-facebook-square"></i><span class="facebook-text">Entrar com Facebook</span>
+               </button>
+               <button class="btn google-login" (click)="login('google')">
+                  <img class="icone-google" src="../assets/img/icone-google.svg" height="20px" width="20px"/><span class="google-text">Entrar com Google</span>
+               </button>
+               <div class="lg-cadastro">
+                  <span>É novo aqui? <a href="../user/cadastro">Cadastre-se!</a></span>
+               </div>
+         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+     </div>
+     <div class="modal fade" id="esqueci_email" tabindex="-1" role="dialog" aria-labelledby="esqueci_email" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title" id="esqueci_emailTitle">Esqueci meu email</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                 <form id="esqueci-senha" class="needs-validation">
+                    <div class="form-group">
+                       <label for="nome-destinatario">CPF ou CNPJ<span class="required-form">*</span></label>
+                       <input required type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ cadastrado">
+                    </div>
+                    <button data-ripple type="submit" class="btn btn-verde">Enviar</button>
+                </form>
+              </div>
+              
+           </div>
+        </div>
+     </div>
+     <div class="modal fade" id="esqueci_senha" tabindex="-1" role="dialog" aria-labelledby="esqueci_senha" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title" id="esqueci_emailTitle">Esqueci minha senha</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                 <div class="esqueci-text">
+                    <span>Digite seu e-mail de cadastro abaixo e clique em enviar.</span><br>
+                    <span>Nós lhe enviaremos um e-mail com link para recadastrar sua senha.</span>
+                 </div>
+                 <form id="esqueci-senha" class="needs-validation">
+                    <div class="form-group">
+                       <label for="email">E-mail cadastrado<span class="required-form">*</span></label>
+                       <input type="email" class="form-control" id="email" name="email_a" placeholder="Digite seu e-mail cadastrado">
+                    </div>
+                    <button data-ripple type="submit" class="btn btn-verde">Enviar</button>
+                </form>
+              </div>
+              
+           </div>
+        </div>
+     </div>

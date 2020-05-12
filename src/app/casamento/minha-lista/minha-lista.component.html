@@ -1,0 +1,44 @@
+<section>
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-xl-12">
+            <div class="conteudo">
+               <h1 class="title-conteudo">
+                  Minha lista <label>{{count }}</label> produtos adicionados
+               </h1>
+               <p>Veja aqui os produtos que foram adicionados na sua lista.</p>
+               <form action="">
+                  <button class="btn btn-remover w-auto" (click)="deleteAllProduct(id_lista)"><i class="fas fa-trash"></i>   Remover todos os produtos</button>
+               </form>
+               <hr>
+               <div class="row-produtos">
+                  <div class="box-product" *ngFor="let item of produtos | paginate: config"
+                     style="height: 440px;width: 275px;margin-bottom: 30px;">
+                     <div class="image-product">
+                        <img src="{{item.images[0].images}}" alt="">
+                     </div>
+                     <div class="product-price">
+                        <div class="product-box-text" style="text-overflow: ellipsis;height: 140px;">
+                           <h2 class="box-product-title">{{item.nome}}
+                           </h2>
+                           <span class="box-product-price"><i>por</i>R$ {{item.preco}}</span>
+                        </div>
+                        <div style="height: 110px; margin-top: 0;">
+                           <button class="btn btn-remover" (click)="deleteProduct(item.id, item.nome)"><i class="fas fa-trash"></i>   Remover</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div style="text-align: center;">
+                  <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+                     [responsive]="responsive" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel" (pageChange)="pageChanged($event)">
+                  </pagination-controls>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

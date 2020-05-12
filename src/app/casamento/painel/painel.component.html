@@ -1,0 +1,78 @@
+<div class="conteudo">
+   <div class="row">
+      <div class="col-12 col-xl-4">
+         <div class="box-dash">
+            <div class="icon-dash"><i class="fas fa-dollar-sign"></i></div>
+            <div class="title-dash"><span>Vocês possuem</span></div>
+            <span class="dash-numbers-preco"><i class="moeda">R$</i> {{extrato}}</span>
+            <p>extrato até o momento</p>
+         </div>
+      </div>
+      <div class="col-12 col-xl-4">
+         <div class="box-dash">
+            <div class="icon-dash"><i class="fas fa-gift"></i></div>
+            <div class="title-dash"><span>Vocês ganharam</span></div>
+            <span class="dash-numbers-presente">{{quantidade_presentes}}</span>
+            <p>presentes até o momento</p>
+         </div>
+      </div>
+      <div class="col-12 col-xl-4">
+         <div class="box-dash">
+            <div class="icon-dash"><i class="fas fa-envelope"></i></div>
+            <div class="title-dash"><span>Vocês enviaram</span></div>
+            <span class="dash-numbers">{{quantidade_emails}}</span>
+            <p>emails até o momento</p>
+            <a routerLink="/casamento/painel/email-personalizado" class="btn btn-dash">Ver contatos</a>
+         </div>
+      </div>
+   </div>
+</div>
+<br />
+<hr />
+<div class="conteudo pt-0">
+   <h1 class="title-conteudo">
+      Presentes recentes
+   </h1>
+   <div class="presentes-list">
+      <div class="presentes-columns">
+         <h3 class="presentes-column --bigger">Presente</h3>
+         <h3 class="presentes-column --convidado --textCenter">Convidado</h3>
+         <h3 class="presentes-column --quantity --textCenter">Qtd.</h3>
+         <h3 class="presentes-column --price --textCenter">Preço</h3>
+         <h3 class="presentes-column --textRight">Mensagem</h3>
+      </div>
+      <section class="present-content">
+         <ul class="pr-list">
+            <li class="pr-product">
+               <div class="pr-image">
+                  <img src="../assets/img/produto.jpg" height="85px" width="85px">
+               </div>
+               <div class="presente-info">
+                  <div class="pr-descript">
+                     <div class="pr-title">
+                        <a href="#" target="_blank">
+                           <h2 class="pr-title-h2">Game God Of War - PS4</h2>
+                        </a>
+                        <span class="pr-seller-name">Vendido por LIGIA GAMES e entregue por Submarino</span>
+                     </div>
+                  </div>
+                  <div class="pr-infos">
+                     <div class="pr-convidado">
+                        <span class="pr-convidado">Marco</span>
+                     </div>
+                     <div class="pr-qtd">
+                        <span>1</span>
+                     </div>
+                     <div class="pr-preco">
+                        <span class="pr-preco-text">R$ 999,00</span>
+                     </div>
+                     <div class="pr-button-msg">
+                        <a href="#" class="btn btn-messagem"><i class="far fa-envelope"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </section>
+   </div>
+</div>

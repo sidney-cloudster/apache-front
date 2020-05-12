@@ -1,0 +1,18 @@
+<div  class="banner-faixa" *ngFor="let faixa of inputFaixa01">
+    <h1 class="linha-titulo"><span class="linha-amarelo"></span> {{faixa.titulo}} </h1>
+    <ul class="banner-faixa-row">
+        <li *ngFor="let produtos of faixa.products"  style="margin-bottom: 20px;">
+            <div (click)="bannerClick(produtos.idBanner,produtos.url); this.sMarketingService.verificaLink(produtos.url)" style="cursor: pointer;">    
+                <img src="{{produtos.arquivo}}" alt="{{produtos.arquivo}}" title="{{faixa.titulo}}"/>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="!inputFaixa01">
+    <div class="ph-item banner-faxa p-0">
+      <div class="ph-col-12 p-0">
+          <div class="ph-picture"></div>
+      </div>
+  </div>
+   </div>

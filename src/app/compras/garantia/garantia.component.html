@@ -1,0 +1,65 @@
+<div class="conteudo bg-white">
+    <div class="container">
+       <div class="jumbotron-title">
+          <h1 class="text-primary mb-2">Garantia estendida</h1>
+          <p>Agora que você já escolheu seu produto, saiba como protegê-lo por mais tempo.</p>
+       </div>
+    </div>
+    <hr class="mb-4">
+    <div class="container">
+       <div class="row">
+          <div class="col-12 col-xl-2 mb-4 mb-xl-0 d-flex justify-content-center justify-content-xl-start">
+             <div class="gr-product">
+                <img src="{{imagem}}" alt="{{nome}}" style="display: block;" height="120px">
+                <p class="gr-product-title">{{nome}}</p>
+                <small>(Cód.: {{idProduto}})</small>
+             </div>
+          </div>
+          <form action="" class="col-12 col-xl-10 row m-0">
+             <div class="col-12 col-xl-9">
+                <div for="" class="gr-option-wrapper" *ngFor="let g of garantia;let i = index;">
+                   <input type="radio" name="garantia" [checked]="g.idServices == 0" id="op{{i+1}}" (click)="escolhaGarantia(g)">
+                   <label class="gr-option"  for="op{{i+1}}">
+                      <div class="gr-head">
+                         <b>{{g.nome}} <span *ngIf="g.idServices != 0">{{g.valor | currency:'BRL':true}}</span> </b>
+                      </div>
+                      <div *ngIf="g.idServices != 0" class="gr-body">
+                        <ul class="gr-list">
+                           <li> Seu produto garantido por mais tempo</li>
+                           <li>Consertos com peças originais</li>
+                           <li>São mais de 3 mil assistências técnicas em todo o Brasil</li>
+                           <li>Ficou alguma dúvida? Tem atendimento exclusivo</li>
+                        </ul>
+                     </div>
+                   </label>
+                </div>
+             </div>
+             <div class="col-12 col-xl-3 d-flex align-items-center flex-column justify-content-center">
+                <div *ngIf="_idServico == 0">
+                   {{_nomeGarantia}}
+                </div>
+                <div *ngIf="_idServico != 0">
+                  <h6></h6>
+                  <p>{{_nomeGarantia}}: {{_valorGarantia | currency:'BRL':true}}</p>
+                  <div class="gr-pricebox">
+                     <!-- <span class="gr-preco">0x de R$ --,-- <span class="gr-juros">sem juros</span></span> -->
+                     <h5>1x de {{_valorGarantia | currency:'BRL':true}}</h5>
+                  </div>
+               </div>
+                <button type="submit" class="btn btn-verde mt-3 btn-g-comprar" (click)="btnContinuarCompra(_idServico,_idServiceRules)">
+                  Continuar
+               </button>
+             </div>
+          </form>
+       </div>
+    </div>
+    <hr>
+    <div class="container">
+       <small><b><i class="fas fa-exclamation-circle" style="color: gold"></i> Informações importantes</b></small>
+       <p>
+          <small>
+             Seguro de Garantia Estendida Original, Processo Susep nº 15414.900275/2014-64, e Seguro de Quebra Acidental + Roubo/Furto, Processo SUSEP n° 15414,900738/2014-98, ambos garantido pela Cardif do Brasil Seguros e Garantias, CNPJ: 08.279.191/0001-84, Rua Campos Bicudo, 98, São Paulo, CEP 04536-010. Site:<!-- --> <a href="//www.bnpparibascardif.com.br" target="_blank">www.bnpparibascardif.com.br</a>. Representante de seguro: B2W – COMPANHIA DIGITAL, CNPJ nº 00.776.574/0001-56. Corretora: TRR Securitas Corretora de Seguros Ltda., CNPJ nº 33.105.404/0001- 07, e registro Susep nº 10.0110035. O presente material possui informações resumidas, orientamos a leitura das condições gerais do seguro. A contratação de seguro é opcional, sendo possível a desistência do contrato em até 7 (sete) dias corridos com a devolução integral do valor pago. É proibido condicionar desconto no preço do bem à aquisição do seguro. A comercialização de seguro é fiscalizada pela Susep.<!-- --> <a href="//www.susep.gov.br" target="_blank">www.susep.gov.br</a> <!-- -->- 0800 021 8484. A aprovação do Plano pela Susep não implica, por parte da Autarquia, em incentivo ou recomendação à sua aquisição. Caso não esteja satisfeito com a resposta fornecida pelo SAC, entre em contato com a Ouvidoria: 0800 727 2482 - Dias úteis, das 9h às 18 horas (horário de Brasília) exceto feriados ou acesse<!-- --> <a href="//ouvidoria.bnpparibascardif.com.br" target="_blank">ouvidoria.bnpparibascardif.com.br</a>.
+          </small>
+       </p>
+    </div>
+ </div>

@@ -1,0 +1,124 @@
+<div class="overlay-body" (click)="overlayClick()"></div>
+<!-- <nav id="sidebar-minhaconta">
+    <span class="mc-close-mobile"><i class="fas fa-times"></i></span>
+    <div class="sdm-topo">
+        <button id="sdm-expand" class="hamburger hamburger--arrow is-active" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <div class="sdm-title">
+            <span class="title-sdm">Minha conta</span>
+            <span>Olá, {{customer.cusFantasyName}}!</span>
+        </div>
+    </div>
+    <div class="sdm-body">
+        <div class="sdm-wrapper-list">
+        <a data-target="compras" [attr.class]="'compras' == openDropDown(paginaAtual) ? 'sdm-item active' : 'sdm-item'">
+            <svg id="sdm-icon" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.466 5.5H2.58l-.933 8H13.4l-.934-8zm-8.443-1v-1a3.5 3.5 0 1 1 7 0v1h2.333l1.167 10h-14l1.167-10h2.333zm1 0h5v-1a2.5 2.5 0 1 0-5 0v1z" fill="#999"></path>
+            </svg>
+            Compras
+        </a>
+        <ul data-show="compras" [attr.class]="'compras' == openDropDown(paginaAtual) ? 'sdm-list active' : 'sdm-list'">
+            <li *ngFor="let m of compras">
+                <a [routerLink]="m.link"  [attr.class]="checkPage(m.link,paginaAtual) ? 'sdm-link active' : 'sdm-link' ">{{m.menu}}</a>
+            </li>
+        </ul>
+        </div>
+        <div class="sdm-wrapper-list" >
+            <a data-target="configuracoes" [attr.class]="'configuracoes' == openDropDown(paginaAtual) ? 'sdm-item active' : 'sdm-item' ">
+                <svg id="sdm-icon" viewBox="0 0 15 14" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.183 9h1.34V5h-1.34c-.07-.2-.15-.39-.24-.59l.94-.95-2.82-2.82-.95.94c-.2-.09-.39-.17-.59-.24V0h-4v1.34c-.2.07-.39.15-.59.24l-.95-.94-2.82 2.82.94.95c-.09.2-.17.39-.24.59H.523v4h1.34c.07.2.15.398.24.59l-.94.95 2.82 2.82.95-.94c.192.09.39.17.59.24V14h4v-1.34c.2-.07.398-.15.59-.24l.95.94 2.82-2.82-.94-.95c.09-.192.17-.39.24-.59zm-.57 1.54l-1.55 1.55-.77-.76-.57.27a4.4 4.4 0 0 1-.5.21l-.6.21v1.08h-2.2V12l-.6-.21a4.4 4.4 0 0 1-.5-.21l-.57-.27-.77.76-1.55-1.53.76-.77-.27-.57a4.4 4.4 0 0 1-.21-.5l-.19-.6h-1.1V5.9h1.1l.21-.6a4.4 4.4 0 0 1 .21-.5l.27-.57-.76-.77 1.53-1.55.77.76.57-.27a4.4 4.4 0 0 1 .5-.21l.6-.19V.9h2.2V2l.6.21c.17.06.338.13.5.21l.57.27.77-.76 1.55 1.55-.76.77.27.57c.08.162.15.33.21.5l.21.6h1.08v2.2h-1.1l-.21.6a4.4 4.4 0 0 1-.21.5l-.27.57.78.75zM7.523 4.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm0 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" fill="#999"></path>
+                </svg>
+                Configurações
+            </a>
+            <ul data-show="configuracoes" [attr.class]="'configuracoes' == openDropDown(paginaAtual) ? 'sdm-list active' : 'sdm-list' ">
+                <li *ngFor="let m of configuracoes">
+                    <a [routerLink]="m.link"  [attr.class]="checkPage(m.link,paginaAtual) ? 'sdm-link active' : 'sdm-link' ">{{m.menu}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sdm-wrapper-list">
+            <a data-target="atendimento"  [attr.class]="'atendimento' == openDropDown(paginaAtual) ? 'sdm-item active' : 'sdm-item' ">
+                <svg id="sdm-icon" fill="#999" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 21.4 20" xml:space="preserve">
+                    <g id="Grupo_92_1_" transform="translate(356.541 -365.055)">
+                        <path id="Caminho_193_1_" class="st0" d="M-345.1,380.6l4.4,4.2c0.1,0.1,0.3,0.2,0.4,0.2c0.1,0,0.2,0,0.3,0
+                        c0.2-0.1,0.4-0.3,0.4-0.6v-3.8h1.3c1.7,0,3.1-1.4,3.1-3.1v-9.3c0-1.7-1.4-3.1-3.1-3.1h-15.2c-1.7,0-3.1,1.4-3.1,3.1v9.3
+                        c0,1.7,1.4,3.1,3.1,3.1L-345.1,380.6z M-355.3,377.5v-9.3c0-1,0.8-1.9,1.9-1.9h15.2c1,0,1.9,0.8,1.9,1.9v9.3c0,1-0.8,1.9-1.9,1.9
+                        h-2c-0.4,0-0.6,0.3-0.6,0.6v2.9l-3.5-3.4c-0.1-0.1-0.3-0.2-0.4-0.2h-8.6C-354.4,379.3-355.3,378.5-355.3,377.5L-355.3,377.5z"/>
+                        <path id="Caminho_194_1_" class="st0" d="M-345.8,374c0.3,0,0.5-0.1,0.7-0.3c0.2-0.2,0.3-0.5,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7
+                        c-0.2-0.2-0.5-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3c-0.2,0.2-0.3,0.5-0.3,0.7c0,0.3,0.1,0.5,0.3,0.7
+                        C-346.4,373.9-346.1,374-345.8,374z"/>
+                        <path id="Caminho_195_1_" class="st0" d="M-342,374c0.3,0,0.5-0.1,0.7-0.3c0.2-0.2,0.3-0.5,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7
+                        c-0.2-0.2-0.5-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3c-0.2,0.2-0.3,0.5-0.3,0.7c0,0.3,0.1,0.5,0.3,0.7C-342.5,373.9-342.3,374-342,374
+                        z"/>
+                        <path id="Caminho_196_1_" class="st0" d="M-349.6,374c0.3,0,0.5-0.1,0.7-0.3c0.2-0.2,0.3-0.5,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7
+                        c-0.2-0.2-0.5-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3c-0.2,0.2-0.3,0.5-0.3,0.7c0,0.3,0.1,0.5,0.3,0.7
+                        C-350.2,373.9-349.9,374-349.6,374z"/>
+                    </g>
+                </svg>
+                Atendimento
+            </a>
+            <ul data-show="atendimento" [attr.class]="'atendimento' == openDropDown(paginaAtual) ? 'sdm-list active' : 'sdm-list' ">
+                <li *ngFor="let m of atendimento">
+                    <a [routerLink]="m.link" [attr.class]="checkPage(m.link,paginaAtual) ? 'sdm-link active' : 'sdm-link' ">{{m.menu}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+<nav id="sidebar-minhaconta" (swipeleft)="closeSide()">
+    <div class="sdm-topo">
+        <div class="sdm-title">
+            <span class="title-sdm">Minha conta</span>
+            <span>Olá, {{customer.cusFantasyName}}!</span>
+        </div>
+        <span class="mc-close-mobile" (click)="closeSide()"><i class="material-icons">arrow_back</i></span>
+    </div>
+    <div class="sdm-body">
+        <div [attr.class]="'compras' == openDropDown(paginaAtual) ? 'sdm-wrapper-list active' : 'sdm-wrapper-list'">
+        <a (click)="openMenu($event.currentTarget)" class="sdm-item compras" >
+            Compras
+        </a>
+        <div class="sdm-hidden">
+            <ul class="sdm-list">
+                <li *ngFor="let m of compras" [attr.class]="checkPage(m.link,paginaAtual) ? 'sdm-link active' : 'sdm-link' ">
+                    <a [routerLink]="m.link">{{m.menu}}</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <div [attr.class]="'configuracoes' == openDropDown(paginaAtual) ? 'sdm-wrapper-list active' : 'sdm-wrapper-list'">
+            <a (click)="openMenu($event.currentTarget)" class="sdm-item configuracao">
+                Configurações
+            </a>
+            <div class="sdm-hidden">
+                <ul class="sdm-list">
+                    <li *ngFor="let m of configuracoes" [attr.class]="checkPage(m.link,paginaAtual) ? 'sdm-link active' : 'sdm-link' ">
+                        <a [routerLink]="m.link" >{{m.menu}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div [attr.class]="'atendimento' == openDropDown(paginaAtual) ? 'sdm-wrapper-list active' : 'sdm-wrapper-list'">
+            <a (click)="openMenu($event.currentTarget)" class="sdm-item atendimento">
+                Atendimento
+            </a>
+           <div class="sdm-hidden">
+                <ul data-show="atendimento" class="sdm-list">
+                    <li *ngFor="let m of atendimento" [attr.class]="checkPage(m.link,paginaAtual) ? 'sdm-link active' : 'sdm-link' ">
+                        <a [routerLink]="m.link">{{m.menu}}</a>
+                    </li>
+                </ul>
+           </div>
+        </div>
+    </div>
+</nav>
+
+<button id="mc-mobile" class="btn-mac-mobile" (click)="openSide()">
+    <span class="material-icons">
+        more_vert
+    </span>
+</button>

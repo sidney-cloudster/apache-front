@@ -1,0 +1,541 @@
+
+<ng-progress id="categoriaBar"></ng-progress>
+
+<div class="overlay-body" (click)="clickOverlay()"></div>
+
+
+<div *ngIf="naoEncontrado" class="naoEncontrado">
+   <app-nao-encontrado [inputMsg]="msgNaoEncontrado"></app-nao-encontrado>
+</div>
+
+<div *ngIf="!paginaCarregada && naoEncontrado == ''">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 d-none d-xl-block">
+            <div class="ph-item">
+               <div class="ph-col-12 d-none d-xl-block">
+                  <div class="ph-row">
+                     <div class="ph-col-10 big"></div>
+                     <div class="ph-col-2 empty big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-6"></div>
+                     <div class="ph-col-6 empty"></div>
+                     <div class="ph-col-12"></div>
+                     <div class="ph-col-10 big"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+            <div class="placeholder">
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div *ngIf="!naoEncontrado && paginaCarregada" class="container">
+   <div id="ct-wrapper">
+      <div class="nav-args">
+         <div class="nvgs-items">
+            <a href="#" alt="Página principal">
+               <i class="uip-home"></i>
+            </a>
+         </div>
+         <div class="nvgs-items" *ngFor="let bc of breadCrumb;"><a [routerLink]="bc.link">{{bc.nome}}</a></div>
+      </div>
+
+
+      <div class="ct-produtos-wrapper row">
+         <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 ">
+            <div class="ct-title">
+               <h1></h1>
+            </div>
+            <ul class="tagfilter-list" *ngIf="filtrosAplicadosView.length > 0">
+               <div class="ct-title d-block mb-3 w-100">
+                  <h4 class="m-0">
+                     <span class="material-icons mr-2">
+                        filter_list
+                     </span> Filtros</h4>
+               </div>
+               <li class="tagfilter-item"  *ngFor="let filtro of filtrosAplicadosView" (click)="filtrar(filtro.referencia,filtro.valor)">
+                  <span class="tagfilter">{{filtro.valorMascara}}</span>
+                  <button class="remove-filter">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="9.812" height="9.812" viewBox="0 0 9.812 9.812">
+                        <g id="Grupo_134" data-name="Grupo 134" transform="translate(0.707 0.707)" opacity="0.41">
+                          <path id="Caminho_131" data-name="Caminho 131" d="M6292.992,6058.129l8.4-8.4" transform="translate(-6292.992 -6049.732)" fill="none" stroke="#707070" stroke-width="2"/>
+                          <path id="Caminho_132" data-name="Caminho 132" d="M0,8.4,8.4,0" transform="translate(0 8.397) rotate(-90)" fill="none" stroke="#707070" stroke-width="2"/>
+                        </g>
+                      </svg>                      
+                  </button>
+               </li>
+
+            </ul>
+
+            <div class="ct-title">
+               <h4>Organizar anúncios</h4>
+             </div>
+              <div class="row m-0">
+
+                 <div class="col-9 pl-0 my-3">
+
+                    <div class="select-filter">
+                       <button class="scf-button" (click)="selectFilter($event)">
+                          <span class="sfc-placeholder" *ngIf="!verificaCheck('o')">Ordenar por</span>
+                          
+                          <div class="sfc-placeholder" *ngIf="verificaCheck('o')" class="d-flex flex-row aligns-items-center">
+                             <span class="mr-2">Ordenar por:</span>
+                             <span *ngFor="let ordenar of filtrosView">
+                                <span *ngIf="ordenar.tipo == 'ordenar' && ordenar.checked">
+                                 {{ordenar.descricao}}
+                                </span>
+                              </span>
+                           </div>
+
+                        </button>
+                       <div class="scf-overflow">
+                           <div class="scf-wrapper">
+                              <ul class="scf-list">
+                                 
+                                 <div *ngIf="verificaCheck('o')">
+                                    <div *ngFor="let ordenar of filtrosView">
+                                       <li class="scf-item" *ngIf="ordenar.tipo == 'ordenar' && ordenar.checked" (click)="filtrar(ordenar.ref,ordenar.descricao)">
+                                          <span class="material-icons mr-2">
+                                             check_box
+                                          </span>
+                                          <span>
+                                             {{ordenar.descricao}}
+                                          </span>
+                                       </li>
+                                    </div>
+                                 </div>
+
+                                 <div *ngIf="!verificaCheck('o')">
+                                    <div *ngFor="let ordenar of filtrosView">
+                                       <li class="scf-item" *ngIf="ordenar.tipo == 'ordenar'" (click)="filtrar(ordenar.ref,ordenar.descricao)">
+                                          <span class="material-icons mr-2">
+                                             check_box_outline_blank
+                                          </span>
+                                          <span>
+                                             {{ordenar.descricao}}
+                                          </span>
+                                       </li>
+                                    </div>
+                                 </div>
+
+                              </ul>
+                           </div>
+                       </div>
+                    </div>
+
+                 </div>
+
+                 <!-- <div class="col-4 p-0 d-flex flex-row align-items-center justify-content-center">
+
+                    <button class="btn-layout active" id="btn-square" (click)="changeToSquare($event.currentTarget)">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="21.567" height="21.567" viewBox="0 0 21.567 21.567">
+                          <path  data-name="Caminho 128" d="M512.571,67H495a2,2,0,0,0-2,2V86.571a2,2,0,0,0,2,2h17.576a2,2,0,0,0,2-2V69A2,2,0,0,0,512.571,67Zm.035,2V76.8h-7.842V68.961h7.807A.035.035,0,0,1,512.606,69Zm-17.646,0a.035.035,0,0,1,.035-.035H502.8V76.8h-7.842Zm0,17.576V78.764H502.8v7.842H495A.035.035,0,0,1,494.961,86.571Zm17.646,0a.035.035,0,0,1-.035.035h-7.807V78.764h7.842Z" transform="translate(-493 -67)"/>
+                        </svg>                      
+                    </button>
+
+                    <button class="btn-layout" id="btn-column" (click)="changeToColumn($event.currentTarget)">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="21.337" height="21.541" viewBox="0 0 21.337 21.541">
+                          <path data-name="Caminho 129" d="M593.594,67H576.243a2,2,0,0,0-1.993,1.993V86.548a2,2,0,0,0,1.993,1.993h17.351a2,2,0,0,0,1.993-1.993V68.993A2,2,0,0,0,593.594,67Zm-17.386,8.486h17.42v4.569h-17.42Zm0-6.493a.035.035,0,0,1,.035-.035h17.351a.035.035,0,0,1,.035.035v4.535h-17.42Zm17.42,17.555a.035.035,0,0,1-.035.035H576.243a.035.035,0,0,1-.035-.035V82.013h17.42Z" transform="translate(-574.25 -67)"/>
+                        </svg>                      
+                    </button>
+
+                 </div> -->
+
+               <div class="col-3 p-0 d-flex flex-row align-items-center justify-content-center" >
+                  <label for="square" class="layout-opt" (click)="changeLayout($event.currentTarget)">
+                     <input type="radio" name="layout" id="square" value="square" >
+                     <svg xmlns="http://www.w3.org/2000/svg" width="21.567" height="21.567" viewBox="0 0 21.567 21.567">
+                        <path  data-name="Caminho 128" d="M512.571,67H495a2,2,0,0,0-2,2V86.571a2,2,0,0,0,2,2h17.576a2,2,0,0,0,2-2V69A2,2,0,0,0,512.571,67Zm.035,2V76.8h-7.842V68.961h7.807A.035.035,0,0,1,512.606,69Zm-17.646,0a.035.035,0,0,1,.035-.035H502.8V76.8h-7.842Zm0,17.576V78.764H502.8v7.842H495A.035.035,0,0,1,494.961,86.571Zm17.646,0a.035.035,0,0,1-.035.035h-7.807V78.764h7.842Z" transform="translate(-493 -67)"/>
+                      </svg> 
+                  </label>
+
+                  <label for="column" class="layout-opt" (click)="changeLayout($event.currentTarget)">
+                     <input type="radio" name="layout" id="column" value="column" >
+                     <svg xmlns="http://www.w3.org/2000/svg" width="21.337" height="21.541" viewBox="0 0 21.337 21.541">
+                        <path data-name="Caminho 129"
+                           d="M593.594,67H576.243a2,2,0,0,0-1.993,1.993V86.548a2,2,0,0,0,1.993,1.993h17.351a2,2,0,0,0,1.993-1.993V68.993A2,2,0,0,0,593.594,67Zm-17.386,8.486h17.42v4.569h-17.42Zm0-6.493a.035.035,0,0,1,.035-.035h17.351a.035.035,0,0,1,.035.035v4.535h-17.42Zm17.42,17.555a.035.035,0,0,1-.035.035H576.243a.035.035,0,0,1-.035-.035V82.013h17.42Z"
+                           transform="translate(-574.25 -67)" />
+                     </svg>
+                  </label>
+               </div>
+
+              </div>
+
+            <div class="ct-head-mobile" *ngIf="produtoView?.length > 0">
+               <span class="ct-quantidade">Produtos: {{produtoView?.length}}</span>
+               <span class="collapse-side btn btn-primary" data-ripple><span data-slide="filtrar" (click)="openFilterMob()" (click)="filterMob()" >Filtrar</span></span>
+         </div>
+
+            <div class="ct-sidebar" >
+               <div class="card-collapse-head mobile">
+                  <h3>Filtrar</h3>
+                  <button class="collapse-exit" (click)="closeFilterMob()"><i class="fas fa-chevron-right"></i></button>
+               </div>
+               <div class="ct-side-wrapper">
+
+                  <div class="card-collapse" data-slide="buscados" *ngIf="buscados?.length > 0">
+                     <div class="card-collapse-head" data-toggle="collapse" href="#buscados" role="button" aria-expanded="false">
+                        <h3 class="collapse-title">Os mais buscados</h3>
+                     </div>
+                     <div class="card-collapse-conteudo collapse show collapse show" id="buscados">
+                        <ul class="filter-list-buscado">
+                           <li class="filter-list-item" *ngFor="let b of buscados">
+                              <a class="filter-list-link" [routerLink]="getLinkArray('/busca',b.descricao)">{{b.descricao}}</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+
+                  <!-- <div class="card-collapse-head">
+                     <h3 class="collpase-title">Os mais buscados</h3>
+                  </div>
+                  <div class="card-collapse-conteudo collapse show collapse show" id="buscados">
+                     <div class="card-collapse-conteudo collapse show collapse show" id="buscados">
+                        <ul class="filter-list-buscado">
+                           <li class="filter-list-item" *ngFor="let b of buscados">
+                              <a class="filter-list-link" [routerLink]="getLinkArray('/busca',b.descricao)">{{b.descricao}}</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div> -->
+                  <div  class="card-collapse">
+                     <div class="card-collapse-head" data-toggle="collapse" href="#categorias" role="button" aria-expanded="false">
+                        <h3 class="collapse-title">Categorias</h3>
+                     </div>
+                     <div class="card-collapse-conteudo collapse show collapse show" id="categorias">
+                        <ul class="filter-list-buscado">
+                           <div *ngFor="let categoria of filtrosView">
+                              <li class="filter-list-item filter-div" *ngIf="categoria.tipo == 'categoria'">
+                                 <a class="filter-list-link filter-show-result" [class.active]="categoria.checked" (click)="filtrar(categoria.ref,categoria.descricao)">{{categoria.descricao}}</a>
+                              </li>
+                           </div>
+                        </ul>
+                     </div>
+                  </div>
+                  <div  class="card-collapse">
+                     <div class="card-collapse-head" data-toggle="collapse" href="#preco" role="button" aria-expanded="false">
+                        <h3 class="collapse-title">Preço</h3>
+                     </div>
+                     <div class="card-collapse-conteudo collapse show" id="preco">
+                        <ul class="filter-list">
+                           <div *ngIf="verificaCheck('p')">
+                              <div *ngFor="let preco of filtrosView" class="filter-div">
+                                 <li class="filter-list-item" *ngIf="preco.tipo == 'preco' && preco.checked">
+                                    <a class="filter-list-link filter-show-result active" (click)="filtrar(preco.ref,preco.valor)">{{preco.descricao}}</a>
+                                 </li>
+                              </div>
+                           </div>
+                           <div *ngIf="!verificaCheck('p')">
+                              <div *ngFor="let preco of filtrosView" class="filter-div">
+                                 <li class="filter-list-item" *ngIf="preco.tipo == 'preco'">
+                                    <a class="filter-list-link filter-show-result" (click)="filtrar(preco.ref,preco.valor)">{{preco.descricao}}</a>
+                                 </li>
+                              </div>
+                           </div>
+                        </ul>
+                     </div>
+                  </div>
+                  <div  class="card-collapse">
+                     <div class="card-collapse-head" data-toggle="collapse" href="#desconto" role="button" aria-expanded="false">
+                        <h3 class="collapse-title">Desconto</h3>
+                     </div>
+                     <div class="card-collapse-conteudo collapse show" id="desconto">
+                        <ul class="filter-list">
+                           <div *ngIf="verificaCheck('d')">
+                              <div *ngFor="let desconto of filtrosView" class="filter-div">
+                                 <li class="filter-list-item" *ngIf="desconto.tipo == 'desconto' && desconto.checked">
+                                    <a class="filter-list-link filter-show-result active" (click)="filtrar(desconto.ref,desconto.valor)">{{desconto.descricao}}</a>
+                                 </li>                              
+                              </div>
+                           </div>
+                           <div *ngIf="!verificaCheck('d')">
+                              <div *ngFor="let desconto of filtrosView" class="filter-div">
+                                 <li class="filter-list-item" *ngIf="desconto.tipo == 'desconto'" >
+                                    <a class="filter-list-link filter-show-result"(click)="filtrar(desconto.ref,desconto.valor)">{{desconto.descricao}}</a>
+                                 </li>                              
+                              </div>
+                           </div>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="card-collapse">
+                     <div class="card-collapse-head"  data-toggle="collapse" href="#avaliacao" role="button" aria-expanded="false">
+                        <h3 class="collapse-title">Avaliação</h3>
+                     </div>
+                     <div class="card-collapse-conteudo collapse show" id="avaliacao">
+                        <ul class="filter-list">
+                           <div *ngIf="verificaCheck('e')">
+                              <div *ngFor="let estrela of filtrosView" class="filter-div">
+                                 <li class="filter-list-item" *ngIf="estrela.tipo == 'estrela' && estrela.checked">
+                                    <a class="filter-list-link filter-show-result active" (click)="filtrar(estrela.ref,estrela.descricao)">
+                                       <span class="filter-estrela">
+                                          <i [innerHTML]="getEstrelaAvaliacao(estrela.descricao[0])"></i>
+                                       </span>
+                                    </a>
+                                 </li>
+                              </div>
+                           </div>
+                           <div *ngIf="!verificaCheck('e')">
+                              <div *ngFor="let estrela of filtrosView" class="filter-div">
+                                 <li class="filter-list-item" *ngIf="estrela.tipo == 'estrela'">
+                                    <a class="filter-list-link filter-show-result" (click)="filtrar(estrela.ref,estrela.descricao)">
+                                       <span class="filter-estrela">
+                                          <i [innerHTML]="getEstrelaAvaliacao(estrela.descricao[0])"></i>
+                                       </span>
+                                    </a>
+                                 </li>
+                              </div>
+                           </div>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+            <owl-carousel-o [options]="carrossel" #owlCar>
+               <ng-container *ngFor="let banners of banner; let i = index">
+                   <ng-template carouselSlide [id]="'imagem-'+i">
+                     <img  style="cursor: pointer;" (click)="bannerClick(banners.idBanner,banners.url); this.sMarketingService.verificaLink(banners.url)" class="slide-image img-central" src="{{banners.arquivo}}" title="{{banners.descricao}}" />
+                   </ng-template>
+               </ng-container>
+            </owl-carousel-o>
+
+               <!-- <div class="ct-conteudo-destaque">
+                  <div class="cat-wrapper" *ngIf="produtoView?.length > 0">
+                     <div *ngFor="let produto of produtoView | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+                        class="item-box box-ct" data-ripple="rgba(128, 128, 128, 0.726)">
+                        <button type="button" aria-label="Favoritar produto" data-ripple class="btn-fav" *ngIf="produto"
+                           (click)="setFavorito(produto);"></button>
+                        <button type="button" aria-label="Favoritar produto" data-ripple class="btn-fav active" *ngIf=""
+                           (click)="setFavorito(produto);"></button>
+                        <a routerLink="/produto/{{produto.link}}">
+                           <img _ngcontent-euj-c11="" style="max-width:55px;position: absolute;" src="{{produto.selo}}">
+                           <div class="produto-img">
+                              <img src="{{produto.image}}" max-width="180px">
+                           </div>
+                           <div class="descricao-produto">
+                              <span class="titulo-produto">{{produto.descricao}}</span>
+                              <div class="avaliacao-produto">
+                                 <span class="produto-estrela">
+                                    <div [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                                 </span>
+                              </div>
+                              <span class="preco-de" *ngIf="produto.preco_promocional < produto.preco">de <i
+                                    class="outline-de">{{produto.preco | currency:'BRL':true}}</i>
+                                 por</span>
+                              <div class="produto-desconto-preco">
+                                 <span class="preco-produto">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                 <span class="desconto-produto" *ngIf="produto.percentual > 0">{{produto.percentual}}%
+                                    OFF</span>
+                              </div>
+                              <span class="parcelamento">{{produto.parcelas}}</span>
+                           </div>
+                        </a>
+                     </div>
+                     <div class="page-nav">
+                        <div class="pagination pagination-md">
+                           <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="">
+                           </pagination-controls>
+                        </div>
+                     </div>
+                  </div>
+                  <div *ngIf="!produtoView && paginaCarregada">
+                     <h3>Nenhum produto encontrado.</h3>
+                  </div>
+               </div>             -->
+         
+               
+               <div class="list-subproducts" id="layout" *ngIf="produtoView?.length > 0">
+                  <div class="card-subproduct" *ngFor="let produto of produtoView | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" >
+                     <button matRipple type="button"  aria-label="Favoritar produto" data-ripple class="btn-fav" [ngClass]="verificaFavorito(produto.id) ? 'active' : '' " (click)="adicionarFavoritos(produto.id)"><span></span></button>
+                     <a [routerLink]="getLinkArray('/produto',produto.link)" class="csb-wrapper">
+                        <picture class="csb-image">
+                           <img *ngIf="produto.selo != ''" class="csb-selo" src="{{produto.selo}}">
+                           <img src="{{produto.image}}" alt="{{produto.descricao}}" class="csb-tumb">
+                           <div class="csb-starswrapper" *ngIf="produto.estrelas > 0">
+                              <div class="csb-starts" [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                           </div>
+                        </picture>
+                        <div class="csb-info-wrapper">
+                           <div class="csb-infos" *ngIf="produto.percentual > 0">
+                              <span class="csb-promotional">{{produto.preco | currency:'BRL':true}}</span>
+                              <div class="csb-price-wrapper">
+                                 <span class="csb-price">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                 <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}%
+                                    off</span>
+                              </div>
+                              <span class="csb-parcelament">
+                                 {{produto.parcelas}}
+                              </span>
+                           </div>
+                           <div class="csb-infos" *ngIf="produto.percentual <= 0">
+                              <div class="csb-price-wrapper">
+                                 <span class="csb-price">{{produto.preco | currency:'BRL':true}}</span>
+                                 <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}%
+                                    off</span>
+                              </div>
+                              <span class="csb-parcelament">
+                                 {{produto.parcelas}}
+                              </span>
+                           </div>
+                           <div class="csb-footer">
+                              <p class="csb-title">{{produto.descricao}}</p>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+
+               </div>
+
+               <div class="page-nav" *ngIf="produtoView?.length > 0">
+                  <div class="pagination pagination-md">
+                      <pagination-controls 
+                         (pageChange)="p = $event" 
+                         previousLabel=""
+                         nextLabel="">
+                      </pagination-controls>
+                   </div> 
+                </div> 
+
+                <div *ngIf="!produtoView && paginaCarregada">
+                  <h3>Nenhum produto encontrado.</h3>
+               </div>
+
+            </div>
+      </div>
+   </div>
+</div>

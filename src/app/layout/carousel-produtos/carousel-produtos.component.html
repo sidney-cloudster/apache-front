@@ -1,0 +1,268 @@
+<!-- Queridinhos | Novidades no site -->
+<ng-progress id="carrousselProgressBar"></ng-progress>
+
+<h1 class="linha-titulo">
+   <span class="linha-azul"></span>
+   {{inputTitulo}}  
+</h1>
+
+<owl-carousel-o  [options]="carouselConfig" *ngIf="!inputProdutos">
+   <ng-template carouselSlide>
+      <div class="phr-produto">
+         <div class="ph-image">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+              </div>
+            </div>
+         </div>
+         <div class="p-2">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-row">
+                     <div class="ph-col-6 big"></div>
+                     <div class="ph-col-4 empty big"></div>
+                     <div class="ph-col-2 big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-8"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ng-template>
+   <ng-template carouselSlide>
+      <div class="phr-produto">
+         <div class="ph-image">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+              </div>
+            </div>
+         </div>
+         <div class="p-2">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-row">
+                     <div class="ph-col-6 big"></div>
+                     <div class="ph-col-4 empty big"></div>
+                     <div class="ph-col-2 big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-8"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ng-template>
+   <ng-template carouselSlide>
+      <div class="phr-produto">
+         <div class="ph-image">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+              </div>
+            </div>
+         </div>
+         <div class="p-2">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-row">
+                     <div class="ph-col-6 big"></div>
+                     <div class="ph-col-4 empty big"></div>
+                     <div class="ph-col-2 big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-8"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ng-template>
+   <ng-template carouselSlide>
+      <div class="phr-produto">
+         <div class="ph-image">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+              </div>
+            </div>
+         </div>
+         <div class="p-2">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-row">
+                     <div class="ph-col-6 big"></div>
+                     <div class="ph-col-4 empty big"></div>
+                     <div class="ph-col-2 big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-8"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ng-template>
+
+   <ng-template carouselSlide>
+      <div class="phr-produto">
+         <div class="ph-image">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+              </div>
+            </div>
+         </div>
+         <div class="p-2">
+            <div class="ph-item">
+               <div class="ph-col-12">
+                  <div class="ph-row">
+                     <div class="ph-col-6 big"></div>
+                     <div class="ph-col-4 empty big"></div>
+                     <div class="ph-col-2 big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-8"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ng-template>
+</owl-carousel-o>
+
+<owl-carousel-o [options]="carouselConfig"> 
+   <ng-template *ngFor="let prod of inputProdutos;let i= index" carouselSlide>
+      <div class="card-product">
+        <button matRipple type="button"  aria-label="Favoritar produto" data-ripple class="btn-fav" [ngClass]="verificaFavorito(prod.id) ? 'active' : '' " (click)="adicionarFavoritos(prod.id)"><span></span></button>
+        <a class="cpd-wrapper" [routerLink]="getLinkArray('/produto',prod.link)">
+           <picture class="cpd-image">
+               <img *ngIf="prod.selo != ''" src="{{prod.selo}}" class="cpd-selo">
+               <div class="cpd-estrelas" [innerHTML]="prod.estrelas == 0 || prod.estrelas == ''  ? '' : getIconesEstrela(prod.estrelas)"></div>
+            <img  src="{{prod.imagem}}"> 
+           </picture>
+           <div class="cpd-infos-wrapper">
+            <div  *ngIf="prod.percentual > 0">
+               <div class="cpd-info">
+                  <span class="cpd-title">
+                     {{prod.descricao}}
+                  </span>
+                  <span class="cpd-stars" [innerHTML]="getIconesEstrela(prod.estrelas)" ></span>
+                  <span class="cpd-de">De <span class="prde">{{prod.preco | currency:'BRL':true}}</span>
+                  <span class="cpd-discount">{{prod.percentual}}% off</span></span>
+                  <div class="cpd-price-wrap">
+                     <span class="cpd-price">{{prod.preco_promocional | currency:'BRL':true}}</span>
+                     
+                  </div>
+                  <span class="cpd-parcelament">{{prod.parcelas}}</span>
+               </div>
+            </div>
+            <div *ngIf="prod.percentual <= 0">
+               <div class="cpd-info" >
+                  <span class="cpd-title">
+                     {{prod.descricao}}
+                  </span>
+                  <span class="cpd-stars" [innerHTML]="getIconesEstrela(prod.estrelas)" ></span>
+                  <span class="cpd-de"></span>
+                  <div class="cpd-price-wrap">
+                     <span class="cpd-price">{{prod.preco | currency:'BRL':true}}</span>
+                  </div>
+                  <span class="cpd-parcelament">{{prod.parcelas}}</span>
+               </div>
+              
+            </div>
+            <div class="cpd-footer">
+               <a  [routerLink]="getLinkArray('/produto',prod.link)" class="cpd-comprar">Comprar agora</a>
+            </div>
+           </div>
+        </a>
+      </div>
+   </ng-template> 
+</owl-carousel-o>
+
+<!-- <owl-carousel-o [options]="carouselConfig" #owlCar>
+   <ng-container *ngFor="let prod of inputProdutos; let i = index;">
+      <ng-template carouselSlide [id]="'imagem-'+i">
+         <div class="item item-box" style="min-height: 400px;">
+            <img src="{{prod.selo}}" style="max-width:55px;position: absolute;">
+            <button aria-label="Favoritar produto" data-ripple class="btn-fav"></button>
+            <a [routerLink]="getLinkArray('/produto',prod.link)">
+               <div class="produto-img">
+                  <img class="slide-image" src="{{prod.imagem}}" style="max-width:180px">
+               </div>
+               <div class="descricao-produto">
+                  <span class="titulo-produto">{{prod.descricao}}</span>
+                  <div class="avaliacao-produto">
+                     <span class="produto-estrela">
+                        <div [innerHTML]="getIconesEstrela(prod.estrelas)"></div>
+                     </span>
+                  </div>
+                  <div *ngIf="prod.preco > prod.preco_promocional">
+                     <span class="preco-de" *ngIf="prod.preco > prod.preco_promocional">de <i class="outline-de">{{prod.preco | currency:'BRL':true}}</i>
+                        por</span>
+                     <div class="produto-desconto-preco">
+                        <span class="preco-produto">{{prod.preco_promocional | currency:'BRL':true}}</span>
+                        <span class="desconto-produto" *ngIf="prod.percentual > 0">{{prod.percentual}}% OFF</span>
+                     </div>
+                  </div>
+                  <div *ngIf="prod.preco_promocional > prod.preco">
+                     <div class="produto-desconto-preco">
+                        <span class="preco-produto">{{prod.preco | currency:'BRL':true}}</span>
+                     </div>
+                  </div>
+                  <div *ngIf="prod.preco_promocional == prod.preco">
+                     <div class="produto-desconto-preco">
+                        <span class="preco-produto">{{prod.preco | currency:'BRL':true}}</span>
+                     </div>
+                  </div>
+                  <span class="parcelamento">{{prod.parcelas}}</span>
+               </div>
+            </a>
+         </div>
+      </ng-template>
+   </ng-container>
+</owl-carousel-o> -->
+<!-- 
+<owl-carousel [options]="carouselConfig" [items]="inputProdutos"
+   [carouselClasses]="['owl-theme', 'sliding','web-central','owl-carousel','produto-carousel']">
+   <div class="item item-box" *ngFor="let prod of inputProdutos;let i= index" style="min-height: 400px;">
+      <img src="{{prod.selo}}" style="max-width:55px;position: absolute;">
+      <button aria-label="Favoritar produto" data-ripple class="btn-fav"></button>
+      <a [routerLink]="getLinkArray('/produto',prod.link)">
+         <div class="produto-img">
+            <img class="slide-image" src="{{prod.imagem}}" style="max-width:180px">
+         </div>
+         <div class="descricao-produto">
+            <span class="titulo-produto">{{prod.descricao}}</span>
+            <div class="avaliacao-produto">
+               <span class="produto-estrela">
+                  <div [innerHTML]="getIconesEstrela(prod.estrelas)"></div>
+               </span>
+            </div>
+            <div *ngIf="prod.preco > prod.preco_promocional">
+               <span class="preco-de" *ngIf="prod.preco > prod.preco_promocional">de <i class="outline-de">{{prod.preco | currency:'BRL':true}}</i>
+                  por</span>
+               <div class="produto-desconto-preco">
+                  <span class="preco-produto">{{prod.preco_promocional | currency:'BRL':true}}</span>
+                  <span class="desconto-produto" *ngIf="prod.percentual > 0">{{prod.percentual}}% OFF</span>
+               </div>
+            </div>
+            <div *ngIf="prod.preco_promocional > prod.preco">
+               <div class="produto-desconto-preco">
+                  <span class="preco-produto">{{prod.preco | currency:'BRL':true}}</span>
+               </div>
+            </div>
+            <div *ngIf="prod.preco_promocional == prod.preco">
+               <div class="produto-desconto-preco">
+                  <span class="preco-produto">{{prod.preco | currency:'BRL':true}}</span>
+               </div>
+            </div>
+            <span class="parcelamento">{{prod.parcelas}}</span>
+         </div>
+      </a>
+   </div>
+</owl-carousel> -->

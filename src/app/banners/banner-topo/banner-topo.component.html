@@ -1,0 +1,5 @@
+<div *ngFor="let topo of inputBannerTopo" class=" banner-topo-body">
+  <div (click)="bannerClick(topo.idBanner); this.sMarketingService.verificaLink(topo.url)" style="cursor: pointer;">
+      <img src="{{topo.image}}" title="{{topo.descricao}}" alt="{{topo.descricao}}">
+  </div>  
+</div>

@@ -1,0 +1,198 @@
+<div class="conteudo">
+    <div class="container">
+       <div class="row">
+         <app-menu-user [paginaAtual]="'favoritos'"  class="col-xl-3 col-lg-3"></app-menu-user>
+          <div class="col-12 col-xl-9 col-lg-9 pr-1 pl-1 pl-lg-3 mb-5">
+             <div class="mc-wrapper px-2">
+                <div class="mc-box-wrapper">
+                   <div class="mc-title">
+                      <h3>Favoritos</h3>
+                   </div>
+
+                   <div class="placeholder favorito" *ngIf="!favoritosCarregado">
+                  
+                     <div class="placeholder-product">
+                        <div class="ph-item">
+                           <div class="ph-col-12">
+                              <div class="ph-picture"></div>
+                           </div>
+                        </div>
+                        <div class="p-2">
+                           <div class="ph-item">
+                              <div class="ph-col-12">
+                                 <div class="ph-row">
+                                    <div class="ph-col-12"></div>
+                                    <div class="ph-col-8"></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+      
+                     <div class="placeholder-product">
+                        <div class="ph-item">
+                           <div class="ph-col-12">
+                              <div class="ph-picture"></div>
+                           </div>
+                        </div>
+                        <div class="p-2">
+                           <div class="ph-item">
+                              <div class="ph-col-12">
+                                 <div class="ph-row">
+                                    <div class="ph-col-12"></div>
+                                    <div class="ph-col-8"></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+      
+                     <div class="placeholder-product">
+                        <div class="ph-item">
+                           <div class="ph-col-12">
+                              <div class="ph-picture"></div>
+                           </div>
+                        </div>
+                        <div class="p-2">
+                           <div class="ph-item">
+                              <div class="ph-col-12">
+                                 <div class="ph-row">
+                                    <div class="ph-col-12"></div>
+                                    <div class="ph-col-8"></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+      
+                     <div class="placeholder-product">
+                        <div class="ph-item">
+                           <div class="ph-col-12">
+                              <div class="ph-picture"></div>
+                           </div>
+                        </div>
+                        <div class="p-2">
+                           <div class="ph-item">
+                              <div class="ph-col-12">
+                                 <div class="ph-row">
+                                    <div class="ph-col-12"></div>
+                                    <div class="ph-col-8"></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+      
+                     <div class="placeholder-product">
+                        <div class="ph-item">
+                           <div class="ph-col-12">
+                              <div class="ph-picture"></div>
+                           </div>
+                        </div>
+                        <div class="p-2">
+                           <div class="ph-item">
+                              <div class="ph-col-12">
+                                 <div class="ph-row">
+                                    <div class="ph-col-12"></div>
+                                    <div class="ph-col-8"></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+      
+                     <div class="placeholder-product">
+                        <div class="ph-item">
+                           <div class="ph-col-12">
+                              <div class="ph-picture"></div>
+                           </div>
+                        </div>
+                        <div class="p-2">
+                           <div class="ph-item">
+                              <div class="ph-col-12">
+                                 <div class="ph-row">
+                                    <div class="ph-col-12"></div>
+                                    <div class="ph-col-8"></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+      
+                  </div>
+
+                  <div class="pedidos-vazio" *ngIf="produtosFavorito == '' && favoritosCarregado">
+                     <img src="../../../assets/img/coracao-favoritos.gif" width="auto" height="auto" title="Carrinho vazio!">
+                     <h3>Você não tem nenhum produto nos favoritos. :(</h3>
+                 </div>
+
+                   <div class="list-subproducts" id="layout" *ngIf="produtosFavorito?.length > 0">
+                   <div class="card-subproduct favorito" *ngFor="let produto of produtosFavorito | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+
+                     <!-- <button type="button" aria-label="Favoritar produto" data-ripple class="btn-fav" (click)="setFavorito(produto);"></button> -->
+                     <button type="button" aria-label="Remover produto" data-ripple class="btn-remove-fav"  (click)="removerFavorito(produto.idLista, produto.nome)">
+                     <span class="material-icons">
+                        clear
+                        </span>
+                     </button>
+                     <a [routerLink]="getLinkArray('/produto',produto.link)" class="csb-wrapper">
+                        <picture class="csb-image">
+                           <img src="{{produto.images}}" alt="{{produto.images}}" class="csb-tumb">
+                           <div class="csb-starswrapper" *ngIf="produto.estrelas > 0">
+                              <div class="csb-starts"></div>
+                           </div>
+                        </picture>
+                        <div class="csb-info-wrapper">
+                           <!-- <div class="csb-infos">
+                              <span class="csb-promotional" *ngIf="produto.preco_promocional > 0">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                              <div class="csb-price-wrapper">
+                                 <span class="csb-price">R$ {{produto.preco}}</span>
+                                 <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}% off</span>
+                              </div>
+                              <span class="csb-parcelament">
+                                 {{produto.parcelas}}
+                              </span>
+                           </div> -->
+                           <div class="csb-footer">
+                              <p class="csb-title">{{produto.nome}}</p>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  </div>
+                  
+                  <div class="page-nav">
+                     <div class="pagination pagination-md">
+                        <pagination-controls (pageChange)="p=$event" previousLabel="" nextLabel=""></pagination-controls>
+                     </div>
+                  </div>
+
+                   <!-- <div class="item-box box-ct" data-ripple="rgba(128, 128, 128, 0.726)" *ngFor="let data of produtosFavorito" style="display: inline-block;">
+                     <button type="button" aria-label="Remover produto" data-ripple class="btn-remove-fav"  (click)="removerFavorito(data.idLista, data.nome)">x</button>
+                     <a [routerLink]="getLinkArray('/produto',data.link)" style="cursor: pointer;">
+                        <div class="produto-img">
+                           <img src="{{data.images}}" width="180px">
+                        </div>
+                        <div class="descricao-produto">
+                           <span class="titulo-produto">{{data.nome}}</span>
+                           <div class="avaliacao-produto">
+                              <span class="produto-estrela">
+                              <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i>
+                              </span>
+                           </div>
+                          <span class="preco-de">de <i class="outline-de">{{fav.valorAnterior | currency:'BRL':true}}</i> por</span> -->
+                           <!-- A Partir de --> 
+                           <!-- <span class="preco-produto">{{data.preco | currency:'BRL':true}}</span> -->
+                           <!-- <span class="parcelamento">{{fav.parcelaMax}}x de <b>R$ {{fav.valorEmAte | currency:'BRL':true}}</b> sem juros</span> -->
+                           <!-- <span style="border-radius:3px;background:#000;color:#fff;padding:3px;font-size:12px">
+                             {{data.ofertas}} Ofertas
+                          </span>
+                        </div>
+                     </a>
+                  </div> -->
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

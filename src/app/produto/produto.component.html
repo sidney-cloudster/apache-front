@@ -1,0 +1,802 @@
+<ng-progress id="produtoBar"></ng-progress>
+
+<div class="ph-item produto py-3" *ngIf="!paginaCarregada">
+    <div id="produto-item mb-0 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-5 col-lg-5 m-0 p-0 fav-hidden">
+                    <div class="ph-item placeholder-image produto">
+                        <div class="ph-col-12">
+                            <div class="ph-picture"></div>
+                        </div>
+                    </div>
+                    <div class="ph-item placeholder-tumb">
+                        <div class="ph-col-3">
+                            <div class="ph-picture"></div>
+                        </div>
+                        <div class="ph-col-3">
+                            <div class="ph-picture"></div>
+                        </div>
+                        <div class="ph-col-3 d-none d-xl-block">
+                            <div class="ph-picture"></div>
+                        </div>
+                        <div class="ph-col-3 d-none  d-xl-block">
+                            <div class="ph-picture"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
+                    <div class="ph-item produto">
+                        <div class="ph-col-12">
+                            <div class="ph-row">
+                                <div class="ph-col-12 big"></div>
+                                <div class="ph-col-4 empty"></div>
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-12 empty"></div>
+                                <div class="ph-col-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="paginaCarregada">
+    <div id="produto-item">
+        <div class="container">
+            <div class="nav-args">
+                <div class="nvgs-items">
+                    <a href="#" alt="Página principal">
+                        <i class="uip-home"></i>
+                    </a>
+                </div>
+                <div class="nvgs-items" *ngIf="categoria != ''"><a
+                        [routerLink]="getLinkArray('/categorias',link_categoria)">{{categoria}}</a></div>
+                <div class="nvgs-items" *ngIf="subcategoria != ''"><a
+                        [routerLink]="getLinkArray('/categorias',link_subcategoria)">{{subcategoria}}</a></div>
+                <div class="nvgs-items" *ngIf="marca != ''"><a>{{marca}}</a></div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-5 col-lg-5 m-0 p-0 fav-hidden"> 
+                    <button matRipple type="button"  aria-label="Favoritar produto" data-ripple class="btn-favoritar" [ngClass]="verificaFavorito(id) ? 'active' : '' " (click)="adicionarFavoritos(id)"><span></span></button>
+                    <button type="button" aria-label="Compartilhar" data-ripple class="btn-comp" (click)="openShareButton($event.currentTarget)">
+                        <span></span>
+                    </button>
+                    <div class="btn-compartilha">
+                        <span class="compartilhar-pd-f btn"><a href="#"><i class="fab fa-facebook-f"></i></a></span>
+                        <span class="compartilhar-pd-w btn"><a href="#"><i class="fab fa-whatsapp"></i></a></span>
+                        <span class="compartilhar-pd-t btn"><a href="#"><i class="fab fa-twitter"></i></a></span>
+                    </div>
+                    <div class="pd-imagem">
+                        <owl-carousel-o [options]="carouselProduto" #owlCar class="image-produtos-carousel">
+                            <ng-container *ngFor="let image of imagesGradeX; let i = index;">
+                                <ng-template carouselSlide [id]="'imagem-'+i">
+                                    <img [src]="image.images">
+                                </ng-template>
+                            </ng-container>
+                        </owl-carousel-o>
+                        <owl-carousel-o [options]="thumbOptions" class="image-carousel-tumb">
+                            <ng-container *ngFor="let image of imagesGradeX; let i = index;" >
+                                <ng-template carouselSlide>
+                                   <button  class="tumbnail-product" (click)="owlCar.to('imagem-'+i)" >
+                                        <img [src]="image.images"  >
+                                   </button>
+                                </ng-template>
+                            </ng-container>
+                        </owl-carousel-o>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
+                    <div id="pd-item">
+                        <h1 id="title-product">{{nome}}</h1>
+                        <div class="pd-sub">
+                            <small class="pd-codigo">Cód.: {{id}}</small>
+                            <div class="avaliacoes-produto">
+                                <div class="estrelas-i">
+                                    <div [innerHTML]="stars"></div>
+                                </div>
+                                <span class="avalicaoes-total">({{messages_qtd}})</span><a class="link-avaliar"
+                                    data-toggle="modal" data-target="#modal-avaliar">Avaliar produto</a>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="comprar-form" class="needs-validation is-invalid">
+                        <div *ngIf="gradeX?.length > 0">
+                            <span class="buybox-title">Cor: {{getXGradeSelecionada()}}</span>
+                            <div class="grade-input">
+                                <div class="grade-wrapper" matRipple *ngFor="let cor of gradeX; let y = index;">
+                                    <!-- <input *ngIf="y == 0" checked type="radio" required id="grade-{{cor.idGradeX}}" value="{{cor.descricao}}" name="cores" (click)="selectGradeX(cor.idGradeX);" class="sellerGradeX"> -->
+                                    <input type="radio" id="grade-{{cor.idGradeX}}" value="{{cor.descricao}}"
+                                        name="cores" (click)="verificaGradeX(cor.idGradeX);"
+                                        class="checkGradeX inputGrade">
+                                    <label for="grade-{{cor.idGradeX}}" data-ripple class="grade-label">
+                                        <img src="{{cor.images}}" style="width: 40px;height: 40px;display: block;" />
+                                        {{cor.descricao}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="gradeyDisponiveis?.length > 0">
+                            <span class="buybox-title">{{gradeyDisponiveis[0].titulo}}: {{getYGradeSelecionada()}}</span>
+                            <div class="grade-input">
+                                <div class="grade-wrapper sellerGradeY" matRipple
+                                    *ngFor="let gradeY of gradeyDisponiveis; let i = index;">
+                                    <div *ngIf="gradeY.idGradeY > 0">
+                                        <input type="radio" required id="y{{gradeY.idGradeY}}"
+                                            value="{{gradeY.descricao}}" name="{{gradeY.titulo}}" class="checkGradeY">
+                                        <label for="{{gradeY.idGradeY}}" data-ripple class="grade-label"
+                                            (click)="verificaGradeY(gradeY.idGradeY,true);">{{gradeY.descricao}}
+                                            {{gradeY.titulo}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SE TIVER SOMENTE 1 SELLER  -->
+                        <div *ngIf="!isBoxSeller">
+                            <div id="pd-box">
+                                <div class="retire-loja-box">
+                                    <i class="material-icons">
+                                        store
+                                    </i> <span>Compre e <b>retire na loja {{getRetiraLojaByIdLoja()}}</b></span>
+                                </div>
+                                <form id="comprar-form" class="">
+                                    <div id="comprar-item" class="pd-comprar row m-0">
+                                        <div
+                                            class="pd-precos col-12 col-sm-12 col-md-12 col-xl-8 p-0 col-lg-8 mb-md-3 mb-sm-3 mb-3 mb-xl-0 mb-lg-0">
+                                            <a class="seller-link" matRipple [routerLink]="['/lojista/',produtoSeller.sellerName]">
+                                                <span class="seller-title">Vendido e entregue por</span>
+                                                <span class="seller-name">{{produtoSeller.sellerName}}</span>
+                                            </a>
+                                            <div class="pd-preco w-100 d-block my-3">
+                                                <span>{{produtoSeller.preco | currency:'BRL':true}}</span><i>à vista</i>
+                                            </div>
+                                            <div class="seller-price-box" style="min-height: auto; height: auto;">
+                                                <span class="pd-parcalmento"><i class="material-icons">payment</i>
+                                                    até {{produtoSeller.maxParcSJuros.parcela}} de
+                                                    <b>{{produtoSeller.maxParcSJuros.valor}}</b></span>
+                                                <span class="pd-boleto"><i class="material-icons">account_balance</i>
+                                                    boleto bancário <b>
+                                                        {{produtoSeller.preco | currency:'BRL':true}}</b>
+                                                    (0% de desconto)</span>
+                                            </div>
+                                            <div *ngIf="produtoSeller.montagem?.length > 0" class="montagem-servico">
+                                                <label *ngFor="let montagem of produtoSeller.montagem"
+                                                    for="montagem-{{montagem.idService}}" class="container-montagem"
+                                                    (change)="selecionaMontagem(montagem,$event);">
+                                                    <input type="checkbox" value="montagem-{{montagem.idService}}"
+                                                        id="montagem-{{montagem.idService}}">
+                                                    <span class="checkbox-montagem"></span>{{montagem.nome}} -
+                                                    {{montagem.valor | currency:'BRL':true}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="pd-comprar-btn col-12 col-sm-12 pr-xl-0 pl-xl-2 pl-0 col-md-12 col-xl-4 col-lg-6">
+                                                <button mat-button type="button" class="submit-comprar mb-2"
+                                                (click)="btnComprar(produtoSeller,'','comprar')" data-ripple>
+                                                <span class="material-icons">shopping_cart</span>
+                                                Comprar
+                                                </button>
+                                            <button mat-button type="button" class="add-to-cart mb-2" (click)="btnComprar(produtoSeller,'','carrinho')">
+                                                <span>Adicionar ao carrinho</span>
+                                            </button>
+                                            <span class="pd-parcalmento-ver" data-toggle="modal" data-target="#parcelamentos">Ver parcelas</span>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="pd-frete mt-3">
+                                    <div class="minloading">
+                                        <div class="minspinner"></div>
+                                    </div>
+                                    <form id="calculo-frete" class="needs-validation">
+                                        <div class="form-row p-xl-4 p-2">
+                                            <div
+                                                class="col-12 col-md-5 col-sm-5 col-xl-12 col-lg-12 pd-select mb-3 mb-sm-0 mb-md-0 mb-xl-3  mb-lg-0">
+                                                <label for="cep"><i class="fas fa-truck"></i> Calcular frete e prazo
+                                                </label>
+                                            </div>
+                                            <div class="col-8 col-md-6 col-sm-5 col-xl-8 col-lg-5">
+                                                <input ID="cep" #cep class="form-control cep" type="text" required
+                                                    placeholder="_____-___" size="15" maxlength="10" mask="00000-000" [value]="cepCalculado" />
+                                                <div class="invalid-feedback">CEP Inválido!</div>
+                                            </div>
+                                            <div class="col-4 col-md-2 col-sm-2 col-xl-4 col-lg-3">
+                                                <button mat-raised-button color="primary"  type="submit" class="btn-frete"
+                                                    (click)="calcularFrete(cep.value)">Calcular</button>
+                                            </div>
+                                            <br>
+                                            <div [innerHTML]="alertaFrete"></div>
+                                            <div class="frete-wrapper">
+                                                <div class="loader" id="localFrete"></div>
+                                                <div id="infoCep">
+                                                    <div *ngIf="infoCep != ''">
+                                                        <div class="cidadeFrete resultadoFrete" *ngFor="let f of infoCep;">
+                                                            <span *ngIf="produtoSeller.frete.shippingCost > 0"><b style="color: var(--verde-ecommmerce);">{{produtoSeller.frete.shippingCost | currency:'BRL':true}}</b><strong> {{f.cepNameCity}} - {{f.cepUF}} </strong></span>
+                                                        </div>
+                                                        <div class="cidadeFrete">
+                                                            <button mat-stroked-button type="button" class="mt-2" data-toggle="modal" data-target="#modal-retiraloja" (click)="buscaProdutoRetira();">Clique aqui para Retirar na Loja <b style="color: var(--verde-ecommmerce);">(GRÁTIS)</b></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ------------------------------------------------ TIVER MAIS QUE 1 SELLER -------------------------------------------- -->
+
+                        <div *ngIf="isBoxSeller">
+                            <div id="pd-box" style="border:none">
+                                <span class="buybox-title">Selecione uma loja abaixo e compre</span>
+                                <div class="retire-loja-box">
+                                    <i class="material-icons">
+                                        store
+                                    </i> <span>Compre e <b>retire na loja {{getRetiraLojaByIdLoja()}}</b></span>
+                                </div>
+                                <div id="buybox-container" class="box-sellerProduto">
+                                    <div class="row m-0">
+                                        <div class="col-12 col-xl-4 p-0 mb-3 mb-xl-0">
+                                            <div *ngFor="let seller of sellerPreco | slice:0:3" class="tab">
+                                                <div class="bb-select">
+                                                    <div class="bb-wrapper">
+                                                        <input type="radio" id="seller-box-{{seller.idSeller}}"
+                                                            class="sellerSelect" name="seller_box"
+                                                            (click)="selecionaSeller(seller.idSeller)">
+                                                        <label for="seller-box-{{seller.idSeller}}" class="bb-radio">
+                                                            <div class="bb-seller">
+                                                                <span class="seller-title">{{seller.sellerName}}</span>
+                                                                <div class="price-box">
+                                                                    <span class="sales-price"></span>
+                                                                    {{seller.preco | currency:'BRL':true}}
+                                                                    <span class="sales-frete">Frete:
+                                                                        <span *ngIf="seller.frete?.shippingCost > 0">
+                                                                            <span
+                                                                                *ngIf="seller.frete.shippingCost == 8888">-</span>
+                                                                            <span
+                                                                                *ngIf="seller.frete.shippingCost != 8888">{{seller.frete.shippingCost | currency:'BRL':true}}</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="QuantidadeSellers > 3" class="tab" data-ripple>
+                                                <div class="bb-select">
+                                                    <div class="bb-wrapper">
+
+                                                        <a [routerLink]="urlOfertas">
+                                                            <div class="bb-link">
+                                                                <span>Mais opções deste produto</span>
+                                                                <!-- <span class="sales-price">{{menorPrecoBox | currency:'BRL':true}}</span> -->
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-8 p-0">
+                                            <div class="tab-panel">
+                                                <div class="buybox-panel">
+                                                    <div class="buybox-main">
+                                                        <div class="seller-info" *ngIf="produtoSeller != ''">
+
+                                                            
+                                                            <a class="seller-link"  matRipple [routerLink]="['/lojista/',produtoSeller.sellerName]">
+                                                                <span class="seller-title">Vendido e entregue por</span>
+                                                                <span class="seller-name">{{produtoSeller.sellerName}}</span>
+                                                            </a>
+                                                                        
+                                                            <div class="seller-price-box">
+                                                                <div class="pd-preco">
+                                                                    <span>{{produtoSeller.preco | currency:'BRL':true}}</span><i>à
+                                                                        vista</i>
+                                                                </div>
+                                                                <span class="pd-parcalmento"><i class="material-icons">payment</i>
+                                                                    até {{produtoSeller.maxParcSJuros.parcela}} de
+                                                                    <b>{{produtoSeller.maxParcSJuros.valor}}</b></span>
+                                                                <span class="pd-boleto"><i class="material-icons">account_balance</i> boleto bancário <b> {{produtoSeller.preco | currency:'BRL':true}}</b> (0% de desconto)</span>
+                                                                <span class="pd-parcalmento-ver" data-toggle="modal"
+                                                                    data-target="#parcelamentos">Ver parcelas</span>
+                                                            </div>
+
+                                                            <div class="pd-row-buttons">
+                                                                <button mat-button type="button" class="submit-comprar mb-2"
+                                                                (click)="btnComprar(produtoSeller,'','comprar')" data-ripple>
+                                                                <span class="material-icons">shopping_cart</span>
+                                                                Comprar
+                                                                </button>
+                                                                <button mat-button type="button" class="add-to-cart mb-2" (click)="btnComprar(produtoSeller,'','carrinho')">
+                                                                    <span>Adicionar ao carrinho</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pd-frete mt-3">
+                                                            <div class="minloading">
+                                                                <div class="minspinner"></div>
+                                                            </div>
+                                                            <form id="calculo-frete" class="needs-validation">
+                                                                <div class="form-row p-2 p-xl-2">
+                                                                    <div
+                                                                        class="col-12 col-md-5 col-sm-5 col-xl-12 col-lg-12 pd-select mb-3 mb-sm-0 mb-md-0 mb-xl-3  mb-lg-0">
+                                                                        <label for="cep"><i class="fas fa-truck"></i>
+                                                                            Calcular frete e prazo
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-8 col-md-6 col-sm-5 col-xl-8 col-lg-5">
+                                                                        <input ID="cep" #cep class="form-control cep"
+                                                                            type="text" required placeholder="_____-___"
+                                                                            size="15" maxlength="10" mask="00000-000"
+                                                                            [value]="cepCalculado" />
+                                                                        <div class="invalid-feedback">CEP Inválido!
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4 col-md-2 col-sm-2 col-xl-4 col-lg-3">
+                                                                        <button mat-raised-button color="primary" type="submit" class="btn-frete" (click)="calcularFrete(cep.value)">Calcular</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div [innerHTML]="alertaFrete"></div>
+                                                                <div class="frete-wrapper">
+                                                                    <div class="loader" id="localFrete"></div>
+                                                                    <div id="infoCep">
+                                                                        <div *ngIf="infoCep != ''">
+                                                                            <div class="cidadeFrete" *ngFor="let f of infoCep;">
+                                                                                <span>{{produtoSeller.frete.shippingCost | currency:'BRL':true}} {{f.cepNameCity}} - {{f.cepUF}}</span>
+                                                                            </div>
+                                                                            <div class="cidadeFrete">
+                                                                                <button mat-stroked-button type="button" class="mt-2" data-toggle="modal" data-target="#modal-retiraloja" (click)="buscaProdutoRetira();">Clique aqui para Retirar na Loja <b style="color: var(--verde-ecommmerce);">(GRÁTIS)</b></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <div *ngIf="freteCalculado" class="pd-frete-resultado">
+                                                                <table class="table table-borderless">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Entrega</th>
+                                                                            <th scope="col">Frete</th>
+                                                                            <th scope="col">Prazo</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr
+                                                                            *ngIf="produtoSeller.frete.shippingCost != 8888">
+                                                                            <td>{{produtoSeller.frete.shippingMethodName}}
+                                                                            </td>
+                                                                            <td>{{produtoSeller.frete.shippingCost | currency:'BRL':true}}
+                                                                            </td>
+                                                                            <td>{{produtoSeller.frete.deliveryTime}}
+                                                                                dias úteis</td>
+                                                                        </tr>
+                                                                        <tr
+                                                                            *ngIf="produtoSeller.frete.shippingCost == 8888">
+                                                                            <td colspan="3">
+                                                                                {{produtoSeller.frete.shippingMethodName}}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pd-info mb-0" id="scrollShow" #scrollShow>
+        <div class="container">
+            <div class="pd-conteudo">
+                <div class="pd-info-box box-slide">
+                    <div class="pd-info-title">
+                        <h2>Informações do produto</h2>
+                        <div class="pd-donwloads" *ngIf="manualImagem?.length > 0 || manualDocumento?.length > 0">
+                            <div *ngIf="manualDocumento?.length > 0">
+                                <a *ngFor="let doc of manualDocumento;" 
+                                    href="{{doc.arquivo}}"
+                                    target="__blank"
+                                    class="btn btn-download" 
+                                    title="Baixar manual do produto" 
+                                    data-ripple style="cursor: pointer;color: #ffffff;">
+                                    <i class="fas fa-file-download"></i> 
+                                    Manual do Produto
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="pd-info-conteudo">
+                        <div *ngIf="manualImagem?.length > 0"></div>
+                        <div class="pd-info-imagem" *ngFor="let img of manualImagem;" >
+                            <img src="{{img.arquivo}}" alt="" title="Informações">
+                        </div>
+                        <div class="pd-descricao py-2">
+                            {{productInfo}}
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-info-box box-slide" *ngIf="productInfo != null || productInfo">
+                    <div class="pd-info-title">
+                        <h2>Característica do produto</h2>
+                    </div>
+                        <ul class="list-caracteristicas">
+                            <li class="cac-item" *ngFor="let at of atributos">
+                                <span class="cac-title">{{at.nome}}</span>
+                                <span class="cac-descript">{{at.valor}}</span>
+                            </li>
+                        </ul>
+                        <div *ngIf="dimensoes">
+                            <div class="pd-info-title mt-2">
+                                <h2>Dimensões</h2>
+                            </div>
+                            <div class="pd-dimensao">
+                                <ul class="list-dimensoes">
+                                    <li class="list-dimensao" *ngIf="dimensoes.altura">
+                                        <i class="fas fa-arrows-alt-v"></i><span>Altura: {{dimensoes.altura}}
+                                            cm</span>
+                                    </li>
+                                    <li class="list-dimensao" *ngIf="dimensoes.largura">
+                                        <i class="fas fa-arrows-alt-h"></i><span>Largura: {{dimensoes.largura}}
+                                            cm</span>
+                                    </li>
+                                    <li class="list-dimensao" *ngIf="dimensoes.profundidade">
+                                        <i class="fas fa-cube"></i><span>Profundidade:
+                                            {{dimensoes.profundidade}}
+                                            cm</span>
+                                    </li>
+                                    <li class="list-dimensao" *ngIf="dimensoes.cubage">
+                                        <i class="fas fa-cube"></i><span>Cubage: {{dimensoes.cubage}} cm</span>
+                                    </li>
+                                    <li class="list-dimensao" *ngIf="dimensoes.cubage">
+                                        <i class="fas fa-weight-hanging"></i><span>Peso: {{dimensoes.peso}}
+                                            KG</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        Garantia do Fornecedor de: 12 Meses
+                        <br>
+                        <br>
+                        <span *ngIf="marca != ''">
+                            Fabricante: {{marca}}<br>
+                        </span>
+                        <br>
+                </div>
+                <div class="pd-info-box m-0">
+                    <div class="pd-info-title">
+                        <h2>Avaliações</h2>
+                    </div>
+                    <div class="pd-avaliacao-topo row m-0">
+                        <div class="pd-media">
+                            Média Geral
+                            <div class="pd-media-estrelas">
+                                <span class="media-text">{{mediaAvaliacao}}</span>
+                                <div class="estrelas-avalicao">
+                                    <div [innerHTML]="starsMedia"></div>
+                                </div>
+                                <span class="total-avaliacoes">({{messages_qtd}})</span>
+                            </div>
+                        </div>
+                        <div class="pd-avaliar">
+                            <button matRipple data-toggle="modal" data-target="#modal-avaliar" class="btn btn-verde"
+                                >Avaliar</button>
+                        </div>
+                    </div>
+                    <div class="pd-avaliacoes">
+                        <div class="pd-avaliacao" *ngFor="let a of avaliacao; let i = index;">
+                            <div class="avaliacao-title">
+                                <h3>TITULO (FIXO)</h3>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <div class="estrelas-i">
+                                    <div [innerHTML]="a.estrelasIcon"></div>
+                                </div>
+                                <span class="avaliacao-data">01/01/1900</span>
+                            </div>
+                            <div class="avaliacao-conteudo">
+                                {{a.comentarios}}
+                            </div>
+                            <div class="avaliacao-nome">
+                                <span>{{a.nome}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-sm" id="modal-retiraloja" tabindex="-1" role="dialog"
+        aria-labelledby="modal-retiraloja" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-retiraloja_title">Retira Loja</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="lojas-retiraloja">
+                                <form id="calculo-frete" class="needs-validation">
+                                    <strong>{{nome}}</strong>
+                                    <br>
+                                    <div *ngFor="let retiraLojaGrade of retiraLojaGrade">
+                                        <span *ngIf="retiraLojaGrade.tipo == 'x'">Cor:
+                                            <strong>{{retiraLojaGrade.descricao}}</strong></span>
+                                        <span *ngIf="retiraLojaGrade.tipo == 'y'">{{retiraLojaGrade.titulo}}:
+                                            <strong>{{retiraLojaGrade.descricao}}</strong></span>
+                                    </div>
+                                    <div class="form-row  p-2 p-xl-2">
+                                        <!-- <div class="col-12 col-md-5 col-sm-5 col-xl-12 col-lg-12 pd-select mb-3 mb-sm-0 mb-md-0 mb-xl-3  mb-lg-0">
+                                            <label for="cep"><i class="fas fa-truck"></i> Calcular frete e prazo
+                                            </label>
+                                        </div> -->
+                                        <div class="col-8 col-md-6 col-sm-5 col-xl-8 col-lg-5">
+                                            <input ID="cep" #cep class="form-control cep" type="text" required
+                                                placeholder="_____-___" size="15" maxlength="10" mask="00000-000"
+                                                [value]="cepCalculado" />
+                                            <div class="invalid-feedback">CEP Inválido!</div>
+                                        </div>
+                                        <div class="col-4 col-md-2 col-sm-2 col-xl-4 col-lg-3">
+                                            <button id="calcular-frete" type="submit" data-ripple class="btn-frete"
+                                                (click)="consultarRetiraLoja(cep.value)">Calcular</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div [innerHTML]="alertaFrete"></div>
+                                    <!-- <div class="frete-wrapper">
+                                        <div class="loader" id="localFrete"></div>
+                                        <div id="infoCep">
+                                            <div *ngIf="infoCep.length > 0">
+                                                <div class="cidadeFrete" *ngFor="let f of infoCep;">
+                                                    <span>{{f.cepNameCity}} - {{f.cepUF}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </form>
+                                <form action="">
+                                    <div *ngIf="buscando">
+                                        Buscando...
+                                    </div>
+                                    <!-- <div class="invalid-feedback">CEP Inválido!</div> -->
+                                    <div *ngIf="!buscando" class="lista-lojas-retiraloja">
+                                        <!-- <div [innerHTML]="retiraCep"></div> -->
+                                        <div *ngFor="let loja of lojasRetiraLoja; let i = index;" class="tab">
+                                            <div class="bb-select"
+                                                (click)="consultaMapaRetiraLoja(loja.Endereco+','+loja.Numero+','+loja.Cidade,loja)">
+                                                <div class="bb-wrapper">
+                                                    <input type="radio" id="retira-{{i}}" class="lojaSelect"
+                                                        name="retira_box" #retiraLojaInput>
+                                                    <label for="retira-{{i}}" class="bb-radio">
+                                                        <div class="bb-seller">
+                                                            <span class="seller-title">{{loja.Cidade}} -
+                                                                {{loja.UF}}</span>
+                                                            <div class="price-box">
+                                                                <span>
+                                                                    {{loja.Nome}}
+                                                                    <br>
+                                                                    {{loja.Endereco}}, {{loja.Numero}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="mapa-retiraloja"  [attr.disabled]="mapDisabled">
+                                <div class="mapa" id="mapa" >
+                                    <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" style="width: 100%;height: 500px;">
+                                        <agm-marker [latitude]="lat" [longitude]="lng">
+                                            <agm-info-window [disableAutoPan]="true">
+                                                {{description}}
+                                            </agm-info-window>
+                                        </agm-marker>
+                                    </agm-map>
+                                </div>
+                            </div>
+                            <div class="row btns-retira" [attr.disabled]="mapDisabled">
+                                <div class="col-md-6">
+                                    <button mat-button class="add-to-cart" type="submit" (click)="btnComprar(produtoSeller,dadosRetiraLoja,'comprar')" style="margin-top:10px" data-dismiss="modal" aria-label="Close">
+                                        &nbsp; Comprar &nbsp;<i class="fas fa-store-alt"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button mat-button  class="add-to-cart" type="submit" (click)="btnComprar(produtoSeller,dadosRetiraLoja,'carrinho')" style="margin-top:10px" data-dismiss="modal" aria-label="Close">
+                                        Adicionar ao Carrinho
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-sm" id="modal-avaliar" tabindex="-1" role="dialog"
+        aria-labelledby="modal-avaliar" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-avaliar_title">Avaliar produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="avaliar-produto" class="needs-validation" [formGroup]="listForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-xl-5">
+                                <div class="produt-avaliar">
+                                    <span class="avaliar-title">{{nome}}</span>
+                                    <img src="{{imagemAvaliacao}}" alt="{{nome}}">
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-7">
+                                <div class="form-group">
+                                    <div class="d-flex flex-row">
+                                        <span class="radio-title">Sua avaliação para este produto</span><span class="required-form">*</span>
+                                    </div>
+                                    <fieldset class="rating">
+                                       
+                                        
+                                        
+                                        
+                                        <input required type="radio" id="star5" name="estrelas" value="5" formControlName="estrelas" />
+                                        <label for="star5" title="Excelente">5 star</label>
+                                        <input required type="radio" id="star4" name="estrelas" value="4" formControlName="estrelas" />
+                                        <label for="star4" title="Ótimo">4 stars</label>
+                                        <input required type="radio" id="star3" name="estrelas" value="3" formControlName="estrelas" />
+                                        <label for="star3" title="Bom">3 stars</label>
+                                        <input required type="radio" id="star2" name="estrelas" value="2" formControlName="estrelas" />
+                                        <label for="star2" title="Ruim">2 stars</label>
+                                        <input required type="radio" id="star1" name="estrelas" value="1" formControlName="estrelas" />
+                                        <label for="star1" title="Péssimo">1 stars</label>
+                                    </fieldset>
+                                </div>
+                                <div class="form-group">
+                                    <div class="d-flex flex-row">
+                                        <span class="radio-title">Você recomenda esse produto</span><span
+                                            class="required-form">*</span>
+                                    </div>
+                                    <div class="radio-wrapper">
+                                        <div class="radio-input">
+                                            <input required type="radio" id="recomendar-sim" name="recomendar" value="1"
+                                                formControlName="recomendar">
+                                            <label for="recomendar-sim" class="radio-label">Sim</label>
+                                        </div>
+                                        <div class="radio-input">
+                                            <input required type="radio" id="recomendar-nao" name="recomendar" value="0"
+                                                formControlName="recomendar">
+                                            <label for="recomendar-nao" class="radio-label">Não</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="titulo-avaliacao">Título da avaliação</label><span
+                                        class="required-form">*</span>
+                                    <input required type="text" class="form-control" id="titulo_avaliacao"
+                                        name="titulo_avaliacao" placeholder="Exemplo: Gostei muito!"
+                                        formControlName="titulo_avaliacao">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="avaliacao">Escreva sua avaliação</label><span
+                                        class="required-form">*</span>
+                                    <textarea formControlName="avaliacao" rows="4" cols="50" minlength="50" required
+                                        class="form-control" id="avaliacao" name="avaliacao"
+                                        placeholder="Escreva aqui sobre o produto"></textarea>
+                                    <div class="form-comment">
+                                        <small>mínimo de 50 caracteres</small>
+                                        <div class="contador-caracteres">
+                                            <span class="contador" >{{listForm.controls.avaliacao.value.length}}</span><small> caracteres</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="inp-cbx" id="termos" name="termos" required type="checkbox"
+                                        style="display: none;" formControlName="termos">
+                                    <label class="cbx" for="termos"><span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>Concordo com os <a href="#" class="link-under"
+                                        data-toggle="modal" data-target="#termos-condicoes">termos e
+                                        condições.</a></span></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
+                    <div id="alerta-retorno">
+                        <div [innerHTML]="msgRetorno"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button mat-button type="submit" class="btn-verde">Enviar avaliação</button>
+                    <!-- <button href="#" data-ripple type="submit" class="btn btn-verde" (click)="enviarAvaliacao(estrela,recomendar.value,titulo_avaliacao.value,avaliacao.value,termos)">Enviar avaliação</button> -->
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="parcelamentos" tabindex="-1" role="dialog" aria-labelledby="Parcelamentos" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><i
+                        class="pdi-icones-compra-02"></i>Parcalmentos no cartão de
+                    crédito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">x</th>
+                            <th scope="col">Parcela</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="produtoSeller.parcelamento?.length > 0">
+                        <tr *ngFor="let p of produtoSeller.parcelamento;">
+                            <th scope="row">{{p.parcela}}</th>
+                            <td>{{p.valor}}</td>
+                            <td>R$ {{p.valor_total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-modal" data-ripple data-dismiss="modal">Ok!</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="pd-floating-box" *ngIf="paginaCarregada">
+    <button class="pdf-close" (click)="closeFloating()">
+        <span class="material-icons">
+            clear
+        </span>
+    </button>
+    <picture class="pdf-picture">
+        <img [src]="imagemPrincipal" alt="">
+    </picture>
+    <div class="pdf-wrapper">
+        <span class="pdf-title">{{nome}}</span>
+        <span class="pdf-price">{{produtoSeller.preco | currency:'BRL':true}}</span>
+    </div>
+    <button class="btn pdf-buy" mat-raised-button (click)="btnComprar(produtoSeller,'','comprar')">
+        <span class="material-icons">
+            shopping_cart
+        </span>
+        <span class="pdf-buy-title">Comprar agora</span>
+    </button>
+</div>
+<div class="pd-info py-2 mt-0 mb-0">
+    <div class="container">
+        <div class="ct-conteudo-destaque" *ngIf="outPutArrayQtdItens.length > 0">
+            <app-carousel-produtos [inputTitulo]="outPutTitulo" [inputProdutos]="outPutProdutosCarrossel"
+                [inputQuantidadeItens]="outPutArrayQtdItens"></app-carousel-produtos>
+        </div>
+    </div>
+</div>

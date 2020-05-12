@@ -1,0 +1,42 @@
+<div class="conteudo">
+    <div class="container">
+        
+        <app-banner-topo 
+        [inputBannerTopo]="getTopo()">
+    </app-banner-topo>
+
+    <app-banner-home 
+        [inputBannerHomeCentro]="getCentral()"
+        [inputResponsive]="centralResponsive">
+    </app-banner-home>
+
+    <app-banner-faixa-principal
+        [inputFaixaPrincipal]="getFaixaprincipal()">
+    </app-banner-faixa-principal>
+
+    <app-emailnews *ngIf="paginaCarregada"></app-emailnews> <!-- CADASTRO DE EMAIL -->
+
+    <app-banner-faixa-principal-baixo
+        [inputFaixa01]= "getFaixa1()">
+    </app-banner-faixa-principal-baixo>
+
+
+
+    <app-carousel-produtos 
+        [inputTitulo] = "item_pre1_titulo"
+        [inputProdutos] = "item_pre1_produtos"
+        [inputQuantidadeItens] = "item_pre1Responsive">
+    </app-carousel-produtos> <!-- CARROSSEL DE PRODUTOS -->
+
+    <app-banner-faixa-rodape [inputFaixa02]= "getFaixa2()"></app-banner-faixa-rodape> <!-- CARROSSEL DE CATEGORIAS -->
+
+    <app-carousel-produtos 
+        [inputTitulo] = "item_pre2_titulo"
+        [inputProdutos] = "item_pre2_produtos"
+        [inputQuantidadeItens] = "item_pre2Responsive">
+    </app-carousel-produtos>
+
+    <!-- <app-banner-novidades></app-banner-novidades> -->
+    </div>
+    <app-banner-info></app-banner-info>
+</div>

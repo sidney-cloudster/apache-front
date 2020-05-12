@@ -1,0 +1,27 @@
+<!-- <h1 class="linha-titulo">
+    <span class="linha-azul"></span> Mais Vendidos
+</h1>
+<owl-carousel [options]="carouselOptionsMaisVendidos" [items]="dados.products" [carouselClasses]="['owl-theme', 'sliding','web-central','owl-carousel','produto-carousel']" >
+    <div class="item item-box" *ngFor="let prod of dados.products;let i= index" >
+       <button aria-label="Favoritar produto" data-ripple class="btn-fav" (click)="setFavorito(prod)" ></button>
+       <a href="#">
+          <div class="produto-img">
+                <img class="slide-image" src="{{prod.imagem}}" style="max-width:180px">
+          </div>
+          <div class="descricao-produto">
+                <span class="titulo-produto">{{prod.descricao}}</span>
+                <div class="avaliacao-produto">
+                   <span class="produto-estrela">
+                     <i class="uip-estrela-1" *ngFor="let star of prod.avaliacao"></i>
+                   </span>
+                </div>
+                <span class="preco-de">de <i class="outline-de">{{prod.preco_promocional | currency:'BRL':true}}</i> por</span>
+                <div class="produto-desconto-preco">
+                   <span class="preco-produto">{{prod.preco | currency:'BRL':true}}</span>
+                   <span class="desconto-produto">0% OFF</span>
+               </div>
+                <span class="parcelamento">1x de <b>1</b> sem juros</span>
+          </div>
+       </a>
+    </div>
+</owl-carousel> -->

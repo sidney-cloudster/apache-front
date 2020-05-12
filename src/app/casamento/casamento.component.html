@@ -1,0 +1,89 @@
+ <section id="buscar-casamento">
+   <div class="cs-wrapper">
+       <h1 class="title-casamento">
+         <i class="fas fa-heart"></i>Lista de Casamento<i class="fas fa-heart"></i>
+       </h1>
+       <div class="cs-row">
+           <div class="buscar-lista">
+               <h2 class="title-home">Busque uma lista</h2>
+               <form>
+                 <div class="form-group">
+                     <input class="form-control" type="text" name="nome_noivos" id="nome_noivos" placeholder="Digite o nome dos noivos...">
+                 </div>
+                 <a [routerLink]="['/casamento','busca-casamento']" class="btn btn-buscar-home"><i class="fas fa-search mr-2"></i> Buscar</a>
+               </form>
+             </div>
+             <span class="divisor-home">
+                
+             </span>
+             <div *ngIf="!objetoIsEmpty(layoutAplicado)" class="criar-lista">
+               <h2 class="title-home" id="title-home">
+                  {{layoutAplicado.texto}}
+               </h2>
+               <p id="desc-home">
+                  {{layoutAplicado.texto1}}
+               </p>
+               <p>Clique aqui para <a [routerLink]="layoutAplicado.link.href" class="ml-2 btn btn-link" id="link-home">
+                  {{layoutAplicado.link.botao}}
+               </a></p>
+             </div>
+       </div>
+   </div>
+ </section>
+
+ <section id="como-funciona">
+   <h1 class="title-casamento cor-fixa">
+      <i class="fas fa-heart"></i>Como funciona?<i class="fas fa-heart"></i>
+   </h1>
+     <div class="row-funcionamento">
+       <div class="list-funcionamento">
+           <span class="number-list">1</span>
+           <p>Crie sua lista de presentes</p>
+       </div>
+       <span class="divisor-horizontal"></span>
+       <div class="list-funcionamento">
+           <span class="number-list">2</span>
+           <p>Crie sua lista de presentes</p>
+       </div>
+       <span class="divisor-horizontal"></span>
+       <div class="list-funcionamento">
+           <span class="number-list">3</span>
+           <p>Crie sua lista de presentes</p>
+       </div>
+     </div>
+   </section>
+
+ <section id="vantagens">
+    <div class="container">
+       <h1 class="title-casamento cor-fixa">
+         <i class="fas fa-heart"></i>As vantangens :)<i class="fas fa-heart"></i>
+      </h1>
+       <div class="list-vantagens"></div>
+       <ul class="vantagens">
+          <li>
+             <div class="icon-vantanges">
+                <img src="../assets/img/vantangens-01.svg" alt="">
+             </div>
+             <p>Entrega em todo Brasil!</p>
+          </li>
+          <li>
+             <div class="icon-vantanges">
+                <img src="../assets/img/vantangens-02.svg" alt="">
+             </div>
+             <p>Facilidade de pagamento para seus convidados</p>
+          </li>
+          <li>
+             <div class="icon-vantanges">
+                <img src="../assets/img/vantangens-03.svg" alt="">
+             </div>
+             <p>Crie sua lista em até um ano antes do casamento</p>
+          </li>
+          <li>
+             <div class="icon-vantanges">
+                <img src="../assets/img/vantangens-04.svg" alt="">
+             </div>
+             <p>Milhares de itens para sua casa</p>
+          </li>
+       </ul>
+    </div>
+ </section>

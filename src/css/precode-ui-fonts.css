@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'Precode-UI-Fonts';
+  src:  url('../fonts/Precode-UI-Fonts.eot?oznp4h');
+  src:  url('../fonts/Precode-UI-Fonts.eot?oznp4h#iefix') format('embedded-opentype'),
+    url('../fonts/Precode-UI-Fonts.ttf?oznp4h') format('truetype'),
+    url('../fonts/Precode-UI-Fonts.woff?oznp4h') format('woff'),
+    url('../fonts/Precode-UI-Fonts.svg?oznp4h#Precode-UI-Fonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="uip-"], [class*=" uip-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Precode-UI-Fonts' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.uip-clip:before {
+  content: "\e911";
+}
+.uip-send:before {
+  content: "\e912";
+}
+.uip-treeballs:before {
+  content: "\e910";
+}
+.uip-step-check:before {
+  content: "\e90e";
+}
+.uip-step-elipse:before {
+  content: "\e90f";
+}
+.uip-pass-hide:before {
+  content: "\e905";
+}
+.uip-pass-view:before {
+  content: "\e90d";
+}
+.uip-estrela-2 .path1:before {
+  content: "\e903";
+  color: rgb(204, 204, 204);
+}
+.uip-estrela-2 .path2:before {
+  content: "\e904";
+  margin-left: -1.0517578125em;
+  color: gold;
+}
+.uip-estrela-1:before {
+  content: "\e902";
+  color: gold;
+}
+.uip-estrela-3:before {
+  content: "\e906";
+  color: #ccc;
+}
+.uip-selected:before {
+  content: "\e90c";
+}
+.uip-select:before {
+  content: "\e90b";
+}
+.uip-boleto:before {
+  content: "\e900";
+}
+.uip-cartao:before {
+  content: "\e901";
+}
+.uip-heart-1:before {
+  content: "\e907";
+}
+.uip-heart-2:before {
+  content: "\e908";
+}
+.uip-home:before {
+  content: "\e909";
+}
+.uip-icone-share:before {
+  content: "\e90a";
+}

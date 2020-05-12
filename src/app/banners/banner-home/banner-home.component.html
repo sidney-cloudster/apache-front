@@ -1,0 +1,23 @@
+<!-- <owl-carousel [options]="carrossel" [items]="inputBannerHomeCentro" class="web-central banner-central">
+    <div class="item" *ngFor="let centro of inputBannerHomeCentro;let i= index">
+       <div class="img-central" (click)="bannerClick(centro.idBannerPage,centro.url); this.sMarketingService.verificaLink(centro.url)" style="cursor: pointer;">
+         <img class="slide-image img-central" src="{{centro.image}}" alt="{{centro.descricao}}" />
+       </div>
+    </div>
+ </owl-carousel> -->
+
+ <div *ngIf="!inputBannerHomeCentro">
+  <div class="ph-item banner-home">
+    <div class="ph-col-12 p-0">
+        <div class="ph-picture"></div>
+    </div>
+</div>
+ </div>
+
+ <owl-carousel-o [options]="carrossel" #owlCar class="banner-central">
+   <ng-container *ngFor="let centro of inputBannerHomeCentro; let i = index">
+       <ng-template carouselSlide [id]="'imagem-'+i">
+         <img class="slide-image img-central" src="{{centro.image}}" alt="{{centro.descricao}}" (click)="bannerClick(centro.idBannerPage,centro.url); this.sMarketingService.verificaLink(centro.url)" style="cursor: pointer;" />
+       </ng-template>
+   </ng-container>
+</owl-carousel-o>

@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,500,600,700,800,900&display=swap');
+
+
+/* Marco Flip Card */
+
+.mcf__front * {
+    box-sizing: border-box;
+}
+
+.mcf__front.show .mcf__flipper{
+    transform: rotate3d(0, 1, 0, 180deg)
+}
+
+.mcf__front {
+    position: relative;
+    display: block;
+    min-height: 203px;
+    font-family: 'Roboto Slab', serif !important;
+    width: 320px;
+    max-width: 100%;
+    height: 200px;
+    margin: 25px auto;
+    font-family: 'Roboto Slab', serif !important;
+}
+
+.mcf__flipper {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+
+.mcf__card-front, .mcf__card-back {
+    background-color: #ddd;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    backface-visibility: hidden;
+    transition: all ease 400ms;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.17), 0 2px 9px 0 rgba(0, 0, 0, 0.17);
+    
+}
+
+.mcf__card-back {
+    transform: rotateY(180deg);
+}
+
+
+.mcf__chip {
+    width: 50px;
+    height: 35px;
+    border-radius: 5px;
+    background: #CCC;
+    position: relative;
+}
+
+.mcf__card-wrapper {
+    padding: 55px 30px 30px 30px;
+    height: 100%;
+    
+}
+
+.mcf__chip:before {
+    content: " ";
+    display: block;
+    width: 70%;
+    height: 60%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #d9d9d9;
+    position: absolute;
+    top: 20%;
+}
+
+.mcf__name-validate {
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.mcf__name {
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-right: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 75%;
+}
+
+.mcf__cardnumber {
+    color: #fff;
+    font-weight: 500;
+    font-size: 23px;
+    margin-bottom: 20px;
+    margin-top: 13px;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+.mcf__cardnumber, .mcf__card-expiry, .mcf__cvv,  .mcf__name {
+    opacity: .5;
+    transition: all ease .2s;
+}
+
+.mcf__cardnumber.active, .mcf__card-expiry.active, .mcf__cvv.active,  .mcf__name.active {
+    opacity: 1;
+    transition: all ease .2s;
+}
+
+.mcf__card-expiry {
+    color: #fff;
+    width: 25%;
+}
+
+.mcf__barcode {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(87, 87, 87);
+    margin: 15px 0;
+}
+
+.mcf__cvv-wrapper {
+    width: 100%;
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 15px 10px;
+}
+
+.mcf__white {
+    width: 75%;
+    background-color: #fff;
+    height: 35px;
+}
+
+.mcf__cvv {
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.mcf__front.mastercard .mcf__card-back, .mcf__front.mastercard .mcf__card-front {
+    background-color: #0061A8 !important;
+    transition: all ease .3s;
+}
+
+.mcf__front.visa .mcf__card-back, .mcf__front.visa .mcf__card-front {
+    background-color: #292e67 !important;
+    transition: all ease .3s;
+}
+
+.mcf__front.jcb .mcf__card-back, .mcf__front.jcb .mcf__card-front {
+    background: rgb(31,40,111) !important;
+    background: -moz-linear-gradient(90deg, rgba(31,40,111,1) 0%, rgba(0,111,188,1) 100%) !important;
+    background: -webkit-linear-gradient(90deg, rgba(31,40,111,1) 0%, rgba(0,111,188,1) 100%) !important;
+    background: linear-gradient(90deg, rgba(31,40,111,1) 0%, rgba(0,111,188,1) 100%) !important;
+    transition: all ease .3s;
+}
+
+.mcf__front.maestro .mcf__card-back, .mcf__front.maestro .mcf__card-front {
+    background: rgb(31,40,111) !important;
+    background: -moz-linear-gradient(90deg, rgba(31,40,111,1) 0%, rgba(0,111,188,1) 100%) !important;
+    background: -webkit-linear-gradient(90deg, rgba(31,40,111,1) 0%, rgba(0,111,188,1) 100%) !important;
+    background: linear-gradient(90deg, rgba(31,40,111,1) 0%, rgba(0,111,188,1) 100%) !important;
+    transition: all ease .3s;
+}
+
+.mcf__front.elo .mcf__card-back, .mcf__front.elo .mcf__card-front {
+    background-color: #000 !important;
+}
+
+.mcf__front.dinersclub .mcf__card-back, .mcf__front.dinersclub .mcf__card-front {
+    background: rgb(209,209,209);
+background: -moz-linear-gradient(90deg, rgba(209,209,209,1) 5%, rgba(219,219,219,1) 23%, rgba(182,182,182,1) 44%);
+background: -webkit-linear-gradient(90deg, rgba(209,209,209,1) 5%, rgba(219,219,219,1) 23%, rgba(182,182,182,1) 44%);
+background: linear-gradient(90deg, rgba(209,209,209,1) 5%, rgba(219,219,219,1) 23%, rgba(182,182,182,1) 44%);
+}
+
+.mcf__front.discover .mcf__card-back, .mcf__front.discover .mcf__front {
+    background: rgb(209,209,209);
+    background: -moz-linear-gradient(90deg, rgba(209,209,209,1) 27%, rgba(232,232,232,1) 47%, rgba(182,182,182,1) 65%);
+    background: -webkit-linear-gradient(90deg, rgba(209,209,209,1) 27%, rgba(232,232,232,1) 47%, rgba(182,182,182,1) 65%);
+    background: linear-gradient(90deg, rgba(209,209,209,1) 27%, rgba(232,232,232,1) 47%, rgba(182,182,182,1) 65%);
+}
+
+.mcf__front.hipercard .mcf__card-back, .mcf__front.hipercard .mcf__card-front {
+    background-color: #9a1915;
+}
+
+.mcf__front.americanexpress .mcf__card-back, .mcf__front.americanexpress .mcf__card-front {
+    background-color: #605f5f;
+}
+
+.mcf__front.aura .mcf__card-back, .mcf__front.aura .mcf__card-front {
+    background-color: #a0a0a0;
+}
+
+
+.mcf__card-flag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 90px;
+    height: 50px;
+}
+
+.mcf__mastercard svg {
+    height: 45px !important;
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+
+.mcf__maestro > svg {
+    height: 45px !important;
+    width: auto !important;
+    display: block !important;
+}
+
+.mcf__dinersclub > svg {
+    height: 50px !important;
+    width: auto !important;
+}
+
+.mcf__aura > svg {
+    height: 45px !important;
+    width: auto !important;
+}
+
+.mcf__elo > svg {
+    height: 40px !important;
+    width: auto !important;
+}
+
+.mcf__hipercard > svg {
+    height: 30px !important;
+    width: auto !important;
+}
+
+
+.mcf__visa > svg {
+    height: 35px !important;
+    width: 85px !important;
+}
+
+
+.mcf__jcb > svg {
+    height: auto !important;
+    width: 60px !important;
+}
+
+.mcf__americanexpress > svg {
+    height: 55px !important;
+    width: auto !important;
+}
+
+
+.mcf__discover > svg {
+    height: 24px;
+    width: auto;
+}
+
+.mcf__mastercard, 
+.mcf__visa, 
+.mcf__jcb, 
+.mcf__dinersclub, 
+.mcf__elo, 
+.mcf__hipercard,
+.mcf__americanexpress,
+.mcf__aura,
+.mcf__discover,
+.mcf__maestro {
+    visibility: hidden;
+    position: relative;
+    opacity: 0;
+    transition: all ease .3s;
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.mcf__mastercard.active, 
+.mcf__visa.active, 
+.mcf__jcb.active, 
+.mcf__dinersclub.active, 
+.mcf__elo.active, 
+.mcf__hipercard.active,
+.mcf__americanexpress.active,
+.mcf__aura.active,
+.mcf__discover.active,
+.mcf__maestro.active {
+    visibility: visible;
+    opacity: 1;
+    transition: all ease .3s;
+}
+
+@media (max-width: 991.98px) and (min-width: 0px){
+    .mcf__card-wrapper {
+        padding: 55px 20px 20px 20px;
+    }
+
+    .mcf__name {
+        font-size: 15px;
+    }
+
+    .mcf__cardnumber {
+        font-size: 18px;
+    }
+
+    .mcf__card-expiry {
+        white-space: nowrap;
+        width: 28%;
+        font-size: 14px;
+    }
+
+    .mcf__card-front, .mcf__card-back {
+        height: 185px;
+    }
+}

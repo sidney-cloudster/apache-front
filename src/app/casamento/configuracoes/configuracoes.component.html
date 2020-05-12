@@ -1,0 +1,176 @@
+<style>
+   .my-drop-zone {
+      border: dotted 3px lightgray;
+   }
+
+   /* Default class applied to drop zones on over */
+   .invalid-drag {
+      border: dotted 3px red;
+   }
+
+   .valid-drag {
+      border: dotted 3px green;
+   }
+
+   html,
+   body {
+      height: 100%;
+   }
+
+   .previewIcon {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-repeat: no-repeat;
+   }
+
+   .inline-block {
+      display: inline-block;
+      margin: .2em;
+   }
+</style>
+
+<div class="conteudo" id="conteudo">
+
+   <div class="conteudo" id="form">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 col-xs-12 col-lg-12">
+               <div class="box-cadastro">
+                  <div class="box-cadastro-title">
+                     Configurações
+                  </div>
+                  <div class="box-cadastro-body">
+                     <form [formGroup]="listForm" (ngSubmit)="onSubmit(listForm.value)">
+                        <div class="form-row">
+                           <div class="col-6">
+                              <div class="form-group">
+                                 <label for="date_evento">Data do evento <span class="required">*</span></label>
+                                 <input class="form-control data" name="date_evento" id="data" type="text"
+                                    formControlName="dataEvento" mask="00/00/0000">
+                              </div>
+                           </div>
+                           <div class="col-6">
+                              <div class="form-group">
+                                 <label for="">Horário <span class="required">*</span></label>
+                                 <input class="form-control time" type="text" name="hora_evento" id="horario"
+                                    formControlName="horarioEvento" mask="00:00" required>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="nome-noivos">
+                           <div class="form-row w-100">
+                              <div class="col-12 col-xl-5">
+                                 <div class="form-group">
+                                    <label for="">Você</label>
+                                    <input type="text" class="form-control" name="nome_noivo" id="nome_noivo"
+                                       formControlName="nomeNoivo">
+                                 </div>
+                              </div>
+                              <div class="col-2 d-none d-xl-block">
+                                 <img src="../assets/img/heart.svg" class="d-block" style="margin: 0 auto;"
+                                    height="auto" width="80px">
+                              </div>
+                              <div class="col-12 col-xl-5">
+                                 <div class="form-group">
+                                    <label for="">Seu parceiro(a)</label>
+                                    <input type="text" class="form-control" name="nome_noivo_dois" id="nome_noivo_dois"
+                                       formControlName="nomeNoiva">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="">CPF <span class="required">*</span></label>
+                           <input class="form-control" type="text" name="cpf" id="cpf" formControlName="cpf" required mask="000.000.000-00">
+                        </div>
+                        <div class="form-group">
+                           <label for="">Local do evento <span class="required">*</span></label>
+                           <input class="form-control" type="text" name="local_evento" id="local_evento"
+                              formControlName="localEvento" required>
+                        </div>
+                        <div class="form-row">
+                           <div class="col-4">
+                              <div class="form-group">
+                                 <label for="">Estado <span class="required">*</span></label>
+                                 <select name="estado" id="estado" class="form-control" formControlName="estadoEvento"
+                                    required>
+                                    <option value="" selected hidden disabled>Estado</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="col-8">
+                              <div class="form-group">
+                                 <label for="">Cidade <span class="required">*</span></label>
+                                 <input class="form-control" type="text" name="cidade" id="cidade"
+                                    formControlName="cidadeEvento" required>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="">Foto do noivos</label>
+                           <div ngClass="{{dragAreaClass}}">
+                              <div class="row">
+                                 <div class="col-md-12 text-center">
+                                    Selecione a sua imagem
+                                    <a href="javascript:void(0)" (click)="file.click()">
+                                       clicando aqui
+                                    </a>
+                                    <input type="file" #file [multiple]="false" (change)="onFileChange($event)"
+                                       style="display:none" />
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="error" *ngIf="error">
+                              Only one file at time allow
+                           </div>
+                           <img id="blah" [src]="imageSrc || 'https://placehold.it/823x549?text=Imagem'" alt="imagem"
+                              style="display: block;margin-left: auto;margin-right: auto;max-width: 823px;max-height: 549px;" class="img-responsive"/>
+                        </div>
+                        <div class="form-group">
+                           <label for="">Mensagem dos noivos</label>
+                           <textarea class="form-control h-auto" name="mensagem_noivos" id="mensagem_noivos" cols="20"
+                              rows="5" ng-trim="false" maxlength="200" formControlName="mensagemNoivos"></textarea>
+                           <div class="info-textarea">
+                              <div class="contador">
+                                 <span class="c-contador">{{0 + mensagem.length}}</span><span>caracteres</span>
+                              </div>
+                              <span class="text">Máximo 200 caracteres</span>
+                           </div>
+                        </div>
+                        <button type="submit" class="btn btn-cadastro">Editar cadastro</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

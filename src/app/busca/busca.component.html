@@ -1,0 +1,372 @@
+   <!-- <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value"></mat-progress-spinner> -->
+      
+
+   
+<div *ngIf="!paginaCarregada && !paginaNaoEncontrada">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0 d-none d-xl-block">
+            <div class="ph-item">
+               <div class="ph-col-12 d-none d-xl-block">
+                  <div class="ph-row">
+                     <div class="ph-col-10 big"></div>
+                     <div class="ph-col-2 empty big"></div>
+                     <div class="ph-col-4"></div>
+                     <div class="ph-col-8 empty"></div>
+                     <div class="ph-col-6"></div>
+                     <div class="ph-col-6 empty"></div>
+                     <div class="ph-col-12"></div>
+                     <div class="ph-col-10 big"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+            <div class="placeholder">
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="placeholder-product">
+                  <div class="ph-item">
+                     <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                     </div>
+                  </div>
+                  <div class="p-2">
+                     <div class="ph-item">
+                        <div class="ph-col-12">
+                           <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-8"></div>
+                              <div class="ph-col-6"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+      <div *ngIf="paginaNaoEncontrada" >
+         <app-erro404 [inputPesquisa]="textoBusca"></app-erro404>
+      </div>
+
+      <div class="container" *ngIf="!paginaNaoEncontrada && paginaCarregada" >
+        <!-- <div class="conteudo">          -->
+           <div id="ct-wrapper">  
+                <div class="ct-produtos-wrapper row">
+                   <div class="col-12 col-sm-12 col-md-12 col-xl-3 col-lg-3 pl-0">
+                      <div class="ct-head-mobile">
+                         <span class="ct-quantidade">Produtos: 12545</span>
+                         <a class="collapse-side btn btn-primary" data-ripple href="#!"><span data-slide="filtrar" >Filtrar</span></a>
+                      </div>
+                      <div class="ct-sidebar">
+                         <div class="card-collapse-head mobile">
+                            <button class="collapse-exit"><i class="fas fa-chevron-left"></i></button>
+                            <h3>Filtrar</h3>
+                         </div>
+                         <div class="ct-side-wrapper">
+                            <div id="categorias" class="card-collapse">
+                               <div class="card-collapse-head">
+                                  <h3>Categorias</h3>
+                               </div>
+                                   <div *ngFor="let categoria of categoriaSeller; let i = index;">
+                                      <div id="ct-categorias" class="card-collapse-conteudo">
+                                         <button class="btn ct-collapse" type="button" data-toggle="collapse" [attr.data-target]="'#categoria'+categoria.idCategoria" aria-expanded="false" aria-controls="collapseExample">
+                                            {{categoria.categoria}}
+                                         </button>
+                                         <div class="collapse" id="categoria{{categoria.idCategoria}}">
+                                            <div class="ct-body">
+                                               <ul class="filter-list">
+                                                  <li class="filter-list-item">
+                                                     <a class="filter-list-link" href="">Link</a>
+                                                  </li>
+                                                  <li class="filter-list-item">
+                                                     <a class="filter-list-link" href="">Link</a>
+                                                  </li>
+                                                  <li class="filter-list-item">
+                                                     <a class="filter-list-link" href="">Link</a>
+                                                  </li>
+                                                  <li class="filter-list-item">
+                                                     <a class="filter-list-link" href="">Link</a>
+                                                  </li>
+                                               </ul>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                               </div>
+                            <!-- </div> -->
+                            <div id="preco" class="card-collapse">
+                               <div class="card-collapse-head">
+                                  <h3>Preço</h3>
+                               </div>
+                               <div class="card-collapse-conteudo">
+                                  <ul class="filter-list">
+                                     <li *ngFor="let preco of preco" class="filter-list-item">
+                                        <a class="filter-list-link filter-show-result" href="/lojista/{{nomeSellerUrl}}?precoMin={{preco.inicial}}&precoMax={{preco.final}}" >{{preco.valor}}</a>
+                                     </li>
+                                  </ul>
+                               </div>
+                            </div>
+                            <div id="desconto" class="card-collapse">
+                               <div class="card-collapse-head">
+                                  <h3>Desconto</h3>
+                               </div>
+                               <div class="card-collapse-conteudo">
+                                  <ul class="filter-list">
+                                      <li *ngFor="let desconto of descontoSeller" class="filter-list-item" >
+                                         <a class="filter-list-link filter-show-result" href="?min={{desconto.percentual_minimo}}&max={{desconto.percentual_maximo}}" >{{desconto.descricao}}</a>
+                                      </li>
+                                  </ul>
+                               </div>
+                            </div>
+                            <div id="avaliacao" class="card-collapse">
+                               <div class="card-collapse-head">
+                                  <h3>Avaliação</h3>
+                               </div>
+                               <div class="card-collapse-conteudo">
+                                  <ul class="filter-list">
+                                     <li class="filter-list-item">
+                                        <a class="filter-list-link filter-show-result" >
+                                        <span class="filter-estrela">
+                                        <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i>
+                                        </span>
+                                        </a>
+                                     </li>
+                                     <li class="filter-list-item">
+                                        <a class="filter-list-link filter-show-result" >
+                                        <span class="filter-estrela">
+                                        <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i>
+                                        </span>
+                                        </a>
+                                     </li>
+                                     <li class="filter-list-item">
+                                        <a class="filter-list-link filter-show-result" >
+                                        <span class="filter-estrela">
+                                        <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i>
+                                        </span>
+                                        </a>
+                                     </li>
+                                     <li class="filter-list-item">
+                                        <a class="filter-list-link filter-show-result" >
+                                        <span class="filter-estrela">
+                                        <i class="uip-estrela-1"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i><i class="uip-estrela-3"></i>
+                                        </span>
+                                        </a>
+                                     </li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="ct-conteudo col-12 col-md-12 col-sm-12 col-xl-9 col-lg-9 pr-0">
+                      <!-- <div class="toolbar">
+                         <a class="btn btn-toolbar" >
+                         <span class="title-tool">Categoria</span>
+                         <span class="filter-tool">Smartphones</span>
+                         </a>
+                         <a class="btn btn-toolbar" >
+                         <span class="title-tool">Preço</span>
+                         <span class="filter-tool">Até R$ 000,00</span>
+                         </a>
+                         <a class="btn btn-toolbar" >
+                         <span class="title-tool">Desconto</span>
+                         <span class="filter-tool">De 10% até 30%</span>
+                         </a>
+                         <div class="toolbar-div">
+                            <span>(Remover todos)</span>
+                         </div>
+                      </div> -->
+
+                      <div class="ct-conteudo-destaque">
+                         <div class="ct-conteudo-header">
+                            <h3>Resultado da busca: {{textoBusca}}</h3>
+                         </div>
+                         <div class="cat-wrapper">
+
+                           <div class="card-subproduct" *ngFor="let produto of produtoLista | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                              <a [routerLink]="getLinkArray('/produto',produto.link)" class="csb-wrapper">
+                                 <picture class="csb-image">
+                                    <img *ngIf="produto.selo != ''" class="csb-selo" src="{{produto.selo}}">
+                                    <img [src]="produto.images[0].images" class="csb-tumb">
+                                    <div class="csb-starswrapper" *ngIf="produto.estrelas > 0">
+                                       <div class="csb-starts" [innerHTML]="getEstrelaByProduto(produto.estrelas)"></div>
+                                    </div>
+                                 </picture>
+                                 <div class="csb-info-wrapper">
+                                    <!-- <div class="csb-infos" *ngIf="produto.percentual > 0">
+                                       <span class="csb-promotional" >{{produto.preco | currency:'BRL':true}}</span>
+                                       <div class="csb-price-wrapper">
+                                          <span class="csb-price">{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                          <span class="csb-discount" *ngIf="produto.percentual > 0">{{produto.percentual}}% off</span>
+                                       </div>
+                                       <span class="csb-parcelament">
+                                          {{produto.parcelas}}
+                                       </span>
+                                    </div> -->
+
+                                    <div class="csb-infos">
+                                       <br>
+                                       <div class="csb-price-wrapper">
+                                          <span class="csb-price">{{produto.preco | currency:'BRL':true}}</span>
+                                       </div>
+                                       <span class="csb-parcelament">
+                                          {{produto.parcelas}}
+                                       </span>
+                                    </div>
+                                    
+                                    <div class="csb-footer">
+                                       <p class="csb-title">{{produto.nome}}</p>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+
+                            <!-- <div *ngFor="let produto of produtoLista" class="item-box box-ct" data-ripple="rgba(128, 128, 128, 0.726)">
+                               <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                               <a [routerLink]="getLinkArray('/produto',produto.link)">
+                                  <div class="produto-img">
+                                     <img [src]="produto.images[0].images" max-width="180px">
+                                  </div>
+                                  <div class="descricao-produto">
+                                     <span class="titulo-produto">{{produto.nome}}</span>
+                                     <div class="avaliacao-produto">
+                                        <span class="produto-estrela">
+                                          <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i>
+                                        </span>
+                                     </div>
+                                     <span class="ofertas-produto">
+                                        {{produto.sellers.length}} ofertas
+                                     </span>
+                                     <span class="preco-de" *ngIf="produto.preco_promocional < produto.preco">de <i class="outline-de">{{produto.preco | currency:'BRL':true}}</i> por</span>
+                                     <span class="preco-produto" >{{produto.preco_promocional | currency:'BRL':true}}</span>
+                                     <span class="parcelamento">{{produto.parcelas}}</span>
+                                  </div>
+                               </a>
+                            </div> -->
+                            
+                            <div class="page-nav" *ngIf="qtdProdutos >= itemsPerPage">
+                                <div class="pagination pagination-md">
+                                    <pagination-controls 
+                                       (pageChange)="p = $event" 
+                                       previousLabel=""
+                                       nextLabel="">
+                                    </pagination-controls>
+                                 </div> 
+                              </div>
+                      </div>
+                   </div>
+                </div>
+             <!-- </div> -->
+          </div>

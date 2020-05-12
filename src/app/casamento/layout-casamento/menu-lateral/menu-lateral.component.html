@@ -1,0 +1,68 @@
+<div id="sidebar">
+    <div class="profile-infos">
+        <div class="profile-user">
+            <div class="perfil-image" style="display: block;">
+            <picture class="profile-wrapper"><img id="img-perfil" src="../assets/img/user-default.png" alt=""></picture>
+            <a href="#" class="edit-img" data-toggle="modal" data-target="#alterar_foto"><i class="fas fa-pen"></i></a>
+            </div>
+        </div>
+        <div class="profile-name-date">
+            <span class="title-name-profile" style="text-align: center;">{{nomeNoivo}} <br /> & <br /> {{nomeNoiva}}</span>
+            <span class="date-time-profile">{{dia}} de {{mes}} de {{ano}}</span>
+        </div>
+    </div>
+    <div id="nav-sidebar">
+        <ul class="navbar-side">
+            <li class="nav-side-item">
+                <a [routerLink]="['/casamento','painel']" class="nav-side-link">
+                    <i class="fas fa-home mr-2"></i> Início
+                </a>
+            </li>
+            <li class="nav-side-item"><a [routerLink]="['/casamento','painel','configuracoes']" class="nav-side-link"><i class="fas fa-cog mr-2"></i> Configurações</a></li>
+            <li class="nav-side-item dropdown">
+            <span class="nav-side-link" data-toggle="collapse" href="#presentes" role="button" aria-expanded="false" aria-controls="presentes" data-parent="#sidebar"><i class="fas fa-gift mr-2"></i> Lista de presentes</span>
+            <ul class="nav-dropdown collapse" id="presentes">
+                <li class="nav-side-item"><a [routerLink]="['/casamento','painel','adicionar-produtos']" class="nav-side-link">Adicionar produtos</a></li>
+                <li class="nav-side-item"><a [routerLink]="['/casamento','painel','minha-lista']" class="nav-side-link">Minha lista</a></li>
+            </ul>
+            </li>
+            <li class="nav-side-item dropdown">
+            <span class="nav-side-link" data-toggle="collapse" href="#divulgar" role="button" aria-expanded="false" aria-controls="divulgar" data-parent="#sidebar"><i class="fas fa-envelope mr-2"></i> Divulgar lista</span>
+            <ul class="nav-dropdown collapse" id="divulgar">
+                <li class="nav-side-item"><a [routerLink]="['/casamento','painel','email-personalizado']" class="nav-side-link">E-mail personalizado</a></li>
+                <li class="nav-side-item"><a href="#" class="nav-side-link">Facebook (inbox)</a></li>
+            </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="alterar_foto" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="alterar_foto">Alterar foto dos noivos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form action="">
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="form-fotos">
+                        <label for="alterar-foto" class="btn btn-link file_input w-auto"><i class="fas fa-file-upload mr-2"></i> Enviar uma foto</label>
+                        <input type="file" id="alterar-foto" name="alterar-foto" style="display: none;"  accept="image/x-png,image/gif,image/jpeg">
+                        <div class="perfil-image-alterar">
+                        <picture class="profile-wrapper"><img id="img-perfil-alterar" src="" alt=""></picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button  type="submit" class="btn btn-primary">Salvar mudanças</button>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

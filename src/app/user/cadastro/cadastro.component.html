@@ -1,0 +1,121 @@
+<ng-progress id="cadastroBar"></ng-progress>
+<div id="lg-wrapper-cadastro">
+ <a [routerLink]="['/']">
+   <img class="lg-brand" src="{{this.config.getLogo()}}" height="50px">
+</a>
+<div class="lg-full-wrapper">
+   <div class="lg-title">
+      <h1>Cadastre-se</h1>
+      <p>Crie uma conta rápido e fácil com o Facebook ou Google.</p>
+   </div>
+
+   <button matRipple  (click)="login('facebook')" class="btn facebook btn-block" > Entre com o <b>Facebook</b></button>
+
+   <button matRipple  (click)="login('google')" class="btn google btn-block" > Entre com o <b>Google</b></button>
+
+   <div class="lg-divisor">
+      <span>ou preencha o formulário</span>
+   </div>
+   <div class="lg-box">
+      <form id="cadastrar-usuario" [formGroup]="listForm" (ngSubmit)="onSubmit()">
+         <div id="dados-padrao" class="d-flex flex-column">
+            <mat-form-field appearance="outline">
+               <mat-label>E-mail</mat-label>
+               <input matInput type="email" autocomplete="email" placeholder="Ex.: joaodasilva@gmail.com" formControlName="email" required>
+               <mat-error >{{getErroEmail()}}</mat-error>
+             </mat-form-field>
+
+            <mat-form-field appearance="outline" >
+               <mat-label>Senha</mat-label>
+               <input matInput [type]="hide ? 'password' : 'text'" autocomplete="new-password" placeholder="Digite sua senha" formControlName="senha" required>
+               <mat-error>{{getErroPass()}}</mat-error>
+               <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+               </button>
+           </mat-form-field>
+            
+            <mat-form-field appearance="outline" >
+               <mat-label>Confirme sua senha</mat-label>
+               <input matInput type="password" autocomplete="new-password" placeholder="Digite novamente sua senha" formControlName="csenha" required>
+               <mat-error *ngIf="listForm.get('csenha').invalid">{{getErroPassSame()}}</mat-error>
+           </mat-form-field>
+
+           <mat-form-field appearance="outline" >
+               <mat-label>CPF/CNPJ</mat-label>
+               <input matInput type="tel" formControlName="cpfcnpj" required (keyup)="detecta($event)" max="18">
+               <mat-error *ngIf="listForm.get('cpfcnpj').invalid">{{getErroCpfCnpj()}}</mat-error>
+            </mat-form-field>
+         </div>
+<!-- 
+         <div class="form-group radio-inline tipo-conta mt-3 mb-2">
+            <label for="fisica" class="mb-3">Tipo de conta</label><br>
+            <mat-radio-group aria-label="Selecione uma opção" formControlName="conta_tipo" (change)="switchTypeRegister(listForm.controls.conta_tipo.value)">
+               <mat-radio-button value="fisica" class="mr-2"   checked >Pessoa física</mat-radio-button>
+               <mat-radio-button value="juridica"  >Pessoa jurídica</mat-radio-button>
+             </mat-radio-group>
+      </div> -->
+         
+         <div id="cadastros-tipos" >
+            <!-- PESSOA -->
+            <fieldset class="p-0" id="cadastro-fisica" *ngIf="!tipocadastro">
+               <span class="cadastro-title">Dados pessoais</span>
+               <mat-form-field appearance="outline" >
+                  <mat-label>Seu nome e sobrenome</mat-label>
+                  <input matInput autocomplete="name" type="text" placeholder="Ex.: Marco" placeholder="Digite seu nome"  formControlName="nomeFisico" required>
+                  <mat-error *ngIf="listForm.get('nomeFisico').invalid">{{getErro('nomeFisico')}}</mat-error>
+               </mat-form-field>
+               <div class="form-group radio-inline">
+                  <label for="sexo">Sexo</label><br>
+                  <mat-radio-group aria-label="Select an option" formControlName="sexo">
+                     <mat-radio-button  value="M" class="mr-2" checked>Masculino</mat-radio-button>
+                     <mat-radio-button  value="F">Feminino</mat-radio-button>
+                   </mat-radio-group>
+               </div>
+               <mat-form-field appearance="outline" >
+                  <mat-label>Data de nascimento</mat-label>
+                  <input matInput  type="text" placeholder="Ex.: 01/01/1999"  autocomplete="bday" formControlName="nascimento" [dropSpecialCharacters]="false" mask="00/00/0000" required>
+                  <mat-error *ngIf="listForm.get('nascimento').invalid">{{getErro('nascimento')}}</mat-error>
+              </mat-form-field>
+
+               <mat-checkbox class="mb-2" formControlName="ofertasfisico">Desejo receber ofertas por e-mail</mat-checkbox>
+            </fieldset>
+
+            <!-- EMPRESA -->
+            <fieldset class="p-0" id="cadastro-juridica" *ngIf="tipocadastro">
+               <span class="cadastro-title">Dados da empresa</span>
+               <mat-form-field appearance="outline">
+                  <mat-label>Razão social</mat-label>
+                  <input matInput  type="text"  formControlName="razao_social" required >
+                  <mat-error *ngIf="listForm.get('razao_social').invalid">{{getErro('razao_social')}}</mat-error>
+              </mat-form-field>
+               <mat-form-field appearance="outline">
+                  <mat-label>Nome fantasia</mat-label>
+                  <input matInput  type="text" formControlName="nome_fantasia" required >
+                  <mat-error *ngIf="listForm.get('nome_fantasia').invalid">{{getErro('nome_fantasia')}}</mat-error>
+              </mat-form-field>
+
+               <mat-form-field appearance="outline" >
+                  <mat-label>Data de nascimento</mat-label>
+                  <input matInput  type="text" placeholder="Ex.: 01/01/1999"  autocomplete="bday" formControlName="nascimento" [dropSpecialCharacters]="false" mask="00/00/0000" required>
+                  <mat-error *ngIf="listForm.get('nascimento').invalid">{{getErro('nascimento')}}</mat-error>
+                  </mat-form-field>
+               <!-- <mat-form-field appearance="outline" >
+                  <mat-label>Seu nome</mat-label>
+                  <input matInput autocomplete="name" type="text" placeholder="Ex.: Marco" placeholder="Digite seu nome"  formControlName="nomeFisico" required>
+                  <mat-error *ngIf="listForm.get('nomeFisico').invalid">{{getErro('nomeFisico')}}</mat-error>
+               </mat-form-field> -->
+               <mat-checkbox class="mb-2" formControlName="ofertasjuridico">Desejo receber ofertas por e-mail</mat-checkbox>
+            </fieldset>
+           
+         </div>
+         <button mat-raised-button class="w-100 btn-continue" type="submit">Criar meu cadastro</button>
+         <!-- <div [innerHTML]="msgRetorno" style="margin-top:10px;"></div> -->
+      </form>
+   </div>
+   <br>
+   <div class="lg-seguranca">
+      <span class="site-seguro"><i class="fas fa-lock"></i> Fique tranquilo, nosso site é seguro!</span>
+      <span class="lg-cadastro m-0">Já tem cadastro? <a [routerLink]="['/user','login']">Entrar</a></span>
+   </div>
+</div>
+</div>

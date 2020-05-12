@@ -1,0 +1,29 @@
+<div class=" newsletter-box">
+    <div class="row">
+       <div class="col-12 col-md-12 col-sm-12 col-xl-4 col-lg-4 d-flex justify-content-center flex-column">
+          <p>Receba ofertas exclusivas por email!</p>
+       </div>
+       <div class="col-12 col-md-12 col-sm-12 col-xl-8 col-lg-8 d-flex justify-content-center flex-column ">
+
+          <form (ngSubmit)="sendEmail(listForm.value)" [formGroup]="listForm">
+             <div class="row d-flex flex-row align-center justify-content-center">
+                <div class="col-12 group-input col-md-12 col-sm-12 col-xl-5 col-lg-5">
+                   <input type="text" class="form-control" required  name="nome" id="nome" formControlName="nome" required>
+                   <label>Nome</label>
+                </div>
+                <div class="col-12 group-input col-md-12 col-sm-12 col-xl-5 col-lg-5">
+                   <input type="mail" name="email" id="email" class="form-control" formControlName="email" required>
+                   <label>Email</label>
+                </div>
+                <div class="col-12 col-md-12 col-sm-12 col-xl-2 col-lg-2 d-flex flex-row align-center justify-content-center">
+                   <button data-ripple type="submit" aria-label="Newsletter enviar" class="btn btn-warning">Enviar</button>
+                </div>
+             </div>
+          </form>
+          
+       </div>
+    </div>
+    <div id="alerta-retorno" style="margin-top:10px">
+      <div [innerHTML]="msgRetorno"></div>
+    </div>
+ </div>

@@ -1,0 +1,45 @@
+<section>
+   <div class="container">
+      <div class="row">
+         <div class="col-12">
+            <div class="conteudo">
+               <div>
+                  <a [routerLink]="['/casamento']" class="btn btn-link">Inicio</a>
+               </div>
+               <div class="search-title">
+                  <h1 class="title-conteudo">
+                     Buscado por: {{ casal }}
+                  </h1>
+                  <span class="date-search">{{date}}</span>
+               </div>
+               <div class="form-row">
+                  <div class="col-md-6 col-xl-12">
+                     <div class="form-group form-config search-box">
+                        <input type="text" class="form-control" placeholder="Pesquise por nome dos noivos, data do evento..."
+                           [(ngModel)]="casal">
+                        <button class="btn search-button"><i class="fas fa-search"></i></button>
+                     </div>
+                  </div>
+               </div>
+               <div class="noivos-row">
+                  <div class="col-md-3" *ngFor="let item of casamento | filter: casal">
+                     <a (click)="setValue('casamento/lista-convidados/'+item.link)" class="noivos-box" style="cursor: pointer;">
+                        <div class="perfil-image-search">
+                           <img class="img-perfil-search" src="../assets/img/user-default.png" alt="">
+                        </div>
+                        <div class="perfil-search">
+                           <h4 class="search-noivos">{{item.nomeNoivo}} & {{item.nomeNoiva}}</h4>
+                           <span class="search-data">{{item.data}}</span>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+               <div *ngIf="notFound != ''">
+                  {{notFound}}
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

@@ -1,0 +1,600 @@
+<div class="container">
+        <div id="produto-item">
+              <div class="nav-args">
+                 <div class="nvgs-items">
+                    <a  alt="Página principal">
+                       <i class="uip-home"></i>
+                    </a>
+                 </div>
+                 <div class="nvgs-items"><a  alt="Telefonia">Telefonia</a></div>
+                 <div class="nvgs-items"><a  alt="Smartphone">Smartphone</a></div>
+                 <div class="nvgs-items"><a  alt="Xioami">Xiaomi</a></div>
+              </div>
+              <div class="row">
+                 <div class="col-12 col-sm-12 col-md-12 col-xl-5 col-lg-5 m-0 p-0 fav-hidden" >
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn-fav"></button>
+                    <span aria-label="Compartilhar" data-ripple class="btn-comp"></span>
+                    <span class="compartilhar-pd-f btn"><a ><i class="fab fa-facebook-f"></i></a></span>
+                    <span class="compartilhar-pd-w btn"><a ><i class="fab fa-whatsapp"></i></a></span>
+                    <span class="compartilhar-pd-t btn"><a ><i class="fab fa-twitter"></i></a></span>
+                    <div class="pd-imagem">
+                        <owl-carousel [options]="carouselProduto" [items]="imagesProduto" [carouselClasses]="['owl-carousel','owl-product','colors','active','cor-preto']">
+                            <div class="item" *ngFor="let image of imagesProduto;let i= index">
+                                <div class="img-central">
+                                    <img class="slide-image img-central zoom" src="{{image.image}}">
+                                </div>
+                            </div>
+                        </owl-carousel>
+                    </div>
+                 </div>
+                 <div class="col-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
+                    <div id="pd-item">
+                       <h1 id="title-product">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</h1>
+                       <div class="pd-sub">
+                          <small class="pd-codigo">Cód.: 295</small>
+                          <div class="avaliacoes-produto">
+                             <div class="estrelas-i">
+                                <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i>
+                             </div>
+                             <span class="avalicaoes-total">(2)</span><a class="link-avaliar"  data-toggle="modal" data-target="#modal-avaliar">Avaliar produto</a>
+                          </div>
+                       </div>
+                    </div>
+                    <span class="buybox-title">Selecione a Voltagem</span>
+                    <form id="comprar-form" class="needs-validation is-invalid">
+                        <div class="voltagem-input">
+                           <div class="voltagem-wrapper">
+                              <input type="radio" required id="110" value="110" name="voltagem">
+                              <label for="110" data-ripple class="voltagem-label">110 volts</label>
+                           </div>
+                           <div class="voltagem-wrapper">
+                              <input type="radio" required id="220" value="220" name="voltagem">
+                              <label for="220" data-ripple class="voltagem-label">220 volts</label>
+                           </div>
+                           <div class="invalid-feedback">
+                              Escolha uma voltagem
+                           </div>
+                        </div>
+                        <span class="buybox-title">Selecione uma loja abaixo e compre</span>
+                        <div id="buybox-container">
+                          <div class="row m-0">
+                             <div class="col-12 col-xl-4 p-0 mb-3 mb-xl-0">
+                                <div class="tab">
+                                   <div class="bb-select">
+                                      <div class="bb-wrapper">
+                                         <input type="radio" id="seller-box-1" checked name="seller_box">
+                                         <label for="seller-box-1" class="bb-radio">
+                                            <div class="bb-seller">
+                                               <span class="seller-title">Macbuystore</span>
+                                               <div class="price-box">
+                                                  <span class="sales-price">R$ 999,00</span>
+                                                  <span class="sales-frete">Frete: R$ 29,00</span>
+                                               </div>
+                                            </div>
+                                         </label>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="tab">
+                                   <div class="bb-select">
+                                      <div class="bb-wrapper">
+                                         <input type="radio" id="seller-box-2" name="seller_box">
+                                         <label for="seller-box-2" class="bb-radio">
+                                            <div class="bb-seller">
+                                               <span class="seller-title">Store</span>
+                                               <div class="price-box">
+                                                  <span class="sales-price">R$ 999,00</span>
+                                                  <span class="sales-frete">Frete: -</span>
+                                               </div>
+                                            </div>
+                                         </label>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="tab">
+                                   <div class="bb-select">
+                                      <div class="bb-wrapper">
+                                         <input type="radio" id="seller-box-3" name="seller_box">
+                                         <label for="seller-box-3" class="bb-radio">
+                                            <div class="bb-seller">
+                                               <span class="seller-title">Store</span>
+                                               <div class="price-box">
+                                                  <span class="sales-price">R$ 999,00</span>
+                                                  <span class="sales-frete">Frete: -</span>
+                                               </div>
+                                            </div>
+                                         </label>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="tab" data-ripple>
+                                   <div class="bb-select">
+                                      <div class="bb-wrapper">
+                                         <a href="<?php echo $this->basePath('assets/produto/lista-produto') ?>">
+                                            <div class="bb-link">
+                                               <span>Mais opções deste produto a partir de</span>
+                                               <span class="sales-price">R$ 999,00</span>
+                                            </div>
+                                         </a>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="col-12 col-xl-8 p-0">
+                                <div class="tab-panel">
+                                   <div class="buybox-panel">
+                                      <div class="buybox-main">
+                                         <div class="seller-info">
+                                            <span class="seller-link">Vendido e entregue por <b><a href="/lojista.php" class="link-under">Macbuystore</a></b></span>
+                                            <div class="seller-price-box">
+                                               <span class="label-title">Selecione uma opção</span>
+                                               <div class="pd-select ml-0 mr-0 mb-3">
+                                                  <div class="drop-down" data-ripple data-overlay="true">
+                                                     <div class="select">
+                                                        <span>Cor</span>
+                                                        <i class="fa fa-chevron-left"></i>
+                                                        <input id="cor-produto" type="text" class="form-control" required name="cor_produto" value=""/> 
+                                                     </div>
+                                                     <ul class="drop-down-menu">
+                                                        <li id="preto" style="background-image: url('./img/295.jpg')"> Preto</li>
+                                                        <li id="azul" style="background-image: url('../assets/img/295d.jpg')"> Azul</li>
+                                                     </ul>
+                                                     <div class="invalid-feedback">
+                                                        Escolha uma cor
+                                                     </div>
+                                                  </div>
+                                                  
+                                               </div>
+                                               <span class="pd-precode">de <i>R$ 999,00</i> por</span>
+                                               <div class="pd-preco"><span>R$ 2999,00</span><i>à vista</i></div>
+                                               <span class="pd-parcalmento"><i class="uip-cartao"></i> até 10x de <b>R$ 99,00</b> sem juros</span>
+                                               <span class="pd-boleto"><i class="uip-boleto"></i> boleto bancário <b>R$ 4.655,00</b> (5,0% de desconto)</span>
+                                               <span class="pd-parcalmento-ver" data-toggle="modal" data-target="#parcelamentos">Ver parcelas</span>
+                                            </div>
+                                           <button class="btn btn-comprar submit-comprar" type="submit" data-ripple="">Comprar 
+                                          <div class="pd-carrinho-btn ">
+                                              <svg id="carrinho-icone" xmlns="http://www.w3.org/2000/svg" width="42.527" height="32.294" viewBox="0 0 42.527 32.294">
+                                                <g transform="translate(-1149.875 -391.717)">
+                                                  <path id="Caminho_19" data-name="Caminho 19" d="M1172.875,534.242h5.432a.953.953,0,0,1,.913.679l6.316,21.009a.779.779,0,0,0,.746.555h21.475a.779.779,0,0,0,.752-.577l4.894-18.253" transform="translate(-22 -141.525)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path>
+                                                  <circle id="Elipse_2" data-name="Elipse 2" cx="2.684" cy="2.684" r="2.684" transform="translate(1166.613 418.644)" fill="#fff"></circle>
+                                                  <path id="Caminho_20" data-name="Caminho 20" d="M2.684,0A2.684,2.684,0,1,1,0,2.684,2.684,2.684,0,0,1,2.684,0Z" transform="translate(1179.03 418.644)" fill="#fff"></path>
+                                                </g>
+                                              </svg>  
+                                          </div>
+                                        </button>
+                                <button class="btn-adicionar submit-comprar" type="submit" data-ripple>Adicionar ao carrinho</button>
+                       
+                       <div class="modal fade" id="parcelamentos" tabindex="-1" role="dialog" aria-labelledby="Parcelamentos" aria-hidden="true">
+                       <div class="modal-dialog" role="document">
+                       <div class="modal-content">
+                       <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLabel"><i class="pdi-icones-compra-02"></i>Parcelamentos no cartão de crédito</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                       </button>
+                       </div>
+                       <div class="modal-body">
+                       <table class="table table-striped">
+                       <thead>
+                       <tr>
+                       <th scope="col">x</th>
+                       <th scope="col">Parcela</th>
+                       <th scope="col">Juros</th>
+                       <th scope="col">Total</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                       <th scope="row">1x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">2x</th>
+                       <td>de R$ 832,78</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.665,56</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">3x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">4x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">5x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">6x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">8x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">9x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       <tr>
+                       <th scope="row">10x</th>
+                       <td>de R$ 1.499,00</td>
+                       <td>sem juros</td>
+                       <td>R$ 1.499,00</td>
+                       </tr>
+                       </tbody>
+                       </table>
+                       </div>
+                       <div class="modal-footer">
+                       <button type="button" class="btn btn-modal" data-ripple data-dismiss="modal">Ok!</button>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       <div class="pd-frete mt-3">
+                       <form  id="calculo-frete" class="needs-validation" onsubmit="return chkCEP(this.cep.value)">
+                       <div class="form-row">
+                       <div class="col-12 col-md-5 col-sm-5 col-xl-12 col-lg-12 pd-select mb-3 mb-sm-0 mb-md-0 mb-xl-3  mb-lg-0">
+                       <label for="cep"><i class="fas fa-truck"></i> Calcular frete e prazo</label>
+                       </div>
+                       <div class="col-8 col-md-6 col-sm-5 col-xl-8 col-lg-5">
+                       <input ID="cep" class="form-control" type="text" required  placeholder="_____-___" size="15" maxlength="9" />
+                       <div class="invalid-feedback">CEP Inválido!</div>
+                       </div>
+                       <div class="col-4 col-md-2 col-sm-2 col-xl-4 col-lg-3" >
+                       <button id="calcular-frete" type="submit"  data-ripple class="btn-frete">Calcular</button>
+                       </div>
+                       </div>
+                       </form>
+                       <div class="pd-frete-resultado">
+                       <table class="table table-borderless">
+                       <thead>
+                       <tr>
+                       <th scope="col">Entrega</th>
+                       <th scope="col">Frete</th>
+                       <th scope="col">Prazo</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                       <td>PAC</td>
+                       <td>R$ 12,00</td>
+                       <td>12 dias úteis</td>
+                       </tr>
+                       <tr>
+                       <td>Convencional</td>
+                       <td>R$ 12,00</td>
+                       <td>12 dias úteis</td>
+                       </tr>
+                       </tbody>
+                       </table>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       
+                    </div>
+                    </form>
+                 </div>
+                
+              </div>
+           </div>
+        </div>
+        <div class="container">
+        <div class="pd-info">
+        
+           <div class="pd-conteudo">
+              <span id="pd-more"><span>ver mais</span></span>
+              <div class="pd-info-box box-slide">
+                 <div class="pd-info-title">
+                    <h2>Informações do produto</h2>
+                    <div class="pd-donwloads">
+                       <a  class="btn btn-download" title="Baixar manual do produto" data-ripple> <i class="fas fa-file-download"></i> Manual do Produto</a>
+                       <a  class="btn btn-download" data-ripple title="Baixar manual do produto"> <i class="fas fa-file-download"></i> Manual do Produto</a>
+                    </div>
+                    <div class="pd-info-conteudo">
+                       <div class="pd-info-imagem">
+                          <img src="../assets/img/img-produto.jpg" alt="" title="Informações">
+                       </div>
+                       <div class="pd-info-texto">
+                          <div class="pd-descricao">
+                             <p>
+                                Se você é apaixonado por smartphones, o Redmi Note 7 64GB vai deixar você, com borboletas no estômago. A Xiaomi vem conquistando a cada dia mais e mais o coração dos seus usuários, inovação, tecnologia de ponta e preço baixo são seu carro forte. Assim como seus antecessores o Smartphone Xiaomi Redmi Note 7 64GB, possui design surpreendente e muito bonito. Nas câmeras a Xiaomi mostra que não está para brincadeira, além dos recursos já conhecidos das suas câmeras o Smartphone Xiaomi Redmi Note 7 64GB, vem recheado de novidades, pois de primeira, o que mais chama a atenção dos apaixonados por fotografia é a câmera traseira dupla, são 48 megapixels mais 5 megapixels, deixam qualquer um de queixo caído. A qualidade da sua câmera frontal também está de tirar o fôlego, pois ele conta com lente de 13 megapixels.
+                             </p>
+                             <p>
+                                Este super aparelho, conta também com uma super tela, pois são 6.3 polegadas, que ampliam sua visão na hora de navegar. Um celular de última tecnologia, não poderia faltar um sistema operacional de qualidade, por isso o Smartphone Xiaomi Redmi Note 7 64GB, conta com o Android 9 Pie. Para você armazenar tudo sem perder nenhum detalhe, o Smartphone Xiaomi Redmi Note 7, conta com memória interna de 64GB e 4GB de memória RAM.
+                             </p>
+                             <p>
+                                O lançamento da Xiaomi mau chegou e já está abalando corações e se você acha que parou por aí, se enganou pois o Smartphone Xiaomi Redmi Note 7 64GB, tem muito mais a lhe oferecer. Uma super bateria faz parte do pacote deste maravilhoso aparelho, pois ele conta com bateria de 4.000 mAh, que irão lhe garantir um dia inteiro sem preocupações. Processador octa core snapdragon também veio para acrescentar em tecnologia e desempenho do seu Smartphone Xiaomi Redmi Note 7 64GB. Ao comprar esse novo lançamento Smartphone Xiaomi Redmi Note 7 64GB, você tem certeza de adquirir um aparelho completo e com o melhor custo benefício.
+                             </p>
+                          </div>
+                          <div class="pd-info-title">
+                             <h2>Característica do protudo</h2>
+                          </div>
+                          <div class="pd-produto-info">
+                             <p>Sistema Operacional</p>
+                             <p>Plataforma: Android</p>
+                             <p>Versão: Android 9 Pie</p>
+                             <p>Vídeo</p>
+                             <p>FPS da Gravação: 60 fps</p>
+                             <p>Tela</p>
+                             <p>Tamanho da Tela: 6.3</p>
+                             <p>Resolução: 2340 x 1080</p>
+                             <p>Tipo: IPS LCD</p>
+                             <p>Número de Cores: 16 milhões de cores</p>
+                             <p>Memória</p>
+                             <p>Memória Interna: 64 GB</p>
+                             <p>Memória RAM: 4 GB</p>
+                             <p>Memória Expansível: 256 GB</p>
+                             <p>Câmera Traseira</p>
+                             <p>Câmera: Dual ( 48MP + 5MP )</p>
+                             <p>Resolução: 8000 x 6000 pixel</p>
+                             <p>Recursos: Autofocus</p>
+                             <p>Detecção Facial</p>
+                             <p>Estabilização de Imagem</p>
+                             <p>Flash Dual LED</p>
+                             <p>HDR</p>
+                             <p>Touch Focus</p>
+                             <p>Abertura F/1.8</p>
+                             <p>Abertura F/2.4</p>
+                             <p>Câmera Frontal</p>
+                             <p>Câmera Frontal: 13 MP</p>
+                             <p>Recursos: HDR; </p>
+                             <p>Detecção Facial</p>
+                             <p>Conectividade</p>
+                             <p>Rede: 4G; </p>
+                             <p>3G; </p>
+                             <p>2G</p>
+                             <p>Bluetooth: 5.0; </p>
+                             <p>Wi-Fi 802.11 a/b/g/n/ac; </p>
+                             <p>USB Tipo C 2.0; </p>
+                             <p>GPS; </p>
+                             <p>GPRS</p>
+                             <p>Resistência</p>
+                             <p>Proteção: Corning Gorilla Glass 5</p>
+                             <p>Bateria</p>
+                             <p>Capacidade: 4.000 mAh</p>
+                             <p>Removível: Não</p>
+                             <p>Tipo: Polímeros de Lítio ( Li-Po )</p>
+                             <p>Sensores</p>
+                             <p>Sensores: Acelerômetro; </p>
+                             <p>Bússola; </p>
+                             <p>Giroscópio; </p>
+                             <p>Proximidade; </p>
+                             <p>Impressão Digital; </p>
+                             <p>Mic. de Redução de Ruído</p>
+                             <p>Processador</p>
+                             <p>Processador: Octa Core</p>
+                             <p>Velocidade ( Clock ): Quad 2.2 GHz + Quad 1.8 GHz</p>
+                             <p>Modelo: Snapdragon 660 Qualcomm SDM660</p>
+                             <p>GPU: Adreno 512</p>
+                             <p>Chip</p>
+                             <p>Chips: 2 Chips</p>
+                             <p>Tipo do Chip: Nano SIM Card</p>
+                          </div>
+                          <div class="pd-info-title">
+                             <h2>Dimensões</h2>
+                          </div>
+                          <div class="pd-dimensao">
+                             <ul class="list-dimensoes">
+                                <li class="list-dimensao">
+                                   <i class="fas fa-arrows-alt-v"></i><span>Altura: 15,9 cm</span>
+                                </li>
+                                <li class="list-dimensao">
+                                   <i class="fas fa-arrows-alt-h"></i><span>Largura: 7,5 cm</span>
+                                </li>
+                                <li class="list-dimensao">
+                                   <i class="fas fa-cube"></i><span>Profundidade: 0,8 cm</span>
+                                </li>
+                                <li class="list-dimensao">
+                                   <i class="fas fa-weight-hanging"></i><span>Peso: 0,186 KG</span>
+                                </li>
+                             </ul>
+                          </div>
+                          Garantia do Fornecedor de: 12 Meses
+                          <br>
+                          <br>
+                          Fabricante: Xiaomi<br>
+                          <br>
+                          <br>
+                          Código de Barras:<br>
+                          Preto - 6941059620792<br>
+                          Azul - 6941059620808<br>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="pd-info-important">
+                 <h5>Não nos responsabilizamos por montagens, instalações, subir escadas, ou transporte por guinchos para apartamentos.</h5>
+                 <p>
+                    *Verifique as dimensões do produto. Certifique-se que o mesmo passa por portas, corredores e elevadores.<br>
+                    **Verifique limitações do produto. Certifique se seus componentes e funcionalidades atende sua necessidade.<br>
+                    ***Imagens Meramente Ilustrativa.<br>
+                 </p>
+              </div>
+              <div class="pd-info-box">
+                 <div class="pd-info-title">
+                    <h2>Avaliações</h2>
+                 </div>
+                 <div class="pd-avaliacao-topo row m-0">
+                    <div class="pd-media">
+                       Média Geral 
+                       <div class="pd-media-estrelas">
+                          <span class="media-text">4.4</span> 
+                          <div class="estrelas-avalicao">
+                             <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i>
+                          </div>
+                          <span class="total-avaliacoes">(2)</span>
+                       </div>
+                    </div>
+                    <div class="pd-avaliar">
+                       <a  data-toggle="modal" data-target="#modal-avaliar" class="btn btn-verde" data-ripple>Avaliar</a>
+                    </div>
+                 </div>
+                 <div class="pd-avaliacoes">
+                    <div class="pd-avaliacao">
+                       <div class="avaliacao-title">
+                          <h3>Eu tenho e Recomendo</h3>
+                       </div>
+                       <div class="avaliacao-estrelas">
+                          <div class="estrelas-i">
+                             <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i>
+                          </div>
+                          <span class="avaliacao-data">04/06/2019</span>
+                       </div>
+                       <div class="avaliacao-conteudo">
+                          Recebi meu IPhone e estou gostando, por enquanto não tenho o que reclamar, pois nao deu tempo de testar todas suas funcionalidades, mas no geral ele cumpre o que promete. Produto chegou direitinho e a entrega foi dentro do prazo.
+                       </div>
+                       <div class="avaliacao-nome">
+                          <span>Marco</span>
+                       </div>
+                    </div>
+                    <div class="pd-avaliacao">
+                       <div class="avaliacao-title">
+                          <h3>Eu tenho e Recomendo</h3>
+                       </div>
+                       <div class="avaliacao-estrelas">
+                          <div class="estrelas-i">
+                             <i class="uip-estrela-1 estrela-1"></i><i class="uip-estrela-1 estrela-2"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-3"></i>
+                          </div>
+                          <span class="avaliacao-data">04/06/2019</span>
+                       </div>
+                       <div class="avaliacao-conteudo">
+                          Recebi meu IPhone e estou gostando, por enquanto não tenho o que reclamar, pois nao deu tempo de testar todas suas funcionalidades, mas no geral ele cumpre o que promete. Produto chegou direitinho e a entrega foi dentro do prazo.
+                       </div>
+                       <div class="avaliacao-nome">
+                          <span>Marco Antônio</span>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <h1 class="linha-titulo">
+                 Confira também
+              </h1>
+              <div class="owl-carousel owl-theme produto-carousel">
+                 <div class="item-box" data-ripple="rgba(128, 128, 128, 0.726)">
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                    <a href="/produto.php">
+                       <div class="produto-img">
+                          <img src="../assets/img/295-180px.jpg" max-width="180px">
+                       </div>
+                       <div class="descricao-produto">
+                          <span class="titulo-produto">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</span>
+                          <div class="avaliacao-produto">
+                             <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-2"><span class="uip-estrela-2 path1"></span><span class="uip-estrela-2 path2"></span></i>
+                          </div>
+                          <span class="preco-de">de <i class="outline-de">R$ 1.089,95</i> por</span>
+                          <span class="preco-produto">R$ 999,00</span>
+                          <span class="parcelamento">6x de <b>R$ 99,00</b> sem juros</span>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="item-box" data-ripple="rgba(128, 128, 128, 0.726)">
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                    <a >
+                       <div class="produto-img">
+                          <img src="../assets/img/295-180px.jpg" max-width="180px">
+                       </div>
+                       <div class="descricao-produto">
+                          <span class="titulo-produto">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</span>
+                          <div class="avaliacao-produto">
+                             <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-2"><span class="uip-estrela-2 path1"></span><span class="uip-estrela-2 path2"></span></i>
+                          </div>
+                          <span class="preco-de">de <i class="outline-de">R$ 1.089,95</i> por</span>
+                          <span class="preco-produto">R$ 999,00</span>
+                          <span class="parcelamento">6x de <b>R$ 99,00</b> sem juros</span>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="item-box" data-ripple="rgba(128, 128, 128, 0.726)">
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                    <a >
+                       <div class="produto-img">
+                          <img src="../assets/img/295-180px.jpg" max-width="180px">
+                       </div>
+                       <div class="descricao-produto">
+                          <span class="titulo-produto">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</span>
+                          <div class="avaliacao-produto">
+                             <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-2"><span class="uip-estrela-2 path1"></span><span class="uip-estrela-2 path2"></span></i>
+                          </div>
+                          <span class="preco-de">de <i class="outline-de">R$ 1.089,95</i> por</span>
+                          <span class="preco-produto">R$ 999,00</span>
+                          <span class="parcelamento">6x de <b>R$ 99,00</b> sem juros</span>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="item-box" data-ripple="rgba(128, 128, 128, 0.726)">
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                    <a >
+                       <div class="produto-img">
+                          <img src="../assets/img/295-180px.jpg" max-width="180px">
+                       </div>
+                       <div class="descricao-produto">
+                          <span class="titulo-produto">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</span>
+                          <div class="avaliacao-produto">
+                             <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-2"><span class="uip-estrela-2 path1"></span><span class="uip-estrela-2 path2"></span></i>
+                          </div>
+                          <span class="preco-de">de <i class="outline-de">R$ 1.089,95</i> por</span>
+                          <span class="preco-produto">R$ 999,00</span>
+                          <span class="parcelamento">6x de <b>R$ 99,00</b> sem juros</span>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="item-box" data-ripple="rgba(128, 128, 128, 0.726)">
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                    <a >
+                       <div class="produto-img">
+                          <img src="../assets/img/295-180px.jpg" max-width="180px">
+                       </div>
+                       <div class="descricao-produto">
+                          <span class="titulo-produto">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</span>
+                          <div class="avaliacao-produto">
+                             <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-2"><span class="uip-estrela-2 path1"></span><span class="uip-estrela-2 path2"></span></i>
+                          </div>
+                          <span class="preco-de">de <i class="outline-de">R$ 1.089,95</i> por</span>
+                          <span class="preco-produto">R$ 999,00</span>
+                          <span class="parcelamento">6x de <b>R$ 99,00</b> sem juros</span>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="item-box" data-ripple="rgba(128, 128, 128, 0.726)">
+                    <button type="button" aria-label="Favoritar produto" data-ripple class="btn btn-fav"></button>
+                    <a >
+                       <div class="produto-img">
+                          <img src="../assets/img/295-180px.jpg" max-width="180px">
+                       </div>
+                       <div class="descricao-produto">
+                          <span class="titulo-produto">Smartphone Xiaomi Redmi Note 7 Dual Sim 4gb Ram 64GB Versão Global</span>
+                          <div class="avaliacao-produto">
+                             <i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-1"></i><i class="uip-estrela-2"><span class="uip-estrela-2 path1"></span><span class="uip-estrela-2 path2"></span></i>
+                          </div>
+                          <span class="preco-de">de <i class="outline-de">R$ 1.089,95</i> por</span>
+                          <span class="preco-produto">R$ 999,00</span>
+                          <span class="parcelamento">6x de <b>R$ 99,00</b> sem juros</span>
+                       </div>
+                    </a>
+                 </div>
+              </div>
+           </div>
+        </div>
+        </div>

@@ -1,0 +1,35 @@
+<section>
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-xl-12">
+            <div class="conteudo">
+               <h1 class="title-conteudo">
+                  E-mail personalizado
+               </h1>
+               <p>Convide seus amigos por e-mail e aumente as chances de adquirir mais acessos e presentes na sua lista.
+               </p>
+               <form [formGroup]="listForm" (ngSubmit)="onSubmit(listForm.value)">
+                  <div class="form-group form-config">
+                     <label for="">Adicione o e-mail</label>
+                     <input type="text" class="form-control" formControlName="email" placeholder="Ex: email@gmail.com, email2@gmail.com">
+                  </div>
+                  <button class="btn btn-link">Enviar e-mail</button>
+               </form>
+               <br />
+               <hr>
+               <br />
+               <h1 class="title-conteudo">
+                  E-mails enviados
+               </h1>
+               <ul class="list-email-enviados">
+                  <li class="email-enviado" *ngFor="let data of array">
+                     <i class="far fa-user"></i><span>{{data.welEmail}}</span><i class="far fa-times-circle"
+                        style="margin-left: 10px;color: red;cursor: pointer;"
+                        (click)="onDelete(data.idWeddingListEmail, data.welEmail)"></i>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

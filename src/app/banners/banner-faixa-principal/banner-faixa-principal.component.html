@@ -1,0 +1,13 @@
+<div *ngFor="let faixaPrincipal of inputFaixaPrincipal" class="banner-faixa-principal" data-ripple="" style="position: relative;">
+    <div (click)="bannerClick(faixaPrincipal.idBanner,faixaPrincipal.url); this.sMarketingService.verificaLink(faixaPrincipal.url)" style="cursor: pointer;">
+        <img src="{{faixaPrincipal.image}}" title="{{faixaPrincipal.descricao}}" alt="{{faixaPrincipal.descricao}}">
+    </div>
+</div>
+
+<div *ngIf="!inputFaixaPrincipal">
+    <div class="ph-item banner-faxa p-0">
+      <div class="ph-col-12 p-0">
+          <div class="ph-picture"></div>
+      </div>
+  </div>
+   </div>

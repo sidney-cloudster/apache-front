@@ -1,0 +1,342 @@
+<!-- <app-banner-header [inputHeader]="getHeader()"></app-banner-header> -->
+<div class="overlay"  (click)="overlayClick()" (mouseenter)="overlayOver()" (mouseleave)="overlayOut()"></div>
+<!-- <app-banner-header></app-banner-header> -->
+<nav class="navbar navbar-expand-lg navbar-dark nav-color">
+    <div class="container">
+        <div class="d-flex flex-column w-100">
+            <div class="d-flex flex-row align-items-center w-100">
+                <a class="navbar-brand" [routerLink]="['/']">
+                    <img class="logo-full"  src="{{this.sConfig.getLogo()}}" height="37px">
+                </a>
+                <button class="btn-menu d-none d-xl-flex" *ngIf="checkFixedTop()"  [class.active]="checkMenuShow()" (click)="showMenu($event.currentTarget)">
+                    <div class="menu-hamburguer">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div> Menu
+                </button>
+                <div class="nav-wrapper">
+                    <form class="nav-search" >
+                          <input class="form-control search-bar" id="search-topo" name="s" autocomplete="off" type="text" placeholder="O que você deseja procurar?" aria-label="Pesquisa" #pesquisa
+                          (keyup)="keyPesquisaSite(pesquisa.value);" (focus)="focarSearchBox($event.currentTarget)">
+                          <button type="submit" aria-label="Pesquisa" aria-label="Pesquisa" class="btn search-button" (click)="BotaoPesquisaSite(pesquisa.value);"><i class="pui-search-300"></i></button>
+                            <button type="button" class="btn remove-search" *ngIf="keyUpSearch"><span class="material-icons" (click)="clearSearch('#search-topo')">close</span></button>
+                          <div class="box-search">
+                            <div class="search-wrapper">
+
+                               <div class="buscas-wrapper" *ngIf="!resultadoBuscaSite && buscasRealizadas.length > 0 && !keyUpSearch">
+
+                                   <div class="buscas">
+                                       <ul *ngIf="buscasRealizadas.length > 0" class="buscasRealizadas">
+                                        <h4 class="h4-pesquisa">Você buscou:</h4>
+                                           <li *ngFor="let busca of buscasRealizadas | slice:0:5; let i = index;">
+                                               <a [routerLink]="getLinkArray('/busca', busca)">
+                                                   {{busca}}
+                                               </a>
+                                               <button class="btn-deletar" (click)="removeItemBusca(i)"><i class="fas fa-times"></i></button>
+                                           </li>
+                                       </ul>
+                                       <div *ngIf="buscasRealizadas.length <= 0">
+                                           <h5>Oque você procura?</h5>
+                                       </div>
+                                   </div>
+                                   
+                               </div>
+
+                               <div class="buscas-wrapper" *ngIf="keyUpSearch">
+
+                                <div *ngIf="!resultadoBuscaSite" class="p-4">
+                                    <div class="spinner-round" >
+                                        <svg class="spinner" width="50px" height="50px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+                                    </div>
+                                </div>
+
+                                <div class="search-wrap" *ngIf="resultadoBuscaSite">
+                                    <div class="search-relacionados">
+                                        <h5>Você quis dizer:</h5>
+                                        <ul class="autocomplete-list">
+                                            <li *ngFor="let r of resultadoBuscaSite.suggestions" class="autocomplete-item"><a [routerLink]="getLinkArray('/categorias',r.link)">{{r.nome}}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="search-recomendados">
+                                        <h5>Produtos sugeridos:</h5>
+                                        <ul class="product-search-list">
+                                            <li *ngFor="let p of resultadoBuscaSite.products; let i = index;" class="product-search">
+                                                <a [routerLink]="getLinkArray('/produto',p.link)">
+                                                <img src="{{p.images[0].images}}" >
+                                                <span class="as-title">{{p.nome}}</span>
+                                                <span class="as-info">Ofertas à partir de:</span>
+                                                <span class="as-price">{{p.preco | currency:'BRL':true}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                               </div>
+                             
+
+                            </div>
+                         </div>
+                         
+                    </form>
+                </div>
+                <div class="nav-options">
+                    <div class="nav-opt d-sm-block d-xl-none" id="crt-categorias" (click)="openCatMobile()">
+                        <button class="opt" >
+                            <i class="tabs"></i>
+                        </button>
+                    </div>
+                    <div class="nav-opt d-sm-block d-xl-none" id="crt-search">
+                        <button class="opt" >
+                            <i class="pui-search-100"></i>
+                        </button>
+                    </div>
+                    <div class="nav-opt" id="user-act" tabindex="1">
+                        <button  class="opt" id="user-show" (click)="clickUser()" (mouseenter)="overUser()" (mouseleave)="overUserOut()"><i class="pui-user-100"></i></button>
+                        <div class="box-user" >
+                            <div class="box-header">
+                                <h4 *ngIf="vendedorDados">Olá, <b>{{vendedorDados.nome}}</b> :)</h4>
+                                <button class="btn btn-back" (click)="closeUser()">
+                                    <i class="pui-arrow-left-300"></i>
+                                </button>
+                            </div>
+                            <div class="box-body" *ngIf="vendedorDados">
+                                <ul class="user-actions-list">
+                                    <li class="usc-item">
+                                        <a routerLink="/user/minha-conta">
+                                            <i class="pui-user-300"></i>
+                                            Minha conta
+                                        </a>
+                                    </li>
+                                    <li class="usc-item">
+                                        <button href="#" (click)="logout()">
+                                            <i class="pui-exit-300"></i>
+                                            Sair
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- <span class="divisor mt-1"></span>
+                            <div class="box-body pt-0">
+                                <a [routerLink]="['/user','favoritos']" class="btn favorito">
+                                    Meus favoritos
+                                    <span class="fav-total">{{qtdFavorito}}</span>
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="nav-opt" id="crt-carrinho">
+                        <button class="opt" id="crt-show" (click)="openCart()" (mouseenter)="showCartHover()" (mouseleave)="cartOut()" (click)="carrinhoCompra();">
+                            <i class="pui-bagtwo-100"></i>
+                            <span class="total-carrinho">{{qtdProdutos}}</span>
+                        </button>
+                        <div class="crt-carrinho" (swiperight)="closeCarrinho()">
+                            <div class="crt-header">
+                                <h4>Meu carrinho</h4>
+                                <button class="btn btn-back" (click)="closeCarrinho()">
+                                    <i class="pui-arrow-right-300"></i>
+                                </button>
+                            </div>
+
+                            <div class="placeholder-carrinho" *ngIf="loadCarrinho">
+                                <div class="ph-item">
+                                    <div class="ph-col-4">
+                                        <div class="ph-picture"></div>
+                                    </div>
+                                    <div>
+                                        <div class="ph-row">
+                                            <div class="ph-col-6"></div>
+                                            <div class="ph-col-6 empty"></div>
+                                            <div class="ph-col-2"></div>
+                                            <div class="ph-col-8 empty"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ph-item">
+                                    <div class="ph-col-4">
+                                        <div class="ph-picture"></div>
+                                    </div>
+                                    <div>
+                                        <div class="ph-row">
+                                            <div class="ph-col-6"></div>
+                                            <div class="ph-col-6 empty"></div>
+                                            <div class="ph-col-2"></div>
+                                            <div class="ph-col-8 empty"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crt-footer-placeholder">
+                                    <div class="ph-item">
+                                        <div class="ph-col-12">
+                                            <div class="ph-row">
+                                                <div class="ph-col-6"></div>
+                                                <div class="ph-col-6 empty"></div>
+                                                <div class="ph-col-2"></div>
+                                                <div class="ph-col-6 empty"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crt-body" *ngIf="produtos.length <= 0 && !loadCarrinho" (swiperight)="closeCarrinho()">
+                                <div class="crt-vazio">
+                                    <span>:(</span>
+                                    <h4>Seu carrinho está vazio!</h4>
+                                    <p>Comece a comprar para inserir produtos aqui!</p>
+                                </div>
+                            </div>
+
+                            <div class="crt-body" *ngIf="!loadCarrinho && produtos.length > 0" (swiperight)="closeCarrinho()">
+                                <ul class="crt-produtos" (swiperight)="closeCarrinho()">
+                                    <li class="crt-item" *ngFor="let produtos of produtos; let i = index;" >
+                                        <a  [routerLink]="['/produto',produtos.id,produtos.link]" class="crt-produto">
+                                            <picture class="crt-image">
+                                                <img src="{{produtos.imagem}}" alt="">
+                                            </picture>
+                                            <div class="crt-infos">
+                                                <p class="crt-title">{{produtos.descricao}}</p>
+                                                <div class="d-flex flex-row justify-content-between">
+                                                    <small class="crt-qtd">Quantidade: {{produtos.quantidade}}</small>
+                                                    <span class="crt-price" *ngIf="produtos.total > 0">{{produtos.total | currency:'BRL':true}}</span>
+                                                    <span class="crt-price" *ngIf="produtos.total < 0">Falha ao buscar Preço!</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="crt-footer">
+                                    <div class="d-flex flex-row align-items-center justify-content-end mb-2">
+                                        <p class="crt-total">Total (valor total sem frete):</p>
+                                        <span class="crt-total-price">{{totalCompra | currency:'BRL':true}}</span> 
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center flex-wrap flex-xl-nowrap justify-content-end">
+                                        <a matRipple routerLink="/compras/carrinho-compra" class="btn btn-success btn-block m-xl-0">Fechar pedido</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="nav-cat">
+                <div class="nav-links" id="nav">
+                    <nav class="h-menu">
+                        <div class="categorias-wrapper">
+                            <div class="c-sidebar">
+                                <button class="btn-categoria" (click)="showCats($event.currentTarget)" (mouseenter)="overCats($event.currentTarget)" (mouseleave)="outCats()" >
+                                    <div class="hamburger hamburger--spring">
+                                        <div class="hamburger-box">
+                                          <div class="hamburger-inner"></div>
+                                        </div>
+                                      </div> Categorias
+                                </button>
+                                <div class="box-categorias">
+                                    <div class="ctg-box">
+        
+                                        <div class="box-header">
+                                             <h1>Categorias</h1>
+                                             <button class="btn btn-back">
+                                                <i class="pui-arrow-left-300"></i>
+                                             </button>
+                                        </div>
+                                       <ul class="categoria-list">
+                                        <li class="ctg-item" *ngFor="let menu of menuCategoria;let i = index;" (mouseenter)="abrirSubMenu(i)" >
+                                            <a  [routerLink]="getLinkArray('/categorias', menu.link)" class="ctg-link" id="{{i}}">{{menu.nome}}</a>
+                                            <div class="category-sub" id="{{i}}" >
+                                                <div class="ctg-sub-wrapper">
+                                                    <h1 class="ctg-title"><a [routerLink]="getLinkArray('/categorias', menu.link)" >{{menu.nome}}</a></h1>
+                                                    <div class="ctg-a">
+                                                            <ul class="category-links">
+                                                                <li class="sub-item" *ngFor="let submenu of menu.submenu; let y = index;">
+                                                                    <a [routerLink]="getLinkArray('/categorias',submenu.link)">{{submenu.nome}}</a>
+                                                                </li>
+                                                            </ul>
+                                                    </div>
+                                                </div>
+                                                <a [routerLink]="getLinkArray('/categorias', menu.link)" class="img-category">
+                                                    <img src="{{menu.image}}">
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <ul class="nav-menu">
+                        <li class="nav-item" *ngFor="let menu of menuTopo; let i = index;" (mouseover)="abrirMenuNav(i)" (mouseout)="fecharMenuNav()"  id="menu-{{i}}">
+                                <a [routerLink]="getLinkArray('/categorias', menu.link)" (mouseenter)="closeMenuHover()">{{menu.nome}}</a>
+                                <ul class="nav-categoria" id="{{i}}">
+                                    <li class="nav-categoria-item">
+                                        <div class="ctg-nav-wrapper">
+                                            <div class="ctg-nav-infos">
+                                                <h1 class="ctg-nav-title">{{menu.nome}}</h1>
+                                                <ul class="ctg-nav-list">
+                                                    <li class="ctg-nav-item" *ngFor="let submenu of menu.submenu; let y = index;" >
+                                                        <a [routerLink]="getLinkArray('/categorias', submenu.link)" >{{submenu.nome}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a  [routerLink]="getLinkArray('/categorias', menu.link)" class="ctg-img-link">
+                                                <div class="ctg-nav-image" [ngStyle]="{'background-image': 'url('+ menu.image +')'}"></div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                    <div class="daily-offers">
+                        <a href="/" class="daily-button" (mouseenter)="showDaily($event.currentTarget)" (mouseleave)="hideDaily()">
+                            <span class="material-icons">
+                                local_offer
+                            </span> Ofertas do Dia
+                        </a>
+                        <div class="daily-box">
+                            <a href="#">
+                                <img src="https://www.tabaratotolevando.com.br/comprar/produtos/ofertadodia/bl5856136452.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- <nav class="mobile-categoria" (swipeleft)="closeCatMobile()">
+        <div class="box-header">
+            <h1>Categorias</h1>
+            <button class="btn btn-back"  (click)="closeCatMobile()">
+                <i class="pui-arrow-left-300"></i>
+            </button>
+        </div>
+        <div class="box-body" >
+            <ul class="ctm-list" (swipeleft)="closeCatMobile()">
+                <li class="ctm-item"  *ngFor="let menu of menuCategoria;let i = index;">
+                    <button class="ctm-ctg" type="button"  (click)="abrirSubBox(i)">{{menu.nome}}</button>
+
+                    <div class="ctm-sub-box" id="{{i}}" (swipeleft)="fecharSubBox(i)">
+                        <div class="box-header">
+                            <h1 class="ctm-link"><a [routerLink]="getLinkArray('/categorias',menu.link)" (click)="removeOverflowClick()">{{menu.nome}}</a></h1>
+                            <button class="btn btn-back" id="fecharSub-{{i}}" (click)="fecharSubBox(i)">
+                                <i class="pui-arrow-left-300"></i>
+                            </button>
+                        </div>
+                        <div class="box-body" >
+                            <ul class="ctm-sub-list" (swipeleft)="fecharSubBox(i)">
+                                <li class="ctm-item" *ngFor="let submenu of menu.submenu; let y = index;">
+                                    <a  [routerLink]="getLinkArray('/categorias',submenu.link)" class="ctm-ctg" (click)="removeOverflowClick()">{{submenu.nome}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav> -->
+</nav>
+
+<button type="button" class="back-to-top" (click)="goToTop()" title="Voltar para o topo da página">
+    <div class="icon"></div>
+</button>
