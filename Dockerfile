@@ -1,5 +1,6 @@
 FROM debian:9
-  
+
+#Install Dependencias  
 RUN apt update && apt-get install -y  lsb-release apt-transport-https ca-certificates \
     apache2 wget curl vim git ssh
 
