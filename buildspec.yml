@@ -17,8 +17,8 @@ phases:
     commands:
       - echo build complete $(date "+%F | %R")
       - echo pushing image docker to repository...
-      - docker push $REPO_URL:$IMAGE_TAG 
-      - printf '[{"name":"multiloja-apache","imageUri":"%s"}]' $REPO_URL:$IMAGE_TAG > image.json
-      - cat image.json
+      - docker push $REPO_URL:$IMAGE_TAG
+      - printf '[{"name":"multiloja-apache","imageUri":"%s"}]' $REPO_URL:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json
 artifacts:
-    files: image.json 
+    files: imagedefinitions.json
