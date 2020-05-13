@@ -12,8 +12,6 @@ WORKDIR /var/www/multiloja
 
 COPY site site
 
-RUN ls -l
-
 RUN chmod -R 755 ./site && chown -R www-data.www-data ./site
 
 RUN apt clean
